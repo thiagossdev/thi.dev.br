@@ -91,9 +91,9 @@
   year: 2026
   kind: personal
   description:
-    en: Personal-use remake of the GBA game Drill Dozer (Game Freak, 2005) in Godot 4.8. A Python pipeline reverse-engineers the original's music, text and sprites from my own cartridge dump. Nothing from the original is distributed.
-    pt-br: Remake para uso pessoal do jogo de GBA Drill Dozer (Game Freak, 2005) em Godot 4.8. Um pipeline em Python faz engenharia reversa da música, dos textos e dos sprites a partir do dump do meu próprio cartucho. Nada do original é distribuído.
-    es: Remake de uso personal del juego de GBA Drill Dozer (Game Freak, 2005) en Godot 4.8. Un pipeline en Python hace ingeniería inversa de la música, los textos y los sprites a partir del dump de mi propio cartucho. No se distribuye nada del original.
+    en: An unofficial personal remake of the 2005 GBA game Drill Dozer by Game Freak, built with Godot 4.8. This project is not affiliated with or endorsed by Nintendo or Game Freak. All respective trademarks and copyrights belong to their owners.
+    pt-br: Um remake pessoal e não oficial do jogo de GBA Drill Dozer, de 2005, da Game Freak, feito com Godot 4.8. Este projeto não tem vínculo nem aprovação da Nintendo ou da Game Freak. Todas as marcas e direitos autorais pertencem aos respectivos donos.
+    es: Un remake personal y no oficial del juego de GBA Drill Dozer, de 2005, de Game Freak, hecho con Godot 4.8. Este proyecto no está afiliado ni respaldado por Nintendo ni por Game Freak. Todas las marcas y derechos de autor pertenecen a sus respectivos dueños.
 
 - id: gitops-local
   order: 9
