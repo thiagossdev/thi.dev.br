@@ -15,13 +15,13 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
 ---
 
 <header class="sticky top-0 z-40 border-b border-border-subtle bg-bg/85 backdrop-blur-sm">
-  <div class="wrap flex h-14 items-center gap-4 sm:gap-6">
+  <div class="wrap flex h-14 items-center gap-3 lg:gap-6">
     <a href={homePath(locale)} class="flex items-center gap-2 text-sm font-semibold text-text" aria-label={s.a11y.home}>
       <Ui name="terminal" class="size-5 text-brand" />
       <span>~/{site.shortName}</span>
     </a>
 
-    <nav aria-label={s.a11y.sections} class="hidden items-center gap-1 md:flex">
+    <nav aria-label={s.a11y.sections} class="hidden items-center gap-1 lg:flex">
       {
         site.nav.map((id) => (
           <a

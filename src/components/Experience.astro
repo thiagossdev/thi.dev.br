@@ -21,7 +21,7 @@ const fmt = (ym: string) => {
 const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
 ---
 
-<Section id="experience" title={s.nav.experience} lead={e.lead}>
+<Section id="experience" title={s.nav.experience} lead={e.lead} tone="deep">
   <ol class="relative ml-1 border-l border-border-strong">
     {
       jobs.map(({ data }) => {
