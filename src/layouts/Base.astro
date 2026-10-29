@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
-import { homePath, localeMeta, locales, defaultLocale, type Locale } from '../i18n/config';
+import { homePath, localeMeta, locales, localizedPath, defaultLocale, type Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -12,9 +12,11 @@ interface Props {
   description?: string;
   /** false em páginas sem versão por idioma, como a 404 */
   alternates?: boolean;
+  /** Página atual sem o prefixo do idioma, por exemplo 'uses/'. */
+  page?: string;
 }
 
-const { locale = defaultLocale, alternates = true } = Astro.props;
+const { locale = defaultLocale, alternates = true, page = '' } = Astro.props;
 const s = t(locale);
 const { title = s.meta.title, description = s.meta.description } = Astro.props;
 const meta = localeMeta[locale];
@@ -72,9 +74,9 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
       alternates && (
         <>
           {locales.map((l) => (
-            <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={new URL(homePath(l), Astro.site)} />
+            <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={new URL(localizedPath(l, page), Astro.site)} />
           ))}
-          <link rel="alternate" hreflang="x-default" href={new URL(homePath(defaultLocale), Astro.site)} />
+          <link rel="alternate" hreflang="x-default" href={new URL(localizedPath(defaultLocale, page), Astro.site)} />
         </>
       )
     }
@@ -114,7 +116,7 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
     >
       {s.a11y.skip}
     </a>
-    <Header locale={locale} />
+    <Header locale={locale} page={page} />
     <main id="content" class="flex-1">
       <slot />
     </main>

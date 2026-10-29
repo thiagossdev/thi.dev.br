@@ -33,3 +33,8 @@ export function cvPath(locale: Locale): string {
 export function cvPdfPath(locale: Locale): string {
   return `${cvPath(locale)}thiago-sousa-santos-cv-${locale}.pdf`;
 }
+
+/** Caminho de uma página interna num idioma, por exemplo localizedPath('es', 'uses/'). */
+export function localizedPath(locale: Locale, page = ''): string {
+  return `${homePath(locale)}${page}`;
+}
