@@ -15,12 +15,16 @@ export const site = {
   ],
   // ids de âncora iguais em todos os idiomas; o rótulo vem de strings.nav
   nav: ['about', 'experience', 'projects', 'stack', 'contact'],
+  // Baseado no levantamento dos projetos próprios e de trabalho (out/2026), sem cursos.
   stack: [
-    { group: 'languages', icon: 'code', items: ['TypeScript', 'JavaScript', 'Java', 'Python', 'PHP', 'Ruby', 'Go', 'GDScript'] },
-    { group: 'backend', icon: 'server', items: ['Node.js', 'Ruby on Rails', 'PHP (Zend, CakePHP)', 'Flutter', 'REST', 'SQL'] },
-    { group: 'data', icon: 'database', items: ['PostgreSQL', 'MariaDB', 'MySQL'] },
-    { group: 'infra', icon: 'cloud', items: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'Nginx', 'Linux'] },
-    { group: 'tools', icon: 'wrench', items: ['Git', 'n8n', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira', 'Godot'] },
+    { group: 'languages', icon: 'code', items: ['TypeScript', 'Java', 'Kotlin', 'PHP', 'Ruby', 'Python', 'JavaScript', 'Go', 'Rust', 'GDScript', 'SQL'] },
+    { group: 'frontend', icon: 'layout', items: ['Angular', 'Angular Material', 'Hotwire', 'Tailwind CSS', 'Storybook', 'Vite', 'React', 'Livewire'] },
+    { group: 'backend', icon: 'server', items: ['Ruby on Rails', 'Spring Boot', 'CakePHP', 'Laminas', 'Laravel', 'NestJS', 'Express', 'FastAPI', 'Flask', 'Struts 2'] },
+    { group: 'mobile', icon: 'smartphone', items: ['Android', 'Jetpack Compose', 'Room', 'Koin', 'Firebase', 'Tauri', 'Godot'] },
+    { group: 'data', icon: 'database', items: ['MySQL', 'PostgreSQL', 'SQLite', 'DynamoDB', 'Redis', 'Prisma', 'Doctrine'] },
+    { group: 'infra', icon: 'cloud', items: ['AWS Lambda', 'AWS CDK', 'S3', 'SQS', 'CodeBuild', 'Serverless Framework', 'Docker', 'Kamal', 'Kubernetes', 'Argo CD', 'GitHub Actions', 'GitLab CI'] },
+    { group: 'testing', icon: 'flask', items: ['Playwright', 'Vitest', 'Jest', 'JUnit', 'PHPUnit', 'Capybara', 'GUT', 'k6'] },
+    { group: 'tools', icon: 'wrench', items: ['Git', 'mise', 'pnpm', 'Rollbar', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira'] },
   ],
   education: {
     school: 'Universidade Federal do Piauí',
@@ -36,6 +40,10 @@ export const languageColor: Record<string, string> = {
   GDScript: 'var(--t-blue)',
   Ruby: 'var(--t-red)',
   TypeScript: 'var(--t-cyan)',
+  Kotlin: 'var(--t-magenta)',
+  Go: 'var(--t-cyan)',
+  Rust: 'var(--t-orange)',
+  PHP: 'var(--t-blue)',
   JavaScript: 'var(--t-yellow)',
   Java: 'var(--t-orange)',
   Python: 'var(--t-magenta)',

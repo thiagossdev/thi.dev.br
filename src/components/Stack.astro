@@ -16,7 +16,7 @@ const s = t(Astro.props.locale);
     {
       site.stack.map((g) => (
         <>
-          <dt class="flex items-center gap-2 text-sm text-text-muted sm:pt-0.5">
+          <dt class="flex items-center gap-2 self-start text-sm text-text-muted sm:pt-0.5">
             <Ui name={g.icon} class="size-4 text-brand" />
             {s.stack.groups[g.group]}
           </dt>

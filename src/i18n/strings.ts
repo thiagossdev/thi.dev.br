@@ -73,7 +73,7 @@ const en = {
   },
   stack: {
     lead: 'What I use or have used in production.',
-    groups: { languages: 'languages', backend: 'backend', data: 'data', infra: 'infra', tools: 'tools' },
+    groups: { languages: 'languages', frontend: 'frontend', backend: 'backend', mobile: 'mobile & desktop', data: 'data', infra: 'infra', testing: 'testing', tools: 'tools' },
   },
   contact: {
     lead: 'Email is the fastest way to reach me. I also reply on LinkedIn.',
@@ -158,7 +158,7 @@ const ptBr: Strings = {
   },
   stack: {
     lead: 'O que uso ou já usei em produção.',
-    groups: { languages: 'linguagens', backend: 'backend', data: 'dados', infra: 'infra', tools: 'ferramentas' },
+    groups: { languages: 'linguagens', frontend: 'frontend', backend: 'backend', mobile: 'mobile e desktop', data: 'dados', infra: 'infra', testing: 'testes', tools: 'ferramentas' },
   },
   contact: {
     lead: 'O jeito mais rápido é e-mail. Também respondo no LinkedIn.',
@@ -241,7 +241,7 @@ const es: Strings = {
   },
   stack: {
     lead: 'Lo que uso o he usado en producción.',
-    groups: { languages: 'lenguajes', backend: 'backend', data: 'datos', infra: 'infra', tools: 'herramientas' },
+    groups: { languages: 'lenguajes', frontend: 'frontend', backend: 'backend', mobile: 'móvil y escritorio', data: 'datos', infra: 'infra', testing: 'pruebas', tools: 'herramientas' },
   },
   contact: {
     lead: 'El email es la forma más rápida de contactarme. También respondo en LinkedIn.',
