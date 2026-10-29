@@ -37,6 +37,7 @@ export const rigs: Rig[] = [
   },
 ];
 
+export const gamerTag = 'Dexther';
 export const steamProfile = 'https://steamcommunity.com/id/dextherz/';
 export const steamGames = 439;
 export const twitch = 'https://www.twitch.tv/dextherz';

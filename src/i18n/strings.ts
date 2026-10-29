@@ -126,7 +126,7 @@ const en = {
     specs: { cpu: 'processor', gpu: 'graphics', ram: 'memory', storage: 'storage', board: 'motherboard', cooler: 'cooler', fans: 'fans', case: 'case', psu: 'power supply' },
     mostPlayed: 'most played',
     hours: 'h',
-    steamProfile: 'Steam profile',
+    gamerAvatar: 'Dexther, my gaming avatar: a red demonic book with a glowing orb',
     steamGames: 'games on Steam',
   },
   cv: {
@@ -279,7 +279,7 @@ const ptBr: Strings = {
     specs: { cpu: 'processador', gpu: 'placa de vídeo', ram: 'memória', storage: 'armazenamento', board: 'placa-mãe', cooler: 'refrigeração', fans: 'ventoinhas', case: 'gabinete', psu: 'fonte' },
     mostPlayed: 'mais jogados',
     hours: 'h',
-    steamProfile: 'perfil na Steam',
+    gamerAvatar: 'Dexther, meu avatar nos jogos: um livro demoníaco vermelho com um orbe brilhante',
     steamGames: 'jogos na Steam',
   },
   cv: {
@@ -430,7 +430,7 @@ const es: Strings = {
     specs: { cpu: 'procesador', gpu: 'tarjeta gráfica', ram: 'memoria', storage: 'almacenamiento', board: 'placa base', cooler: 'refrigeración', fans: 'ventiladores', case: 'gabinete', psu: 'fuente' },
     mostPlayed: 'más jugados',
     hours: 'h',
-    steamProfile: 'perfil de Steam',
+    gamerAvatar: 'Dexther, mi avatar en los juegos: un libro demoníaco rojo con un orbe brillante',
     steamGames: 'juegos en Steam',
   },
   cv: {

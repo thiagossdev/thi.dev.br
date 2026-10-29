@@ -2,10 +2,13 @@
 // Página /uses, a convenção da comunidade dev (uses.tech): o que uso hoje e as configs dos
 // meus Gists públicos, buscadas no build e destacadas com o Shiki do Astro.
 import { Code } from 'astro:components';
+import { Image } from 'astro:assets';
+import gamerAvatar from '../assets/dexther.png';
 import Base from '../layouts/Base.astro';
 import Section from './Section.astro';
+import Brand from './icons/Brand.astro';
 import Ui, { type UiIconName } from './icons/Ui.astro';
-import { games, rigs, steamGames, steamProfile, twitch } from '../data/gaming';
+import { gamerTag, games, rigs, steamGames, steamProfile, twitch } from '../data/gaming';
 import { getGist, gistUrl, extensionIds, stripShellComments, type GistKey } from '../data/gists';
 import { localeMeta, type Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
@@ -229,6 +232,30 @@ const themes = { light: 'catppuccin-latte', dark: 'tokyo-night' } as const;
       </div>
 
       <article>
+        <div class="mb-8 flex items-center gap-4">
+          <Image
+            src={gamerAvatar}
+            alt={u.gamerAvatar}
+            width={80}
+            height={80}
+            densities={[1, 2]}
+            class="size-20 shrink-0 rounded-md object-cover outline-1 -outline-offset-1 outline-[var(--t-img-outline)] shadow-ring"
+          />
+          <div class="min-w-0">
+            <p class="text-lg font-semibold text-text">{gamerTag}</p>
+            <p class="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-text-muted">
+              <a href={steamProfile} class="uses-link inline-flex items-center gap-1.5" rel="me noopener" target="_blank">
+                <Brand name="steam" class="size-3.5" />
+                Steam · {numberFmt.format(steamGames)} {u.steamGames} ↗
+              </a>
+              <a href={twitch} class="uses-link inline-flex items-center gap-1.5" rel="me noopener" target="_blank">
+                <Brand name="twitch" class="size-3.5" />
+                Twitch ↗
+              </a>
+            </p>
+          </div>
+        </div>
+
         <h3 class="flex items-center gap-2 text-base font-semibold text-text">
           <Ui name="gamepad" class="size-4 text-brand" />
           {u.mostPlayed}
@@ -246,13 +273,6 @@ const themes = { light: 'catppuccin-latte', dark: 'tokyo-night' } as const;
             ))
           }
         </ol>
-        <p class="mt-4 text-xs text-text-muted">
-          <a href={steamProfile} class="uses-link" rel="me noopener" target="_blank">
-            {u.steamProfile} · {numberFmt.format(steamGames)} {u.steamGames} ↗
-          </a>
-          <span aria-hidden="true"> · </span>
-          <a href={twitch} class="uses-link" rel="me noopener" target="_blank">Twitch ↗</a>
-        </p>
       </article>
     </div>
   </Section>
