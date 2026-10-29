@@ -51,30 +51,52 @@
     pt-br: Cliente desktop de identificação de chamadas (bina) que lê a linha telefônica pela porta serial. Reescrita em Rust e Tauri 2 do cliente antigo em Java 8.
     es: Cliente de escritorio de identificación de llamadas que lee la línea telefónica por el puerto serie. Reescritura en Rust y Tauri 2 del antiguo cliente en Java 8.
 
-- id: amazing-clash
+- id: cadiro-vault
   order: 5
+  name: CadiroVault
+  language: Ruby
+  year: 2026
+  kind: personal
+  description:
+    en: Path of Exile 2 trading companion in Rails 8.1. Syncs stash listings from the trade site, price-checks items, watches new drops in near real time and matches in-game buy offers to items. Invite-only, with passkeys and TOTP, Hotwire, Solid Queue and SQLite, deployed with Kamal.
+    pt-br: Companheiro de trade de Path of Exile 2 em Rails 8.1. Sincroniza os anúncios do stash no site de trade, estima preços, acompanha drops novos quase em tempo real e casa ofertas de compra do chat com os itens. Só por convite, com passkeys e TOTP, Hotwire, Solid Queue e SQLite, com deploy via Kamal.
+    es: Compañero de trade de Path of Exile 2 en Rails 8.1. Sincroniza los anuncios del stash en el sitio de trade, estima precios, sigue drops nuevos casi en tiempo real y empareja ofertas de compra del chat con los ítems. Solo por invitación, con passkeys y TOTP, Hotwire, Solid Queue y SQLite, con deploy vía Kamal.
+
+- id: certz
+  order: 6
+  name: Certz
+  language: Ruby
+  year: 2026
+  kind: personal
+  description:
+    en: Event certificate platform in Rails 8.1. Events, participants imported from spreadsheets and PDF certificates rendered with Grover. Pundit authorization, passkeys and TOTP. A rewrite of the original Zend Framework version.
+    pt-br: Plataforma de certificados de eventos em Rails 8.1. Eventos, participantes importados de planilhas e certificados em PDF gerados com Grover. Autorização com Pundit, passkeys e TOTP. Reescrita da versão original em Zend Framework.
+    es: Plataforma de certificados de eventos en Rails 8.1. Eventos, participantes importados de planillas y certificados en PDF generados con Grover. Autorización con Pundit, passkeys y TOTP. Reescritura de la versión original en Zend Framework.
+
+- id: amazing-clash
+  order: 7
   name: AMAZING//CLASH
   language: GDScript
   year: 2026
   kind: personal
   description:
-    en: Networked game in Godot 4.8 with GUT unit tests. Its companion app runs on Rails 8.1 with passkeys, TOTP and Kamal deploys.
-    pt-br: Jogo em rede feito em Godot 4.8, com testes unitários em GUT. O app companheiro roda em Rails 8.1 com passkeys, TOTP e deploy via Kamal.
-    es: Juego en red hecho en Godot 4.8, con pruebas unitarias en GUT. La app complementaria corre en Rails 8.1 con passkeys, TOTP y deploy con Kamal.
+    en: Real-time PvP arena game in Godot 4.8. Each player controls one fighter with aimed skillshots, in team or free-for-all matches. Deep builds inspired by Path of Exile 2 are drafted into a fixed loadout before each match. Server-authoritative networking, GUT tests and a Rails 8.1 backend.
+    pt-br: Jogo de arena PvP em tempo real em Godot 4.8. Cada jogador controla um lutador com habilidades de mira (skillshots), em partidas por equipe ou todos contra todos. Builds profundas inspiradas em Path of Exile 2 viram um loadout fixo antes de cada partida. Rede com servidor autoritativo, testes em GUT e backend em Rails 8.1.
+    es: Juego de arena PvP en tiempo real en Godot 4.8. Cada jugador controla un luchador con habilidades de apuntado (skillshots), en partidas por equipos o todos contra todos. Builds profundas inspiradas en Path of Exile 2 se fijan en un loadout antes de cada partida. Red con servidor autoritativo, pruebas en GUT y backend en Rails 8.1.
 
 - id: drill-dozer
-  order: 6
+  order: 8
   name: Drill Dozer
   language: GDScript
   year: 2026
   kind: personal
   description:
-    en: Game in Godot 4.8 with GUT unit tests, in active development.
-    pt-br: Jogo em Godot 4.8 com testes unitários em GUT, em desenvolvimento ativo.
-    es: Juego en Godot 4.8 con pruebas unitarias en GUT, en desarrollo activo.
+    en: Personal-use remake of the GBA game Drill Dozer (Game Freak, 2005) in Godot 4.8. A Python pipeline reverse-engineers the original's music, text and sprites from my own cartridge dump. Nothing from the original is distributed.
+    pt-br: Remake para uso pessoal do jogo de GBA Drill Dozer (Game Freak, 2005) em Godot 4.8. Um pipeline em Python faz engenharia reversa da música, dos textos e dos sprites a partir do dump do meu próprio cartucho. Nada do original é distribuído.
+    es: Remake de uso personal del juego de GBA Drill Dozer (Game Freak, 2005) en Godot 4.8. Un pipeline en Python hace ingeniería inversa de la música, los textos y los sprites a partir del dump de mi propio cartucho. No se distribuye nada del original.
 
 - id: gitops-local
-  order: 7
+  order: 9
   name: gitops-local
   repo: https://github.com/thiagossdev/gitops-local
   language: Shell
@@ -85,7 +107,7 @@
     es: Clúster de Kubernetes local gestionado con GitOps. ArgoCD, Kustomize, ingress y Postgres en StatefulSet, con scripts de bootstrap desde cero.
 
 - id: super-rev-world
-  order: 8
+  order: 10
   name: super-rev-world
   repo: https://github.com/thiagossdev/super-rev-world
   language: GDScript
@@ -96,7 +118,7 @@
     es: Juego 2D en Godot. Movimiento del jugador, tileset y una paleta de debug para visualizar direcciones.
 
 - id: thidev
-  order: 9
+  order: 11
   name: thidev
   repo: https://github.com/thiagossdev/thidev
   language: TypeScript
