@@ -1,10 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import Ui from '../components/icons/Ui.astro';
-const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+import { homePath } from '../i18n/config';
 ---
 
-<Base title="404 · thi.dev.br" description="Página não encontrada.">
+<Base title="404 · thi.dev.br" description="Page not found." alternates={false}>
   <section class="mx-auto max-w-4xl px-4 py-24 sm:px-6">
     <p class="text-sm text-text-muted">
       <span class="text-brand">thiago@thi.dev.br</span>:<span class="text-blue">~</span>$ cd <span id="path">…</span>
@@ -13,11 +13,13 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       bash: cd: <span class="text-red">No such file or directory</span>
     </h1>
     <p class="mt-6 max-w-[62ch] text-base text-text-secondary">
-      Esse caminho não existe por aqui. Volte para o início ou dê uma olhada nos projetos.
+      This path does not exist here. Head back home or take a look at the projects.
     </p>
-    <p class="mt-8 flex flex-wrap gap-x-5 text-sm">
-      <a href={base} class="link inline-flex items-center gap-2"><Ui name="house" class="size-4 text-brand" />cd ~</a>
-      <a href={`${base}#projetos`} class="link text-text-secondary">projetos</a>
+    <p class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      <a href={homePath('en')} class="link inline-flex items-center gap-2"><Ui name="house" class="size-4 text-brand" />cd ~</a>
+      <a href={`${homePath('en')}#projects`} class="link text-text-secondary">projects</a>
+      <a href={homePath('pt-br')} lang="pt-BR" class="link text-text-secondary">início em português</a>
+      <a href={homePath('es')} lang="es" class="link text-text-secondary">inicio en español</a>
     </p>
   </section>
 </Base>

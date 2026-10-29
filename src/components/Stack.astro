@@ -2,16 +2,23 @@
 import Section from './Section.astro';
 import { site } from '../data/site';
 import Ui from './icons/Ui.astro';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+const s = t(Astro.props.locale);
 ---
 
-<Section id="stack" title="stack" lead="O que uso ou já usei em produção.">
+<Section id="stack" title={s.nav.stack} lead={s.stack.lead}>
   <dl class="grid gap-x-6 gap-y-5 sm:grid-cols-[auto_1fr]">
     {
       site.stack.map((g) => (
         <>
           <dt class="flex items-center gap-2 text-sm text-text-muted sm:pt-0.5">
             <Ui name={g.icon} class="size-4 text-brand" />
-            {g.group}
+            {s.stack.groups[g.group]}
           </dt>
           <dd class="flex flex-wrap gap-1.5">
             {g.items.map((item) => (

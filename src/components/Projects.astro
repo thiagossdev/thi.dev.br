@@ -4,15 +4,19 @@ import Section from './Section.astro';
 import { languageColor, site } from '../data/site';
 import Ui from './icons/Ui.astro';
 import Brand from './icons/Brand.astro';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale);
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Section
-  id="projetos"
-  title="projetos"
-  lead="Uma seleção. A maior parte do que faço no trabalho não tem repositório público."
->
+<Section id="projects" title={s.nav.projects} lead={s.projects.lead}>
   <ul class="divide-y divide-border-subtle border-y border-border-subtle">
     {
       projects.map(({ data }) => (
@@ -40,12 +44,12 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
               {data.kind === 'work' && (
                 <>
                   <span aria-hidden="true">·</span>
-                  <span class="text-yellow">trabalho</span>
+                  <span class="text-yellow">{s.projects.work}</span>
                 </>
               )}
             </p>
           </div>
-          <p class="col-span-2 max-w-[62ch] text-sm leading-relaxed text-text-secondary sm:col-span-1 sm:row-start-1 sm:col-start-2">{data.description}</p>
+          <p class="col-span-2 max-w-[62ch] text-sm leading-relaxed text-text-secondary sm:col-span-1 sm:row-start-1 sm:col-start-2">{data.description[locale]}</p>
           {data.repo && (
             <Ui
               name="arrow-up-right"
@@ -57,7 +61,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     }
   </ul>
   <p class="mt-6 text-sm text-text-muted">
-    Mais em{' '}
+    {s.projects.more}{' '}
     <a href={`https://github.com/${site.handle}?tab=repositories`} class="link inline-flex items-center gap-1.5" rel="noopener" target="_blank">
       <Brand name="github" class="size-3.5" />
       github.com/{site.handle}

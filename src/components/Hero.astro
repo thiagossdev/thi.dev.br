@@ -2,8 +2,15 @@
 import { Image } from 'astro:assets';
 import photo from '../assets/thiago.jpg';
 import { site } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
+
+interface Props {
+  locale: Locale;
+}
+const s = t(Astro.props.locale);
 ---
 
 <section class="mx-auto max-w-4xl px-4 pt-14 pb-6 sm:px-6 sm:pt-20 sm:pb-10">
@@ -21,26 +28,25 @@ import Ui from './icons/Ui.astro';
       </h1>
 
       <p class="reveal mt-3 min-h-[1.75rem] text-lg text-text-secondary sm:text-xl" style="--i: 2">
-        <span class="text-brand" aria-hidden="true">❯&nbsp;</span><span id="typed" class="cursor" data-phrases={JSON.stringify(site.taglines)}>{site.taglines[0]}</span>
+        <span class="text-brand" aria-hidden="true">❯&nbsp;</span><span id="typed" class="cursor" data-phrases={JSON.stringify(s.hero.taglines)}>{s.hero.taglines[0]}</span>
       </p>
 
       <p class="reveal mt-6 max-w-[62ch] text-base leading-relaxed text-text-secondary" style="--i: 3">
-        Desenvolvo sistemas web há mais de dez anos, de PHP a Kubernetes. Gosto de entender o problema
-        antes de escrever código, de estimar bem e de deixar o time fluir.
+        {s.hero.intro}
       </p>
 
       <div class="reveal mt-8 flex flex-wrap items-center gap-3" style="--i: 4">
         <a
-          href="#projetos"
+          href="#projects"
           class="group inline-flex h-10 items-center gap-2 rounded-sm bg-brand pr-3.5 pl-4 text-sm font-semibold text-brand-ink transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] [@media(hover:hover)]:hover:bg-[#bbdd97]"
         >
-          ver projetos
+          {s.hero.cta}
           <Ui
             name="arrow-down"
             class="size-4 transition-transform duration-150 ease-out [@media(hover:hover)]:group-hover:translate-y-0.5"
           />
         </a>
-        <ul class="flex flex-wrap gap-1.5" aria-label="Redes">
+        <ul class="flex flex-wrap gap-1.5" aria-label={s.a11y.social}>
           {
             site.links.map((l) => (
               <li>
@@ -64,7 +70,7 @@ import Ui from './icons/Ui.astro';
     <figure class="reveal justify-self-start md:justify-self-end" style="--i: 2">
       <Image
         src={photo}
-        alt="Foto de Thiago Sousa Santos"
+        alt={s.a11y.photo}
         width={240}
         height={240}
         densities={[1, 2]}

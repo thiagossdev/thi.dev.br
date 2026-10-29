@@ -2,21 +2,28 @@
 import { site } from '../data/site';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+const s = t(Astro.props.locale);
 const year = new Date().getFullYear();
 ---
 
-<footer id="contato" class="mx-auto w-full max-w-4xl scroll-mt-20 px-4 pt-8 pb-10 sm:px-6 sm:pt-12">
+<footer id="contact" class="mx-auto w-full max-w-4xl scroll-mt-20 px-4 pt-8 pb-10 sm:px-6 sm:pt-12">
   <div class="border-t border-border-subtle pt-8">
-    <h2 class="section-title">contato</h2>
+    <h2 class="section-title">{s.nav.contact}</h2>
     <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-text-secondary">
-      O jeito mais rápido é e-mail. Também respondo no LinkedIn.
+      {s.contact.lead}
     </p>
     <p class="mt-3 flex items-center gap-2 text-base">
       <Ui name="mail" class="size-5 shrink-0 text-brand" />
       <a href={`mailto:${site.email}`} class="link font-semibold">{site.email}</a>
     </p>
 
-    <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label="Redes">
+    <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={s.a11y.social}>
       {
         site.links.map((l) => (
           <li>
@@ -32,10 +39,10 @@ const year = new Date().getFullYear();
     <p class="mt-12 flex flex-wrap gap-x-2 text-xs text-text-muted">
       <span>© {year} {site.name}.</span>
       <span>
-        Feito com <a href="https://astro.build" class="link" rel="noopener" target="_blank">Astro</a>, hospedado no
-        GitHub Pages.
+        {s.contact.builtWith} <a href="https://astro.build" class="link" rel="noopener" target="_blank">Astro</a>,{' '}
+        {s.contact.hostedOn}
       </span>
-      <a href={site.repo} class="link" rel="noopener" target="_blank">código-fonte</a>
+      <a href={site.repo} class="link" rel="noopener" target="_blank">{s.contact.source}</a>
     </p>
   </div>
 </footer>

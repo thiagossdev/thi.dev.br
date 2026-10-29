@@ -1,22 +1,30 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import { homePath, localeMeta, locales, defaultLocale, type Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
+  locale?: Locale;
   title?: string;
   description?: string;
+  /** false em páginas sem versão por idioma, como a 404 */
+  alternates?: boolean;
 }
 
-const { title = site.title, description = site.description } = Astro.props;
+const { locale = defaultLocale, alternates = true } = Astro.props;
+const s = t(locale);
+const { title = s.meta.title, description = s.meta.description } = Astro.props;
+const meta = localeMeta[locale];
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(`${base}og.jpg`, Astro.site);
 ---
 
 <!doctype html>
-<html lang="pt-BR" data-theme="tokyo-night">
+<html lang={meta.htmlLang} data-theme="tokyo-night">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,11 +33,22 @@ const ogImage = new URL(`${base}og.jpg`, Astro.site);
     <meta name="author" content={site.name} />
     <meta name="theme-color" content="#1a1b26" />
     <link rel="canonical" href={canonical} />
+    {
+      alternates && (
+        <>
+          {locales.map((l) => (
+            <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={new URL(homePath(l), Astro.site)} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={new URL(homePath(defaultLocale), Astro.site)} />
+        </>
+      )
+    }
     <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
     <link rel="sitemap" href={`${base}sitemap-index.xml`} />
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={meta.ogLocale} />
+    {locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={localeMeta[l].ogLocale} />)}
     <meta property="og:site_name" content={site.shortName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -40,15 +59,15 @@ const ogImage = new URL(`${base}og.jpg`, Astro.site);
   </head>
   <body class="bg-bg text-text min-h-dvh flex flex-col">
     <a
-      href="#conteudo"
+      href="#content"
       class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xs focus:bg-brand focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-ink"
     >
-      Pular para o conteúdo
+      {s.a11y.skip}
     </a>
-    <Header />
-    <main id="conteudo" class="flex-1">
+    <Header locale={locale} />
+    <main id="content" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>

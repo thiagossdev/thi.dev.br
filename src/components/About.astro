@@ -2,35 +2,34 @@
 import Section from './Section.astro';
 import Ui, { type UiIconName } from './icons/Ui.astro';
 import { site } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+const s = t(Astro.props.locale);
+const a = s.about;
 
 const facts: { icon: UiIconName; label: string; value: string }[] = [
-  { icon: 'map-pin', label: 'local', value: 'Teresina, PI' },
-  { icon: 'languages', label: 'idiomas', value: 'português, inglês (B1/B2)' },
-  { icon: 'briefcase', label: 'agora', value: 'RevGás, desde 2021' },
+  { icon: 'map-pin', label: a.facts.location, value: site.location },
+  { icon: 'languages', label: a.facts.languages, value: a.languagesValue },
+  { icon: 'briefcase', label: a.facts.now, value: a.nowValue },
 ];
 
 const hobbies: { icon: UiIconName; title: string; text: string }[] = [
-  { icon: 'keyboard', title: 'teclados', text: 'Monto e customizo teclados mecânicos.' },
-  { icon: 'gamepad', title: 'games', text: 'Jogando desde 1992, e às vezes fazendo os meus em Godot.' },
-  { icon: 'headphones', title: 'música', text: 'Trilha sonora do dia inteiro, código incluso.' },
+  { icon: 'keyboard', ...a.hobbies.keyboards },
+  { icon: 'gamepad', ...a.hobbies.games },
+  { icon: 'headphones', ...a.hobbies.music },
 ];
 ---
 
-<Section id="sobre" title="sobre">
-  <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_17rem] md:gap-14">
+<Section id="about" title={s.nav.about}>
+  <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-16">
     <div class="space-y-4 text-base leading-relaxed text-text-secondary [&>p]:max-w-[62ch]">
+      {a.paragraphs.map((p) => <p>{p}</p>)}
       <p>
-        Sou autodidata e busco sempre novos conhecimentos. Gosto de desafios, principalmente de
-        entender o problema antes de partir para a solução.
-      </p>
-      <p>
-        Gosto de estimar e organizar o tempo das tarefas e de estabelecer prazos realistas. Assim
-        alinho o trabalho com a equipe e deixo o desenvolvimento fluir.
-      </p>
-      <p>
-        Hoje trabalho na <a href="https://revgas.com" class="link" rel="noopener" target="_blank">RevGás</a>,
-        em sistemas fiscais e gerenciais para revendas de GLP. Antes disso fui CTO da Expandr por
-        seis anos, numa edtech de captação de alunos.
+        {a.current.before}<a href="https://revgas.com" class="link" rel="noopener" target="_blank">RevGás</a>{a.current.after}
       </p>
     </div>
 
@@ -38,7 +37,7 @@ const hobbies: { icon: UiIconName; title: string; text: string }[] = [
       {
         facts.map((f) => (
           <div class="flex items-start gap-3">
-            <dt class="flex w-24 shrink-0 items-center gap-2 text-text-muted">
+            <dt class="flex w-28 shrink-0 items-center gap-2 text-text-muted">
               <Ui name={f.icon} class="size-4 text-brand" />
               {f.label}
             </dt>
@@ -49,14 +48,14 @@ const hobbies: { icon: UiIconName; title: string; text: string }[] = [
     </dl>
   </div>
 
-  <ul class="mt-12 grid gap-6 sm:grid-cols-3" aria-label="Fora do código">
+  <ul class="mt-12 grid gap-6 sm:grid-cols-3" aria-label={a.offCode}>
     {
       hobbies.map((h) => (
         <li class="flex gap-3">
           <Ui name={h.icon} class="mt-0.5 size-5 shrink-0 text-brand" />
           <div>
             <p class="text-sm font-semibold text-text">{h.title}</p>
-            <p class="mt-1 text-sm leading-relaxed text-text-muted">{h.text}</p>
+            <p class="mt-1 max-w-[40ch] text-sm leading-relaxed text-text-muted">{h.text}</p>
           </div>
         </li>
       ))

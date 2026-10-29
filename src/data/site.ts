@@ -1,21 +1,11 @@
+// Dados que não mudam com o idioma. Textos traduzidos ficam em src/i18n/strings.ts.
 export const site = {
   name: 'Thiago Sousa Santos',
   shortName: 'thi.dev.br',
   handle: 'thiagossdev',
-  title: 'Thiago Sousa Santos · desenvolvedor full stack',
-  description:
-    'Desenvolvedor full stack em Teresina, PI. Analista de Sistemas na RevGás. Bacharel em Ciência da Computação pela UFPI.',
   email: 'ssthiago.dev@gmail.com',
-  location: 'Teresina, PI, Brasil',
+  location: 'Teresina, PI',
   repo: 'https://github.com/thiagossdev/thi.dev.br',
-  // frases que o hero "digita" em sequência
-  taglines: [
-    'desenvolvedor full stack',
-    'analista de sistemas na RevGás',
-    'bacharel em ciência da computação',
-    'gamer desde 1992',
-    'monto teclados custom',
-  ],
   links: [
     { label: 'github', icon: 'github', href: 'https://github.com/thiagossdev' },
     { label: 'linkedin', icon: 'linkedin', href: 'https://www.linkedin.com/in/thiagosousasantos' },
@@ -23,36 +13,21 @@ export const site = {
     { label: 'instagram', icon: 'instagram', href: 'https://instagram.com/thiagossdev' },
     { label: 'spotify', icon: 'spotify', href: 'https://open.spotify.com/user/thiagos.xsantos' },
   ],
-  nav: [
-    { label: 'sobre', href: '#sobre' },
-    { label: 'experiência', href: '#experiencia' },
-    { label: 'projetos', href: '#projetos' },
-    { label: 'stack', href: '#stack' },
-    { label: 'contato', href: '#contato' },
-  ],
+  // ids de âncora iguais em todos os idiomas; o rótulo vem de strings.nav
+  nav: ['about', 'experience', 'projects', 'stack', 'contact'],
   stack: [
-    { group: 'linguagens', icon: 'code', items: ['TypeScript', 'JavaScript', 'Java', 'Python', 'PHP', 'Ruby', 'Go', 'GDScript'] },
+    { group: 'languages', icon: 'code', items: ['TypeScript', 'JavaScript', 'Java', 'Python', 'PHP', 'Ruby', 'Go', 'GDScript'] },
     { group: 'backend', icon: 'server', items: ['Node.js', 'Ruby on Rails', 'PHP (Zend, CakePHP)', 'Flutter', 'REST', 'SQL'] },
-    { group: 'dados', icon: 'database', items: ['PostgreSQL', 'MariaDB', 'MySQL'] },
+    { group: 'data', icon: 'database', items: ['PostgreSQL', 'MariaDB', 'MySQL'] },
     { group: 'infra', icon: 'cloud', items: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'Nginx', 'Linux'] },
-    { group: 'ferramentas', icon: 'wrench', items: ['Git', 'n8n', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira', 'Godot'] },
+    { group: 'tools', icon: 'wrench', items: ['Git', 'n8n', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira', 'Godot'] },
   ],
   education: {
-    degree: 'Bacharel em Ciência da Computação',
     school: 'Universidade Federal do Piauí',
     url: 'https://ufpi.br',
     period: '2010 – 2014',
-    notes: [
-      'Iniciação científica em visão computacional: seleção de atributos para detecção de uso de capacete por motociclistas.',
-      'Monitoria.',
-    ],
   },
-  testimonial: {
-    quote:
-      'Thiago e eu trabalhamos juntos há algum tempo, e ele continuamente me surpreende com sua organização e mitigação de riscos em nossos projetos. Definitivamente, um dos melhores programadores que já conheci.',
-    author: 'Renan Tourinho',
-    role: 'COO, supervisionou Thiago na Expandr',
-  },
+  testimonialAuthor: 'Renan Tourinho',
 } as const;
 
 /** Cor por linguagem, mapeada para a paleta do tema. */

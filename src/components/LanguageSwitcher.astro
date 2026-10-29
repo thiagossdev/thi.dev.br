@@ -1,0 +1,37 @@
+---
+import { homePath, localeMeta, locales, type Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+import Ui from './icons/Ui.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+---
+
+<nav aria-label={t(locale).a11y.language} class="flex items-center gap-1.5 text-xs">
+  <Ui name="languages" class="hidden size-4 text-text-muted sm:block" />
+  <ul class="flex items-center">
+    {
+      locales.map((l) => (
+        <li>
+          <a
+            href={homePath(l)}
+            hreflang={localeMeta[l].htmlLang}
+            lang={localeMeta[l].htmlLang}
+            title={localeMeta[l].label}
+            aria-current={l === locale ? 'true' : undefined}
+            class:list={[
+              'inline-flex h-10 min-w-8 items-center justify-center rounded-xs px-1.5 uppercase transition-[background-color,color] duration-150 ease-out',
+              l === locale
+                ? 'font-semibold text-brand'
+                : 'text-text-muted [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text',
+            ]}
+          >
+            {localeMeta[l].short}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

@@ -13,7 +13,20 @@ export default defineConfig({
   site: hasCustomDomain ? 'https://thi.dev.br' : 'https://thiagossdev.github.io',
   base: hasCustomDomain ? '/' : '/thi.dev.br',
   trailingSlash: 'ignore',
-  integrations: [sitemap()],
+  // inglês na raiz, português em /pt-br/ e espanhol em /es/
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'pt-br', 'es'],
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en', 'pt-br': 'pt-BR', es: 'es' },
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

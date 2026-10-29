@@ -1,57 +1,107 @@
 - id: revgas
-  role: Analista de Sistemas
   company: RevGás
   url: https://revgas.com
   location: Teresina, PI
   start: "2021-11"
   end: null
+  role:
+    en: Systems Analyst
+    pt-br: Analista de Sistemas
+    es: Analista de Sistemas
   summary:
-    - Sistema fiscal e gerencial para revendas de GLP, com foco em eficiência operacional e conformidade.
-    - Levantamento de requisitos com stakeholders e tradução em especificações técnicas e soluções.
-    - Testes, validação, suporte técnico e treinamento dos usuários finais.
+    en:
+      - Fiscal and management system for LPG resellers, focused on operational efficiency and compliance.
+      - Requirements gathering with stakeholders, turned into technical specs and solutions.
+      - Testing, validation, technical support and end-user training.
+    pt-br:
+      - Sistema fiscal e gerencial para revendas de GLP, com foco em eficiência operacional e conformidade.
+      - Levantamento de requisitos com stakeholders e tradução em especificações técnicas e soluções.
+      - Testes, validação, suporte técnico e treinamento dos usuários finais.
+    es:
+      - Sistema fiscal y de gestión para revendedores de GLP, con foco en eficiencia operativa y cumplimiento.
+      - Relevamiento de requisitos con stakeholders y su traducción en especificaciones técnicas y soluciones.
+      - Pruebas, validación, soporte técnico y capacitación de usuarios finales.
   stack: [Java, Python, TypeScript, AWS, Twilio, Zendesk, WhatsApp API, Jira]
 
 - id: expandr
-  role: CTO
   company: Expandr
   url: https://expandr.com.br
   location: Teresina, PI
   start: "2018-07"
   end: "2024-06"
+  role:
+    en: CTO
+    pt-br: CTO
+    es: CTO
   summary:
-    - Liderança técnica de um produto para captação de alunos em instituições de ensino.
-    - Evolução do produto a partir de feedback de usuários e analytics, com planejamento estratégico junto ao time.
+    en:
+      - Technical lead for a student acquisition product for educational institutions.
+      - Evolved the product from user feedback and analytics, with strategic planning alongside the team.
+    pt-br:
+      - Liderança técnica de um produto para captação de alunos em instituições de ensino.
+      - Evolução do produto a partir de feedback de usuários e analytics, com planejamento estratégico junto ao time.
+    es:
+      - Liderazgo técnico de un producto de captación de alumnos para instituciones educativas.
+      - Evolución del producto a partir del feedback de usuarios y analytics, con planificación estratégica junto al equipo.
   stack: [PHP, JavaScript, Flutter, AWS, Google Cloud, MariaDB, n8n, Zenvia]
 
 - id: gerador-de-matriculas
-  role: Desenvolvedor full stack
   company: Gerador de Matrículas
   location: Teresina, PI
   start: "2018-01"
   end: "2018-06"
+  role:
+    en: Full stack developer
+    pt-br: Desenvolvedor full stack
+    es: Desarrollador full stack
   summary:
-    - Desenvolvimento e manutenção do CRM para instituições de ensino.
-    - Gestão de serviços na AWS e pipelines de CI/CD para build, testes e deploy.
+    en:
+      - Built and maintained the CRM for educational institutions.
+      - Managed AWS services and CI/CD pipelines for build, tests and deploy.
+    pt-br:
+      - Desenvolvimento e manutenção do CRM para instituições de ensino.
+      - Gestão de serviços na AWS e pipelines de CI/CD para build, testes e deploy.
+    es:
+      - Desarrollo y mantenimiento del CRM para instituciones educativas.
+      - Gestión de servicios en AWS y pipelines de CI/CD para build, pruebas y deploy.
   stack: [PHP, JavaScript, WordPress, AWS, MariaDB]
 
 - id: flex
-  role: Programador
   company: Flex Marketing Digital
   url: https://agenciaflex.com
   location: Teresina, PI
   start: "2016-01"
   end: "2017-12"
+  role:
+    en: Programmer
+    pt-br: Programador
+    es: Programador
   summary:
-    - Aplicações web e interfaces responsivas para campanhas de marketing digital.
-    - Integração com APIs e ferramentas de automação de marketing.
+    en:
+      - Web applications and responsive interfaces for digital marketing campaigns.
+      - Integrations with APIs and marketing automation tools.
+    pt-br:
+      - Aplicações web e interfaces responsivas para campanhas de marketing digital.
+      - Integração com APIs e ferramentas de automação de marketing.
+    es:
+      - Aplicaciones web e interfaces responsivas para campañas de marketing digital.
+      - Integración con APIs y herramientas de automatización de marketing.
   stack: [PHP, WordPress, Mautic, Google Ads, Google Tag Manager]
 
 - id: netuse
-  role: Suporte técnico
   company: Net Use System
   location: Teresina, PI
   start: "2015-08"
   end: "2015-12"
+  role:
+    en: Technical support
+    pt-br: Suporte técnico
+    es: Soporte técnico
   summary:
-    - Atendimento de chamados, manutenção de estações e treinamento de usuários em software fiscal.
+    en:
+      - Support tickets, workstation maintenance and user training on tax software.
+    pt-br:
+      - Atendimento de chamados, manutenção de estações e treinamento de usuários em software fiscal.
+    es:
+      - Atención de tickets, mantenimiento de equipos y capacitación de usuarios en software fiscal.
   stack: [Delphi, Object Pascal]

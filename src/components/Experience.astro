@@ -2,19 +2,26 @@
 import { getCollection } from 'astro:content';
 import Section from './Section.astro';
 import { site } from '../data/site';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
 import Ui from './icons/Ui.astro';
 
-const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-const fmt = (ym: string | null) => {
-  if (!ym) return 'hoje';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale);
+const e = s.experience;
+
+const fmt = (ym: string) => {
   const [y, m] = ym.split('-').map(Number);
-  return `${months[m - 1]} ${y}`;
+  return `${e.months[m - 1]} ${y}`;
 };
 
 const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
 ---
 
-<Section id="experiencia" title="experiência" lead="git log --oneline, do mais recente para o mais antigo.">
+<Section id="experience" title={s.nav.experience} lead={e.lead}>
   <ol class="relative ml-1 border-l border-border-strong">
     {
       jobs.map(({ data }) => {
@@ -31,13 +38,13 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
             <p class="text-xs tabular-nums text-text-muted">
               <time datetime={data.start}>{fmt(data.start)}</time>
               <span aria-hidden="true"> – </span>
-              <span class="sr-only">até</span>
-              {data.end ? <time datetime={data.end}>{fmt(data.end)}</time> : <span class="text-brand">hoje</span>}
+              <span class="sr-only">{s.a11y.until}</span>
+              {data.end ? <time datetime={data.end}>{fmt(data.end)}</time> : <span class="text-brand">{e.present}</span>}
               <span class="mx-2 text-border-strong" aria-hidden="true">·</span>
               {data.location}
             </p>
             <h3 class="mt-1 text-base font-semibold text-text">
-              {data.role}
+              {data.role[locale]}
               <span class="font-normal text-text-muted"> @ </span>
               {data.url ? (
                 <a href={data.url} class="link" rel="noopener" target="_blank">
@@ -47,8 +54,8 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
                 data.company
               )}
             </h3>
-            <ul class="mt-3 max-w-[62ch] space-y-1.5 text-sm leading-relaxed text-text-secondary">
-              {data.summary.map((line) => (
+            <ul class="mt-3 max-w-[70ch] space-y-1.5 text-sm leading-relaxed text-text-secondary">
+              {data.summary[locale].map((line) => (
                 <li class="flex gap-2">
                   <span class="text-text-muted select-none" aria-hidden="true">
                     -
@@ -57,9 +64,9 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
                 </li>
               ))}
             </ul>
-            <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Tecnologias">
-              {data.stack.map((t) => (
-                <li class="chip">{t}</li>
+            <ul class="mt-3 flex flex-wrap gap-1.5" aria-label={s.a11y.technologies}>
+              {data.stack.map((tech) => (
+                <li class="chip">{tech}</li>
               ))}
             </ul>
           </li>
@@ -68,28 +75,31 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
     }
   </ol>
 
-  <figure class="mt-12 max-w-[62ch] rounded-sm bg-surface p-5 shadow-ring">
-    <Ui name="quote" class="mb-3 size-5 text-brand" />
-    <blockquote class="text-sm leading-relaxed text-text-secondary">
-      {site.testimonial.quote}
-    </blockquote>
-    <figcaption class="mt-3 text-xs text-text-muted">
-      <span class="text-text">{site.testimonial.author}</span>, {site.testimonial.role}
-    </figcaption>
-  </figure>
+  <div class="mt-12 grid gap-10 md:grid-cols-2 md:gap-12">
+    <figure class="self-start rounded-sm bg-surface p-5 shadow-ring">
+      <Ui name="quote" class="mb-3 size-5 text-brand" />
+      <blockquote class="text-sm leading-relaxed text-text-secondary">
+        {e.testimonial.quote}
+      </blockquote>
+      <figcaption class="mt-3 text-xs text-text-muted">
+        <span class="text-text">{site.testimonialAuthor}</span>, {e.testimonial.role}
+        {e.testimonial.note && <span class="mt-1 block italic">{e.testimonial.note}</span>}
+      </figcaption>
+    </figure>
 
-  <div class="mt-12">
-    <h3 class="flex items-center gap-2 text-sm font-semibold text-text">
-      <Ui name="graduation-cap" class="size-5 text-brand" />
-      formação
-    </h3>
-    <p class="mt-2 text-sm text-text-secondary">
-      {site.education.degree},{' '}
-      <a href={site.education.url} class="link" rel="noopener" target="_blank">{site.education.school}</a>{' '}
-      <span class="text-text-muted">· {site.education.period}</span>
-    </p>
-    <ul class="mt-2 max-w-[62ch] space-y-1 text-sm text-text-muted">
-      {site.education.notes.map((n) => <li>{n}</li>)}
-    </ul>
+    <div>
+      <h3 class="flex items-center gap-2 text-sm font-semibold text-text">
+        <Ui name="graduation-cap" class="size-5 text-brand" />
+        {e.education}
+      </h3>
+      <p class="mt-2 text-sm text-text-secondary">
+        {e.degree},{' '}
+        <a href={site.education.url} class="link" rel="noopener" target="_blank">{site.education.school}</a>{' '}
+        <span class="text-text-muted">· {site.education.period}</span>
+      </p>
+      <ul class="mt-2 space-y-1 text-sm text-text-muted">
+        {e.educationNotes.map((n) => <li>{n}</li>)}
+      </ul>
+    </div>
   </div>
 </Section>

@@ -1,47 +1,65 @@
 - id: gitops-local
   order: 1
   name: gitops-local
-  description: Cluster Kubernetes local gerenciado por GitOps. ArgoCD, Kustomize, ingress e Postgres em StatefulSet, com scripts de bootstrap do zero.
   repo: https://github.com/thiagossdev/gitops-local
   language: Shell
   year: 2026
+  description:
+    en: Local Kubernetes cluster managed with GitOps. ArgoCD, Kustomize, ingress and Postgres as a StatefulSet, with bootstrap scripts from scratch.
+    pt-br: Cluster Kubernetes local gerenciado por GitOps. ArgoCD, Kustomize, ingress e Postgres em StatefulSet, com scripts de bootstrap do zero.
+    es: Clúster de Kubernetes local gestionado con GitOps. ArgoCD, Kustomize, ingress y Postgres en StatefulSet, con scripts de bootstrap desde cero.
 
 - id: revgas
   order: 2
   name: RevGás
-  description: Sistema fiscal e gerencial para revendas de GLP. Integrações com WhatsApp API, Twilio e Zendesk. Trabalho, sem repositório público.
   language: Java
   year: 2021
   kind: work
+  description:
+    en: Fiscal and management system for LPG resellers. Integrations with WhatsApp API, Twilio and Zendesk. Work project, no public repository.
+    pt-br: Sistema fiscal e gerencial para revendas de GLP. Integrações com WhatsApp API, Twilio e Zendesk. Trabalho, sem repositório público.
+    es: Sistema fiscal y de gestión para revendedores de GLP. Integraciones con WhatsApp API, Twilio y Zendesk. Proyecto de trabajo, sin repositorio público.
 
 - id: super-rev-world
   order: 3
   name: super-rev-world
-  description: Jogo 2D em Godot. Movimentação do player, tileset e uma paleta de debug para visualizar direções.
   repo: https://github.com/thiagossdev/super-rev-world
   language: GDScript
   year: 2023
+  description:
+    en: 2D game in Godot. Player movement, tileset and a debug palette to visualize directions.
+    pt-br: Jogo 2D em Godot. Movimentação do player, tileset e uma paleta de debug para visualizar direções.
+    es: Juego 2D en Godot. Movimiento del jugador, tileset y una paleta de debug para visualizar direcciones.
 
 - id: internet-speed-test
   order: 4
   name: internet-speed-test
-  description: App em Rails para medir e registrar a velocidade da conexão, com ambiente de desenvolvimento em Docker.
   repo: https://github.com/thiagossdev/internet-speed-test
   language: Ruby
   year: 2023
+  description:
+    en: Rails app to measure and log connection speed, with a Docker development environment.
+    pt-br: App em Rails para medir e registrar a velocidade da conexão, com ambiente de desenvolvimento em Docker.
+    es: App en Rails para medir y registrar la velocidad de la conexión, con entorno de desarrollo en Docker.
 
 - id: thidev
   order: 5
   name: thidev
-  description: Versão anterior deste site em Next.js 13, Tailwind e Radix, com posts em Markdown via remark e shiki. Não chegou a produção.
   repo: https://github.com/thiagossdev/thidev
   language: TypeScript
   year: 2023
+  description:
+    en: Previous version of this site in Next.js 13, Tailwind and Radix, with Markdown posts via remark and shiki. Never shipped.
+    pt-br: Versão anterior deste site em Next.js 13, Tailwind e Radix, com posts em Markdown via remark e shiki. Não chegou a produção.
+    es: Versión anterior de este sitio en Next.js 13, Tailwind y Radix, con posts en Markdown vía remark y shiki. Nunca llegó a producción.
 
 - id: utub-downloader
   order: 6
   name: utub-downloader
-  description: Interface em Vite e TypeScript para baixar vídeos.
   repo: https://github.com/thiagossdev/utub-downloader
   language: TypeScript
   year: 2022
+  description:
+    en: Vite and TypeScript interface for downloading videos.
+    pt-br: Interface em Vite e TypeScript para baixar vídeos.
+    es: Interfaz en Vite y TypeScript para descargar videos.
