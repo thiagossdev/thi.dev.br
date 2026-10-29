@@ -64,18 +64,20 @@ const { variant = 'edges' } = Astro.props;
       return Math.max(0, (width - max) / 2) + gutter;
     };
 
-    // Peso da lateral: 0 dentro da coluna de conteúdo, sobe até 1 nas bordas.
+    // Peso da lateral: 0 dentro da coluna de conteúdo e num respiro de
+    // GAP px ao redor dela (como no rodapé do omarchy), sobe até 1 depois.
+    const GAP = 72;
     const edgeWeight = (x: number, left: number) => {
       const right = width - left;
-      const d = x < left ? left - x : x > right ? x - right : -1;
+      const d = (x < left ? left - x : x > right ? x - right : -1) - GAP;
       if (d < 0) return 0;
-      return Math.min(1, d / 64);
+      return Math.min(1, d / 48);
     };
 
     const draw = (time: number) => {
       const t = time / 1000;
       const left = contentLeft();
-      if (!hero && left < 48) {
+      if (!hero && left < GAP + 48) {
         ctx.clearRect(0, 0, width, height);
         return;
       }
@@ -87,13 +89,13 @@ const { variant = 'edges' } = Astro.props;
       // o texto: no rodapé à esquerda, no hero à direita. O do ponteiro vale
       // só nas laterais no rodapé e na área toda no hero.
       const glows = hero
-        ? left < 48
+        ? left < GAP + 48
           ? []
-          : [{ x: width - left * (0.5 + 0.25 * Math.sin(t * 0.07)), y: height * (0.3 + 0.2 * Math.sin(t * 0.09 + 0.8)), hot: false }]
-        : [{ x: left * (0.5 + 0.25 * Math.sin(t * 0.08)), y: height * (0.3 + 0.2 * Math.sin(t * 0.06 + 0.8)), hot: false }];
+          : [{ x: width - (left - GAP) * (0.5 + 0.25 * Math.sin(t * 0.07)), y: height * (0.3 + 0.2 * Math.sin(t * 0.09 + 0.8)), hot: false }]
+        : [{ x: (left - GAP) * (0.5 + 0.25 * Math.sin(t * 0.08)), y: height * (0.45 + 0.25 * Math.sin(t * 0.06 + 0.8)), hot: false }];
       if (pointer.active && (hero || edgeWeight(pointer.x, left) > 0)) glows.push({ x: pointer.x, y: pointer.y, hot: true });
       const glowCells = glows.map((g) => ({ col: Math.round(g.x / cell), row: Math.round(g.y / cell), hot: g.hot }));
-      const RADIUS = hero ? 6 : 4; // em células
+      const RADIUS = hero ? 6 : 5; // em células
 
       for (let row = 0; row < rows; row++) {
         const y = row * cell;
@@ -117,7 +119,8 @@ const { variant = 'edges' } = Astro.props;
             const d = Math.abs(col - g.col) + Math.abs(row - g.row);
             if (d > RADIUS) continue;
             if (d <= 1 || (d <= RADIUS && (col + row) % 2 === 0 && (d < RADIUS - 1 || hash(col, row + 7) < 0.6))) {
-              const tone = g.hot ? (d <= 1 ? 'crest' : 'hover') : hero ? (d <= 2 ? 'lit' : 'mid') : d <= 1 ? 'mid' : 'dim';
+              // Miolo claro, anel verde e borda escura, como o losango do omarchy.
+              const tone = g.hot ? (d <= 1 ? 'crest' : 'hover') : d <= 1 ? 'hover' : d <= 4 ? 'lit' : 'mid';
               buckets[tone].push(x, y);
               drawn = true;
               break;
