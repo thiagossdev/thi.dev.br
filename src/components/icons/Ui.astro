@@ -1,0 +1,63 @@
+---
+// Ícones de interface em contorno (Lucide) com traço 1.5 e pontas quadradas,
+// no mesmo desenho dos ícones do omarchy.org.
+import ArrowDown from '@lucide/astro/icons/arrow-down';
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import BriefcaseBusiness from '@lucide/astro/icons/briefcase-business';
+import Cloud from '@lucide/astro/icons/cloud';
+import Code from '@lucide/astro/icons/code';
+import Database from '@lucide/astro/icons/database';
+import FolderGit2 from '@lucide/astro/icons/folder-git-2';
+import Gamepad2 from '@lucide/astro/icons/gamepad-2';
+import GraduationCap from '@lucide/astro/icons/graduation-cap';
+import Headphones from '@lucide/astro/icons/headphones';
+import House from '@lucide/astro/icons/house';
+import Keyboard from '@lucide/astro/icons/keyboard';
+import Languages from '@lucide/astro/icons/languages';
+import Mail from '@lucide/astro/icons/mail';
+import MapPin from '@lucide/astro/icons/map-pin';
+import Quote from '@lucide/astro/icons/quote';
+import Server from '@lucide/astro/icons/server';
+import Terminal from '@lucide/astro/icons/terminal';
+import Wrench from '@lucide/astro/icons/wrench';
+
+const icons = {
+  'arrow-down': ArrowDown,
+  'arrow-up-right': ArrowUpRight,
+  briefcase: BriefcaseBusiness,
+  cloud: Cloud,
+  code: Code,
+  database: Database,
+  'folder-git': FolderGit2,
+  gamepad: Gamepad2,
+  'graduation-cap': GraduationCap,
+  headphones: Headphones,
+  house: House,
+  keyboard: Keyboard,
+  languages: Languages,
+  mail: Mail,
+  'map-pin': MapPin,
+  quote: Quote,
+  server: Server,
+  terminal: Terminal,
+  wrench: Wrench,
+} as const;
+
+export type UiIconName = keyof typeof icons;
+
+interface Props {
+  name: UiIconName;
+  class?: string;
+}
+
+const { name, class: className = 'size-4' } = Astro.props;
+const Icon = icons[name];
+---
+
+<Icon
+  class={className}
+  stroke-width={1.5}
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden="true"
+/>

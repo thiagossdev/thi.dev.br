@@ -17,11 +17,11 @@ export const site = {
     'monto teclados custom',
   ],
   links: [
-    { label: 'github', href: 'https://github.com/thiagossdev' },
-    { label: 'linkedin', href: 'https://www.linkedin.com/in/thiagosousasantos' },
-    { label: 'x', href: 'https://x.com/thiagossdev' },
-    { label: 'instagram', href: 'https://instagram.com/thiagossdev' },
-    { label: 'spotify', href: 'https://open.spotify.com/user/thiagos.xsantos' },
+    { label: 'github', icon: 'github', href: 'https://github.com/thiagossdev' },
+    { label: 'linkedin', icon: 'linkedin', href: 'https://www.linkedin.com/in/thiagosousasantos' },
+    { label: 'x', icon: 'x', href: 'https://x.com/thiagossdev' },
+    { label: 'instagram', icon: 'instagram', href: 'https://instagram.com/thiagossdev' },
+    { label: 'spotify', icon: 'spotify', href: 'https://open.spotify.com/user/thiagos.xsantos' },
   ],
   nav: [
     { label: 'sobre', href: '#sobre' },
@@ -31,11 +31,11 @@ export const site = {
     { label: 'contato', href: '#contato' },
   ],
   stack: [
-    { group: 'linguagens', items: ['TypeScript', 'JavaScript', 'Java', 'Python', 'PHP', 'Ruby', 'Go', 'GDScript'] },
-    { group: 'backend', items: ['Node.js', 'Ruby on Rails', 'PHP (Zend, CakePHP)', 'Flutter', 'REST', 'SQL'] },
-    { group: 'dados', items: ['PostgreSQL', 'MariaDB', 'MySQL'] },
-    { group: 'infra', items: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'Nginx', 'Linux'] },
-    { group: 'ferramentas', items: ['Git', 'n8n', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira', 'Godot'] },
+    { group: 'linguagens', icon: 'code', items: ['TypeScript', 'JavaScript', 'Java', 'Python', 'PHP', 'Ruby', 'Go', 'GDScript'] },
+    { group: 'backend', icon: 'server', items: ['Node.js', 'Ruby on Rails', 'PHP (Zend, CakePHP)', 'Flutter', 'REST', 'SQL'] },
+    { group: 'dados', icon: 'database', items: ['PostgreSQL', 'MariaDB', 'MySQL'] },
+    { group: 'infra', icon: 'cloud', items: ['AWS', 'Google Cloud', 'Docker', 'Kubernetes', 'ArgoCD', 'GitHub Actions', 'Nginx', 'Linux'] },
+    { group: 'ferramentas', icon: 'wrench', items: ['Git', 'n8n', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira', 'Godot'] },
   ],
   education: {
     degree: 'Bacharel em Ciência da Computação',
