@@ -3,7 +3,7 @@ export const site = {
   name: 'Thiago Sousa Santos',
   shortName: 'thi.dev.br',
   handle: 'thiagossdev',
-  email: 'ssthiago.dev@gmail.com',
+  email: 'boss@thi.dev.br',
   location: 'Teresina, PI',
   repo: 'https://github.com/thiagossdev/thi.dev.br',
   links: [
