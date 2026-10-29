@@ -16,7 +16,8 @@ const year = new Date().getFullYear();
 
 <footer id="contact" class="relative isolate scroll-mt-14 overflow-hidden border-t border-border-subtle bg-[var(--t-field-bg)] pb-[env(safe-area-inset-bottom)]">
   <PixelField />
-  <div class="wrap pt-12 pb-12 lg:pt-24 lg:pb-16" data-field-mask>
+  <!-- Fundo sólido: o brilho do mouse e o carimbo do clique ficam só nas laterais -->
+  <div class="wrap bg-[var(--t-field-bg)] pt-12 pb-12 lg:pt-24 lg:pb-16" data-field-mask>
     <header class="max-w-xl">
       <TypedTitle id="contact" text={s.nav.contact} />
       <p class="mt-2 text-[15px] leading-relaxed text-text-secondary text-pretty">{s.contact.lead}</p>
@@ -43,7 +44,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="wrap" data-field-mask>
+  <div class="wrap bg-[var(--t-field-bg)]" data-field-mask>
     <p class="flex flex-wrap gap-x-2 gap-y-1 border-t border-border-subtle pt-6 pb-10 text-xs text-text-muted lg:pb-12">
       <span>© {year} {site.name}.</span>
       <span>
