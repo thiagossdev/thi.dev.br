@@ -21,7 +21,7 @@
       - Sistema fiscal y de gestión para revendedores de GLP, con foco en eficiencia operativa y cumplimiento.
       - Relevamiento de requisitos con stakeholders y su traducción en especificaciones técnicas y soluciones.
       - Pruebas, validación, soporte técnico y capacitación de usuarios finales.
-  stack: [Java, Python, TypeScript, AWS, Twilio, Zendesk, WhatsApp API, Jira]
+  stack: [Java, Spring Boot, Angular, Kotlin, Jetpack Compose, Python, Go, Rust, Tauri, AWS Lambda, AWS CDK, DynamoDB, MySQL]
 
 - id: expandr
   company: Expandr
@@ -43,7 +43,7 @@
     es:
       - Liderazgo técnico de un producto de captación de alumnos para instituciones educativas.
       - Evolución del producto a partir del feedback de usuarios y analytics, con planificación estratégica junto al equipo.
-  stack: [PHP, JavaScript, Flutter, AWS, Google Cloud, MariaDB, n8n, Zenvia]
+  stack: [PHP, Laminas, CakePHP, Doctrine, Ruby on Rails, Flutter, AWS, MySQL, Docker]
 
 - id: gerador-de-matriculas
   company: Gerador de Matrículas
@@ -86,7 +86,7 @@
     es:
       - Aplicaciones web e interfaces responsivas para campañas de marketing digital.
       - Integración con APIs y herramientas de automatización de marketing.
-  stack: [PHP, WordPress, Mautic, Google Ads, Google Tag Manager]
+  stack: [PHP, Zend Framework, CakePHP, WordPress, Mautic]
 
 - id: netuse
   company: Net Use System
