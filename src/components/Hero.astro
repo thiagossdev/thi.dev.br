@@ -16,9 +16,9 @@ const s = t(Astro.props.locale);
 
 <section class="relative isolate overflow-hidden bg-[var(--t-field-bg)]">
   <PixelField variant="hero" />
-  <div class="wrap py-12 lg:py-24">
+  <div class="wrap pt-12 pb-24 lg:pt-24 lg:pb-48">
   <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
-    <div class="min-w-0">
+    <div class="min-w-0" data-field-mask>
       <p class="reveal text-sm text-text-muted" style="--i: 0">
         <span class="text-brand">thiago@thi.dev.br</span>:<span class="text-blue">~</span>$ whoami
       </p>
@@ -70,7 +70,7 @@ const s = t(Astro.props.locale);
       </div>
     </div>
 
-    <figure class="reveal justify-self-start md:justify-self-end" style="--i: 2">
+    <figure class="reveal justify-self-start md:justify-self-end" style="--i: 2" data-field-mask>
       <Image
         src={photo}
         alt={s.a11y.photo}
