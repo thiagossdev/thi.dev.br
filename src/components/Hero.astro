@@ -4,8 +4,6 @@ import photo from '../assets/thiago.jpg';
 import { site } from '../data/site';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
-import { cvPdfPath } from '../i18n/config';
-import Download from '@lucide/astro/icons/download';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
 import PixelField from './PixelField.astro';
@@ -14,7 +12,6 @@ interface Props {
   locale: Locale;
 }
 const s = t(Astro.props.locale);
-const cvHref = cvPdfPath(Astro.props.locale);
 ---
 
 <section class="relative isolate overflow-hidden bg-[var(--t-field-bg)]">
@@ -51,14 +48,6 @@ const cvHref = cvPdfPath(Astro.props.locale);
             name="arrow-down"
             class="size-4 transition-transform duration-150 ease-out [@media(hover:hover)]:group-hover:translate-y-0.5"
           />
-        </a>
-        <a
-          href={cvHref}
-          download
-          class="group inline-flex h-10 items-center gap-2 rounded-sm bg-surface pr-3.5 pl-4 text-sm font-semibold text-text shadow-ring transition-[transform,background-color,box-shadow] duration-150 ease-out active:scale-[0.97] [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:shadow-ring-hover"
-        >
-          {s.hero.cv}
-          <Download class="size-4 text-brand" stroke-width={1.5} stroke-linecap="square" aria-hidden="true" />
         </a>
         <ul class="flex flex-wrap gap-1.5" aria-label={s.a11y.social}>
           {

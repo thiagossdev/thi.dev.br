@@ -4,11 +4,14 @@ import Ui, { type UiIconName } from './icons/Ui.astro';
 import { site } from '../data/site';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
+import { cvPdfPath } from '../i18n/config';
+import Download from '@lucide/astro/icons/download';
 
 interface Props {
   locale: Locale;
 }
 const s = t(Astro.props.locale);
+const cvHref = cvPdfPath(Astro.props.locale);
 const a = s.about;
 
 const facts: { icon: UiIconName; label: string; value: string; href?: string }[] = [
@@ -35,7 +38,8 @@ const hobbies: { icon: UiIconName; title: string; text: string }[] = [
       </p>
     </div>
 
-    <dl class="space-y-3 self-start text-sm">
+    <div class="self-start">
+    <dl class="space-y-3 text-sm">
       {
         facts.map((f) => (
           <div class="flex items-start gap-3">
@@ -56,6 +60,17 @@ const hobbies: { icon: UiIconName; title: string; text: string }[] = [
         ))
       }
     </dl>
+      <div class="pt-5">
+        <a
+          href={cvHref}
+          download
+          class="group inline-flex h-10 items-center gap-2 rounded-sm bg-surface pr-3.5 pl-4 text-sm font-semibold text-text shadow-ring transition-[transform,background-color,box-shadow] duration-150 ease-out active:scale-[0.97] [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:shadow-ring-hover"
+        >
+          {s.hero.cv}
+          <Download class="size-4 text-brand" stroke-width={1.5} stroke-linecap="square" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
   </div>
 
   <ul class="mt-12 grid gap-6 sm:grid-cols-3" aria-label={a.offCode}>
