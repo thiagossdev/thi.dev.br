@@ -11,10 +11,11 @@ interface Props {
 const s = t(Astro.props.locale);
 const a = s.about;
 
-const facts: { icon: UiIconName; label: string; value: string }[] = [
+const facts: { icon: UiIconName; label: string; value: string; href?: string }[] = [
   { icon: 'map-pin', label: a.facts.location, value: site.location },
   { icon: 'languages', label: a.facts.languages, value: a.languagesValue },
   { icon: 'briefcase', label: a.facts.now, value: a.nowValue },
+  { icon: 'terminal', label: a.facts.os, value: 'Omarchy', href: 'https://omarchy.org' },
 ];
 
 const hobbies: { icon: UiIconName; title: string; text: string }[] = [
@@ -41,7 +42,15 @@ const hobbies: { icon: UiIconName; title: string; text: string }[] = [
               <Ui name={f.icon} class="size-4 text-brand" />
               {f.label}
             </dt>
-            <dd class="text-text">{f.value}</dd>
+            <dd class="text-text">
+              {f.href ? (
+                <a href={f.href} class="link" rel="noopener" target="_blank">
+                  {f.value}
+                </a>
+              ) : (
+                f.value
+              )}
+            </dd>
           </div>
         ))
       }

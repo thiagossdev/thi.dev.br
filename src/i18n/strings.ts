@@ -39,7 +39,7 @@ const en = {
       after:
         ', on fiscal and management systems for LPG resellers. Before that I was CTO at Expandr for six years, an edtech focused on student acquisition.',
     },
-    facts: { location: 'location', languages: 'languages', now: 'now' },
+    facts: { location: 'location', languages: 'languages', now: 'now', os: 'os' },
     languagesValue: 'Portuguese, English (B1/B2)',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Off the clock',
@@ -77,7 +77,7 @@ const en = {
     groups: { languages: 'languages', frontend: 'frontend', backend: 'backend', mobile: 'mobile & desktop', data: 'data', infra: 'infra', testing: 'testing', tools: 'tools' },
   },
   contact: {
-    lead: 'Email is the fastest way to reach me. I also reply on LinkedIn.',
+    lead: 'Email is the best way to reach me.',
     builtWith: 'Built with',
     hostedOn: 'hosted on GitHub Pages.',
     source: 'source code',
@@ -125,7 +125,7 @@ const ptBr: Strings = {
       after:
         ', em sistemas fiscais e gerenciais para revendas de GLP. Antes disso fui CTO da Expandr por seis anos, numa edtech de captação de alunos.',
     },
-    facts: { location: 'local', languages: 'idiomas', now: 'agora' },
+    facts: { location: 'local', languages: 'idiomas', now: 'agora', os: 'sistema' },
     languagesValue: 'português, inglês (B1/B2)',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Fora do código',
@@ -163,7 +163,7 @@ const ptBr: Strings = {
     groups: { languages: 'linguagens', frontend: 'frontend', backend: 'backend', mobile: 'mobile e desktop', data: 'dados', infra: 'infra', testing: 'testes', tools: 'ferramentas' },
   },
   contact: {
-    lead: 'O jeito mais rápido é e-mail. Também respondo no LinkedIn.',
+    lead: 'O melhor jeito de falar comigo é por e-mail.',
     builtWith: 'Feito com',
     hostedOn: 'hospedado no GitHub Pages.',
     source: 'código-fonte',
@@ -209,7 +209,7 @@ const es: Strings = {
       after:
         ', en sistemas fiscales y de gestión para revendedores de GLP. Antes fui CTO de Expandr durante seis años, una edtech de captación de alumnos.',
     },
-    facts: { location: 'ubicación', languages: 'idiomas', now: 'ahora' },
+    facts: { location: 'ubicación', languages: 'idiomas', now: 'ahora', os: 'sistema' },
     languagesValue: 'portugués, inglés (B1/B2)',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Fuera del código',
@@ -247,7 +247,7 @@ const es: Strings = {
     groups: { languages: 'lenguajes', frontend: 'frontend', backend: 'backend', mobile: 'móvil y escritorio', data: 'datos', infra: 'infra', testing: 'pruebas', tools: 'herramientas' },
   },
   contact: {
-    lead: 'El email es la forma más rápida de contactarme. También respondo en LinkedIn.',
+    lead: 'La mejor forma de contactarme es por email.',
     builtWith: 'Hecho con',
     hostedOn: 'alojado en GitHub Pages.',
     source: 'código fuente',
