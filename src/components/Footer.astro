@@ -3,6 +3,7 @@ import { site } from '../data/site';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
 import TypedTitle from './TypedTitle.astro';
+import { cvPath, cvPdfPath } from '../i18n/config';
 import PixelField from './PixelField.astro';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
@@ -27,6 +28,12 @@ const year = new Date().getFullYear();
       <p class="flex items-center gap-2 text-base">
         <Ui name="mail" class="size-5 shrink-0 text-brand" />
         <a href={`mailto:${site.email}`} class="link font-semibold">{site.email}</a>
+      </p>
+      <p class="mt-3 flex items-center gap-2 text-sm">
+        <Ui name="file-text" class="size-5 shrink-0 text-brand" />
+        <a href={cvPdfPath(Astro.props.locale)} download class="link">{s.hero.cv}</a>
+        <span class="text-text-muted" aria-hidden="true">·</span>
+        <a href={cvPath(Astro.props.locale)} class="link text-text-secondary">HTML</a>
       </p>
 
       <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label={s.a11y.social}>
