@@ -289,12 +289,25 @@ const { variant = 'edges' } = Astro.props;
       const r = host.getBoundingClientRect();
       return { x: e.clientX - r.left, y: e.clientY - r.top };
     };
+    // Regra do omarchy.org: no hero, o brilho enfraquece conforme o ponteiro
+    // chega perto dos links e botões do header, para não acender atrás do menu.
+    const quiet = hero ? [...document.querySelectorAll<HTMLElement>('header a, header button')] : [];
+    const QUIET_FALLOFF = 96; // px
+    const quietFactor = (x: number, y: number) => {
+      let best = Infinity;
+      for (const el of quiet) {
+        const r = el.getBoundingClientRect();
+        if (r.width < 1 || r.height < 1) continue;
+        best = Math.min(best, Math.hypot(Math.max(r.left - x, 0, x - r.right), Math.max(r.top - y, 0, y - r.bottom)));
+      }
+      return best >= QUIET_FALLOFF ? 1 : (best / QUIET_FALLOFF) ** 3;
+    };
     if (finePointer) {
       host.addEventListener('pointermove', (e) => {
         const p = local(e);
         pointer.x = p.x;
         pointer.y = p.y;
-        pointer.target = 1;
+        pointer.target = quiet.length ? quietFactor(e.clientX, e.clientY) : 1;
       });
       host.addEventListener('pointerleave', () => (pointer.target = 0));
     }
