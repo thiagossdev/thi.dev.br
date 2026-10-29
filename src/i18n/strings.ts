@@ -24,6 +24,7 @@ const en = {
       'computer science graduate',
       'gamer since 1992',
       'custom keyboard builder',
+      'zsh enthusiast',
     ],
     intro:
       'I have been building web systems for over ten years, from PHP to Kubernetes. I like to understand the problem before writing code, to estimate well and to keep the team flowing.',
@@ -47,6 +48,7 @@ const en = {
       keyboards: { title: 'keyboards', text: 'I build and customize mechanical keyboards.' },
       games: { title: 'games', text: 'Playing since 1992, and sometimes making my own in Godot.' },
       music: { title: 'music', text: 'Soundtrack for the whole day, coding included.' },
+      zsh: { title: 'zsh', text: 'A passion of mine: aliases, functions and a prompt tuned to how I work.' },
     },
   },
   experience: {
@@ -110,6 +112,7 @@ const ptBr: Strings = {
       'bacharel em ciência da computação',
       'gamer desde 1992',
       'monto teclados custom',
+      'apaixonado por zsh',
     ],
     intro:
       'Desenvolvo sistemas web há mais de dez anos, de PHP a Kubernetes. Gosto de entender o problema antes de escrever código, de estimar bem e de deixar o time fluir.',
@@ -133,6 +136,7 @@ const ptBr: Strings = {
       keyboards: { title: 'teclados', text: 'Monto e customizo teclados mecânicos.' },
       games: { title: 'games', text: 'Jogando desde 1992, e às vezes fazendo os meus em Godot.' },
       music: { title: 'música', text: 'Trilha sonora do dia inteiro, código incluso.' },
+      zsh: { title: 'zsh', text: 'Uma paixão: aliases, funções e um prompt ajustados ao meu jeito de trabalhar.' },
     },
   },
   experience: {
@@ -194,6 +198,7 @@ const es: Strings = {
       'licenciado en computación',
       'gamer desde 1992',
       'armo teclados custom',
+      'apasionado por zsh',
     ],
     intro:
       'Desarrollo sistemas web desde hace más de diez años, de PHP a Kubernetes. Me gusta entender el problema antes de escribir código, estimar bien y dejar que el equipo fluya.',
@@ -217,6 +222,7 @@ const es: Strings = {
       keyboards: { title: 'teclados', text: 'Armo y personalizo teclados mecánicos.' },
       games: { title: 'juegos', text: 'Jugando desde 1992, y a veces haciendo los míos en Godot.' },
       music: { title: 'música', text: 'Banda sonora de todo el día, código incluido.' },
+      zsh: { title: 'zsh', text: 'Una pasión: alias, funciones y un prompt ajustados a mi forma de trabajar.' },
     },
   },
   experience: {

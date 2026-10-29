@@ -24,7 +24,7 @@ export const site = {
     { group: 'data', icon: 'database', items: ['MySQL', 'PostgreSQL', 'SQLite', 'DynamoDB', 'Redis', 'Prisma', 'Doctrine'] },
     { group: 'infra', icon: 'cloud', items: ['AWS Lambda', 'AWS CDK', 'S3', 'SQS', 'CodeBuild', 'Serverless Framework', 'Docker', 'Kamal', 'Kubernetes', 'Argo CD', 'GitHub Actions', 'GitLab CI'] },
     { group: 'testing', icon: 'flask', items: ['Playwright', 'Vitest', 'Jest', 'JUnit', 'PHPUnit', 'Capybara', 'GUT', 'k6'] },
-    { group: 'tools', icon: 'wrench', items: ['Git', 'mise', 'pnpm', 'Rollbar', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira'] },
+    { group: 'tools', icon: 'wrench', items: ['zsh', 'Git', 'mise', 'pnpm', 'Rollbar', 'Twilio', 'WhatsApp API', 'Zendesk', 'Jira'] },
   ],
   education: {
     school: 'Universidade Federal do Piauí',
