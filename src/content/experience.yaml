@@ -5,19 +5,22 @@
   start: "2021-11"
   end: null
   role:
-    en: Systems Analyst
-    pt-br: Analista de Sistemas
-    es: Analista de Sistemas
+    en: Tech Lead
+    pt-br: Tech Lead
+    es: Tech Lead
   summary:
     en:
+      - Technical lead for the RevGás product, across the web ERP, Android apps and backend services. Joined as Systems Analyst.
       - Fiscal and management system for LPG resellers, focused on operational efficiency and compliance.
       - Requirements gathering with stakeholders, turned into technical specs and solutions.
       - Testing, validation, technical support and end-user training.
     pt-br:
+      - Liderança técnica do produto RevGás, no ERP web, nos apps Android e nos serviços de backend. Entrei como Analista de Sistemas.
       - Sistema fiscal e gerencial para revendas de GLP, com foco em eficiência operacional e conformidade.
       - Levantamento de requisitos com stakeholders e tradução em especificações técnicas e soluções.
       - Testes, validação, suporte técnico e treinamento dos usuários finais.
     es:
+      - Liderazgo técnico del producto RevGás, en el ERP web, las apps Android y los servicios de backend. Entré como Analista de Sistemas.
       - Sistema fiscal y de gestión para revendedores de GLP, con foco en eficiencia operativa y cumplimiento.
       - Relevamiento de requisitos con stakeholders y su traducción en especificaciones técnicas y soluciones.
       - Pruebas, validación, soporte técnico y capacitación de usuarios finales.

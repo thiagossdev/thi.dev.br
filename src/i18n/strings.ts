@@ -4,7 +4,7 @@ const en = {
   meta: {
     title: 'Thiago Sousa Santos · full stack developer',
     description:
-      'Full stack developer from Teresina, Brazil. Systems Analyst at RevGás. BSc in Computer Science from UFPI.',
+      'Full stack developer from Teresina, Brazil. Tech Lead at RevGás. BSc in Computer Science from UFPI.',
   },
   a11y: {
     skip: 'Skip to content',
@@ -20,7 +20,7 @@ const en = {
   hero: {
     taglines: [
       'full stack developer',
-      'systems analyst at RevGás',
+      'tech lead at RevGás',
       'computer science graduate',
       'gamer since 1992',
       'custom keyboard builder',
@@ -35,13 +35,13 @@ const en = {
       'I like to estimate and organize tasks and to set realistic deadlines. That keeps the work aligned with the team and lets development flow.',
     ],
     current: {
-      before: 'Today I work at ',
+      before: 'Today I am Tech Lead at ',
       after:
         ', on fiscal and management systems for LPG resellers. Before that I was CTO at Expandr for six years, an edtech focused on student acquisition.',
     },
     facts: { location: 'location', languages: 'languages', now: 'now' },
     languagesValue: 'Portuguese, English (B1/B2)',
-    nowValue: 'RevGás, since 2021',
+    nowValue: 'Tech Lead, RevGás',
     offCode: 'Off the clock',
     hobbies: {
       keyboards: { title: 'keyboards', text: 'I build and customize mechanical keyboards.' },
@@ -90,7 +90,7 @@ const ptBr: Strings = {
   meta: {
     title: 'Thiago Sousa Santos · desenvolvedor full stack',
     description:
-      'Desenvolvedor full stack em Teresina, PI. Analista de Sistemas na RevGás. Bacharel em Ciência da Computação pela UFPI.',
+      'Desenvolvedor full stack em Teresina, PI. Tech Lead na RevGás. Bacharel em Ciência da Computação pela UFPI.',
   },
   a11y: {
     skip: 'Pular para o conteúdo',
@@ -106,7 +106,7 @@ const ptBr: Strings = {
   hero: {
     taglines: [
       'desenvolvedor full stack',
-      'analista de sistemas na RevGás',
+      'tech lead na RevGás',
       'bacharel em ciência da computação',
       'gamer desde 1992',
       'monto teclados custom',
@@ -121,13 +121,13 @@ const ptBr: Strings = {
       'Gosto de estimar e organizar o tempo das tarefas e de estabelecer prazos realistas. Assim alinho o trabalho com a equipe e deixo o desenvolvimento fluir.',
     ],
     current: {
-      before: 'Hoje trabalho na ',
+      before: 'Hoje sou Tech Lead na ',
       after:
         ', em sistemas fiscais e gerenciais para revendas de GLP. Antes disso fui CTO da Expandr por seis anos, numa edtech de captação de alunos.',
     },
     facts: { location: 'local', languages: 'idiomas', now: 'agora' },
     languagesValue: 'português, inglês (B1/B2)',
-    nowValue: 'RevGás, desde 2021',
+    nowValue: 'Tech Lead, RevGás',
     offCode: 'Fora do código',
     hobbies: {
       keyboards: { title: 'teclados', text: 'Monto e customizo teclados mecânicos.' },
@@ -174,7 +174,7 @@ const es: Strings = {
   meta: {
     title: 'Thiago Sousa Santos · desarrollador full stack',
     description:
-      'Desarrollador full stack en Teresina, Brasil. Analista de Sistemas en RevGás. Licenciado en Ciencias de la Computación por la UFPI.',
+      'Desarrollador full stack en Teresina, Brasil. Tech Lead en RevGás. Licenciado en Ciencias de la Computación por la UFPI.',
   },
   a11y: {
     skip: 'Saltar al contenido',
@@ -190,7 +190,7 @@ const es: Strings = {
   hero: {
     taglines: [
       'desarrollador full stack',
-      'analista de sistemas en RevGás',
+      'tech lead en RevGás',
       'licenciado en computación',
       'gamer desde 1992',
       'armo teclados custom',
@@ -205,13 +205,13 @@ const es: Strings = {
       'Me gusta estimar y organizar el tiempo de las tareas y fijar plazos realistas. Así alineo el trabajo con el equipo y dejo que el desarrollo fluya.',
     ],
     current: {
-      before: 'Hoy trabajo en ',
+      before: 'Hoy soy Tech Lead en ',
       after:
         ', en sistemas fiscales y de gestión para revendedores de GLP. Antes fui CTO de Expandr durante seis años, una edtech de captación de alumnos.',
     },
     facts: { location: 'ubicación', languages: 'idiomas', now: 'ahora' },
     languagesValue: 'portugués, inglés (B1/B2)',
-    nowValue: 'RevGás, desde 2021',
+    nowValue: 'Tech Lead, RevGás',
     offCode: 'Fuera del código',
     hobbies: {
       keyboards: { title: 'teclados', text: 'Armo y personalizo teclados mecánicos.' },
