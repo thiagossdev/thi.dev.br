@@ -97,7 +97,8 @@ const { variant = 'edges' } = Astro.props;
     const hero = canvas.dataset.variant === 'hero';
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const colors = { dim: css('--t-field-dim', '#39482e'), mid: css('--t-field-mid', '#678549'), lit: css('--t-field-lit', '#9ece6a') };
+    const readColors = () => ({ dim: css('--t-field-dim', '#39482e'), mid: css('--t-field-mid', '#678549'), lit: css('--t-field-lit', '#9ece6a') });
+    let colors = readColors();
 
     let width = 0;
     let height = 0;
@@ -274,6 +275,10 @@ const { variant = 'edges' } = Astro.props;
     };
     relayout();
     new ResizeObserver(relayout).observe(host);
+    window.addEventListener('themechange', () => {
+      colors = readColors();
+      if (reduce) draw(0);
+    });
     // As máscaras dependem do layout final (fontes e animação de entrada).
     document.fonts?.ready.then(relayout);
     if (hero) setTimeout(relayout, 900);

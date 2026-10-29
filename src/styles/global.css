@@ -21,6 +21,10 @@
   --t-brand: #9ece6a;
   --t-brand-soft: #9ece6a1f;
   --t-brand-ink: #0c0e10;
+  /* preenchimentos (botão principal); no tema claro o texto usa um verde mais escuro */
+  --t-brand-fill: #9ece6a;
+  --t-brand-fill-hover: #bbdd97;
+  --t-chip: #24283b;
   --t-selection: #292e42;
   --t-elevation: 0 0 0 1px oklch(100% 0 0 / 0.07);
   --t-elevation-hover: 0 0 0 1px oklch(100% 0 0 / 0.13);
@@ -43,6 +47,49 @@
   --t-red: #f7768e;
 }
 
+/* Tema claro: Catppuccin Latte do omarchy.org, com o verde no lugar do azul.
+   O verde de hoje (#9ece6a) fica nos preenchimentos; texto e ícones usam
+   #2e7d1f, que tem contraste AA sobre o fundo claro. */
+:root[data-theme='latte'] {
+  color-scheme: light;
+
+  --t-bg-deep: #e3e4e8;
+  --t-bg: #eff1f5;
+  --t-surface: #f8f9fb;
+  --t-surface-2: #e3e4e8;
+  --t-border-subtle: #d7d8dc;
+  --t-border-strong: #acb0be;
+  --t-text: #4c4f69;
+  --t-text-secondary: #53556f;
+  --t-text-muted: #5c5f77;
+  --t-brand: #2e7d1f;
+  --t-brand-soft: #40a02b26;
+  --t-brand-ink: #0c0e10;
+  --t-brand-fill: #9ece6a;
+  --t-brand-fill-hover: #8bc254;
+  /* chip translúcido: visível tanto no fundo base quanto no alternado */
+  --t-chip: #4c4f6914;
+  --t-selection: #ccd0da;
+  --t-elevation: 0 0 0 1px oklch(0% 0 0 / 0.06), 0 1px 3px oklch(0% 0 0 / 0.05), 0 4px 10px -4px oklch(0% 0 0 / 0.05);
+  --t-elevation-hover: 0 0 0 1px oklch(0% 0 0 / 0.09), 0 1px 3px oklch(0% 0 0 / 0.07), 0 4px 10px -4px oklch(0% 0 0 / 0.08);
+  --t-img-outline: #0000001a;
+
+  --t-field-bg: #d7d8dc;
+  --t-field-dim: #a9cc9b;
+  --t-field-mid: #6fae5a;
+  --t-field-lit: #40a02b;
+  --t-field-hover: #2e7d1f;
+  --t-field-crest: #1d5513;
+
+  /* paleta de acento do Catppuccin Latte */
+  --t-blue: #1e66f5;
+  --t-cyan: #04a5e5;
+  --t-magenta: #8839ef;
+  --t-yellow: #df8e1d;
+  --t-orange: #fe640b;
+  --t-red: #d20f39;
+}
+
 @theme inline {
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-sans: var(--font-mono);
@@ -59,6 +106,8 @@
   --color-brand: var(--t-brand);
   --color-brand-soft: var(--t-brand-soft);
   --color-brand-ink: var(--t-brand-ink);
+  --color-brand-fill: var(--t-brand-fill);
+  --color-brand-fill-hover: var(--t-brand-fill-hover);
   --color-blue: var(--t-blue);
   --color-cyan: var(--t-cyan);
   --color-magenta: var(--t-magenta);
@@ -119,6 +168,17 @@
 }
 
 @layer components {
+  /* Botão de tema: mostra o ícone do tema para o qual vai trocar */
+  .theme-icon-light {
+    display: none;
+  }
+  :root[data-theme='latte'] .theme-icon-light {
+    display: block;
+  }
+  :root[data-theme='latte'] .theme-icon-dark {
+    display: none;
+  }
+
   /* Container do site, igual ao do omarchy.org: até 72rem (max-w-6xl),
      com gutter de 1rem no mobile e 1.5rem a partir de 40rem (sm). */
   .wrap {
@@ -177,7 +237,7 @@
     display: inline-block;
     padding: 0.125rem 0.5rem;
     border-radius: var(--radius-xs);
-    background-color: var(--t-surface-2);
+    background-color: var(--t-chip);
     color: var(--t-text-secondary);
     font-size: 0.75rem;
     line-height: 1.25rem;

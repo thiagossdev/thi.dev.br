@@ -4,6 +4,7 @@ import { homePath, type Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   locale: Locale;
@@ -39,6 +40,7 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
     <div class="ml-auto flex items-center gap-1 sm:gap-2">
       <LanguageSwitcher locale={locale} />
       <span class="h-5 w-px bg-border-subtle" aria-hidden="true"></span>
+      <ThemeToggle locale={locale} />
       {
         iconLinks.map((l) => (
           <a
@@ -47,7 +49,7 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
             target="_blank"
             aria-label={l.label}
             title={l.label}
-            class="inline-flex size-10 items-center justify-center rounded-sm text-text-secondary transition-[background-color,color] duration-150 ease-out [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text"
+            class="hidden size-10 items-center justify-center rounded-sm text-text-secondary sm:inline-flex transition-[background-color,color] duration-150 ease-out [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text"
           >
             <Brand name={l.icon} class="size-[18px]" />
           </a>

@@ -27,6 +27,19 @@ const ogImage = new URL(`${base}og.jpg`, Astro.site);
 <html lang={meta.htmlLang} data-theme="tokyo-night">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      // Tema antes da primeira pintura: escolha salva ou preferência do sistema.
+      (() => {
+        let theme = null;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch {}
+        if (theme !== 'latte' && theme !== 'tokyo-night') {
+          theme = matchMedia('(prefers-color-scheme: light)').matches ? 'latte' : 'tokyo-night';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -60,7 +73,7 @@ const ogImage = new URL(`${base}og.jpg`, Astro.site);
   <body class="bg-bg text-text min-h-dvh flex flex-col">
     <a
       href="#content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xs focus:bg-brand focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-ink"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xs focus:bg-brand-fill focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:text-brand-ink"
     >
       {s.a11y.skip}
     </a>
