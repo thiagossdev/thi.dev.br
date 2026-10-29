@@ -193,6 +193,17 @@
     }
   }
 
+  /* Fundo sólido atrás de um texto sobre o campo de pixels, para o brilho do
+     mouse não passar por trás das letras. O box-shadow estende o fundo sem
+     mexer no layout. */
+  .field-plate {
+    width: fit-content;
+    max-width: 100%;
+    background: var(--t-field-bg);
+    box-shadow: 0 0 0 0.5rem var(--t-field-bg);
+    border-radius: 2px;
+  }
+
   /* Título de seção no formato de comentário de shell: "# sobre" */
   .section-title {
     font-size: 1.5rem;

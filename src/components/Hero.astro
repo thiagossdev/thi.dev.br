@@ -19,22 +19,22 @@ const s = t(Astro.props.locale);
   <div class="wrap pt-12 pb-24 lg:pt-24 lg:pb-48">
   <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
     <div class="min-w-0" data-field-mask>
-      <p class="reveal text-sm text-text-muted" style="--i: 0">
+      <p class="reveal field-plate text-sm text-text-muted" style="--i: 0">
         <span class="text-brand">thiago@thi.dev.br</span>:<span class="text-blue">~</span>$ whoami
       </p>
 
       <h1
-        class="reveal mt-3 text-3xl font-bold tracking-[-0.022em] text-text sm:text-4xl lg:text-5xl"
+        class="reveal field-plate mt-3 text-3xl font-bold tracking-[-0.022em] text-text sm:text-4xl lg:text-5xl"
         style="--i: 1"
       >
         {site.name}
       </h1>
 
-      <p class="reveal mt-3 min-h-[1.75rem] text-lg text-text-secondary sm:text-xl" style="--i: 2">
+      <p class="reveal field-plate mt-3 min-h-[1.75rem] text-lg text-text-secondary sm:text-xl" style="--i: 2">
         <span class="text-brand" aria-hidden="true">❯&nbsp;</span><span id="typed" class="cursor" data-phrases={JSON.stringify(s.hero.taglines)}>{s.hero.taglines[0]}</span>
       </p>
 
-      <p class="reveal mt-6 max-w-[62ch] text-base leading-relaxed text-text-secondary" style="--i: 3">
+      <p class="reveal field-plate mt-6 max-w-[62ch] text-base leading-relaxed text-text-secondary" style="--i: 3">
         {s.hero.intro}
       </p>
 
