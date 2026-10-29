@@ -30,7 +30,13 @@ pnpm preview
 
 Inglês fica na raiz (`/`), português em `/pt-br/` e espanhol em `/es/`. Todo texto traduzido existe nos três idiomas: em `src/i18n/strings.ts` para a interface e nos campos `en`, `pt-br` e `es` dos YAML. O schema em `src/content.config.ts` falha o build se faltar algum idioma.
 
-Para adicionar outro tema, crie um bloco `:root[data-theme="nome"]` em `global.css` com as mesmas variáveis `--t-*` e troque o atributo `data-theme` em `src/layouts/Base.astro`.
+## Temas
+
+Há dois temas: Tokyo Night, o escuro, e Catppuccin Latte, o claro, ambos com os tokens do omarchy.org. No claro, o azul do Latte vira verde. Os tokens ficam em `src/styles/global.css`, nos blocos `:root` e `:root[data-theme='latte']`.
+
+O tema segue o sistema na primeira visita. O botão do header troca e salva a escolha no navegador. Um script inline no `<head>` aplica o tema antes da primeira pintura.
+
+Para adicionar outro tema, crie um bloco `:root[data-theme="nome"]` com as mesmas variáveis `--t-*` e inclua o nome em `ThemeToggle.astro` e no script do `Base.astro`.
 
 ## Deploy
 
