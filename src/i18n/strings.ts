@@ -88,6 +88,8 @@ const en = {
     imageAlt: 'Maka Albarn holding Soul in scythe form',
     caption: 'Maka Albarn & Soul Evans',
     next: 'Show the next character',
+    pause: 'Pause the character rotation',
+    play: 'Resume the character rotation',
   },
   contact: {
     lead: 'Email is the best way to reach me.',
@@ -189,6 +191,8 @@ const ptBr: Strings = {
     imageAlt: 'Maka Albarn segurando o Soul em forma de foice',
     caption: 'Maka Albarn & Soul Evans',
     next: 'Mostrar o próximo personagem',
+    pause: 'Pausar a troca de personagens',
+    play: 'Retomar a troca de personagens',
   },
   contact: {
     lead: 'O melhor jeito de falar comigo é por e-mail.',
@@ -288,6 +292,8 @@ const es: Strings = {
     imageAlt: 'Maka Albarn sosteniendo a Soul en forma de guadaña',
     caption: 'Maka Albarn & Soul Evans',
     next: 'Mostrar el siguiente personaje',
+    pause: 'Pausar el cambio de personajes',
+    play: 'Reanudar el cambio de personajes',
   },
   contact: {
     lead: 'La mejor forma de contactarme es por email.',
