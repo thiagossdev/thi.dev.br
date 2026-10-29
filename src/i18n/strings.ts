@@ -17,7 +17,7 @@ const en = {
     until: 'to',
     photo: 'Photo of Thiago Sousa Santos',
   },
-  nav: { about: 'about', experience: 'experience', projects: 'projects', stack: 'stack', contact: 'contact' },
+  nav: { about: 'about', experience: 'experience', projects: 'projects', stack: 'stack', otaku: 'otaku', contact: 'contact' },
   hero: {
     taglines: [
       'full stack developer',
@@ -78,6 +78,16 @@ const en = {
     lead: 'What I use or have used in production.',
     groups: { languages: 'languages', frontend: 'frontend', backend: 'backend', mobile: 'mobile & desktop', data: 'data', infra: 'infra', testing: 'testing', tools: 'tools' },
   },
+  otaku: {
+    lead: 'Geek, nerd and otaku, all at once. Soul Eater has a special place here.',
+    mirrorLabel: 'To call Lord Death, fog up a mirror and write:',
+    reading: 'shi-ni shi-ni ko-ro-shi',
+    meaning: '"die, die, kill"',
+    quote: 'Healthy souls and healthy spirits dwell in healthy bodies.',
+    quoteSource: 'DWMA motto, Soul Eater',
+    imageAlt: 'Maka Albarn holding Soul in scythe form',
+    caption: 'Maka Albarn & Soul Evans',
+  },
   contact: {
     lead: 'Email is the best way to reach me.',
     builtWith: 'Built with',
@@ -105,7 +115,7 @@ const ptBr: Strings = {
     until: 'até',
     photo: 'Foto de Thiago Sousa Santos',
   },
-  nav: { about: 'sobre', experience: 'experiência', projects: 'projetos', stack: 'stack', contact: 'contato' },
+  nav: { about: 'sobre', experience: 'experiência', projects: 'projetos', stack: 'stack', otaku: 'otaku', contact: 'contato' },
   hero: {
     taglines: [
       'desenvolvedor full stack',
@@ -166,6 +176,16 @@ const ptBr: Strings = {
     lead: 'O que uso ou já usei em produção.',
     groups: { languages: 'linguagens', frontend: 'frontend', backend: 'backend', mobile: 'mobile e desktop', data: 'dados', infra: 'infra', testing: 'testes', tools: 'ferramentas' },
   },
+  otaku: {
+    lead: 'Geek, nerd e otaku, tudo junto. Soul Eater tem um lugar especial aqui.',
+    mirrorLabel: 'Para falar com o Shinigami-sama, embace um espelho e escreva:',
+    reading: 'shi-ni shi-ni ko-ro-shi',
+    meaning: '"morre, morre, mata"',
+    quote: 'Almas saudáveis e espíritos saudáveis alojam-se em corpos saudáveis.',
+    quoteSource: 'Lema da Shibusen, Soul Eater',
+    imageAlt: 'Maka Albarn segurando o Soul em forma de foice',
+    caption: 'Maka Albarn & Soul Evans',
+  },
   contact: {
     lead: 'O melhor jeito de falar comigo é por e-mail.',
     builtWith: 'Feito com',
@@ -191,7 +211,7 @@ const es: Strings = {
     until: 'hasta',
     photo: 'Foto de Thiago Sousa Santos',
   },
-  nav: { about: 'sobre mí', experience: 'experiencia', projects: 'proyectos', stack: 'stack', contact: 'contacto' },
+  nav: { about: 'sobre mí', experience: 'experiencia', projects: 'proyectos', stack: 'stack', otaku: 'otaku', contact: 'contacto' },
   hero: {
     taglines: [
       'desarrollador full stack',
@@ -251,6 +271,16 @@ const es: Strings = {
   stack: {
     lead: 'Lo que uso o he usado en producción.',
     groups: { languages: 'lenguajes', frontend: 'frontend', backend: 'backend', mobile: 'móvil y escritorio', data: 'datos', infra: 'infra', testing: 'pruebas', tools: 'herramientas' },
+  },
+  otaku: {
+    lead: 'Geek, nerd y otaku, todo junto. Soul Eater tiene un lugar especial aquí.',
+    mirrorLabel: 'Para llamar a Shinigami-sama, empaña un espejo y escribe:',
+    reading: 'shi-ni shi-ni ko-ro-shi',
+    meaning: '"muere, muere, mata"',
+    quote: 'Las almas sanas y los espíritus sanos habitan en cuerpos sanos.',
+    quoteSource: 'Lema de Shibusen, Soul Eater',
+    imageAlt: 'Maka Albarn sosteniendo a Soul en forma de guadaña',
+    caption: 'Maka Albarn & Soul Evans',
   },
   contact: {
     lead: 'La mejor forma de contactarme es por email.',
