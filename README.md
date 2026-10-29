@@ -10,19 +10,25 @@ As versões de Node e pnpm estão fixadas no `mise.toml`.
 mise install
 pnpm install
 pnpm dev         # http://localhost:4321/thi.dev.br/
+pnpm check       # checagem de tipos
 pnpm build       # gera ./dist
 pnpm preview
 ```
 
 ## Onde editar
 
-| O quê                      | Arquivo                        |
-| -------------------------- | ------------------------------ |
-| Nome, bio, links, stack    | `src/data/site.ts`             |
-| Experiência profissional   | `src/content/experience.yaml`  |
-| Projetos em destaque       | `src/content/projects.yaml`    |
-| Cores do tema              | `src/styles/global.css`        |
-| Foto                       | `src/assets/thiago.jpg`        |
+| O quê                                  | Arquivo                        |
+| -------------------------------------- | ------------------------------ |
+| Textos da interface, bio, hobbies      | `src/i18n/strings.ts`          |
+| Nome, links, e-mail, stack             | `src/data/site.ts`             |
+| Experiência profissional               | `src/content/experience.yaml`  |
+| Projetos em destaque                   | `src/content/projects.yaml`    |
+| Cores do tema e container              | `src/styles/global.css`        |
+| Foto                                   | `src/assets/thiago.jpg`        |
+
+## Idiomas
+
+Inglês fica na raiz (`/`), português em `/pt-br/` e espanhol em `/es/`. Todo texto traduzido existe nos três idiomas: em `src/i18n/strings.ts` para a interface e nos campos `en`, `pt-br` e `es` dos YAML. O schema em `src/content.config.ts` falha o build se faltar algum idioma.
 
 Para adicionar outro tema, crie um bloco `:root[data-theme="nome"]` em `global.css` com as mesmas variáveis `--t-*` e troque o atributo `data-theme` em `src/layouts/Base.astro`.
 
