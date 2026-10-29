@@ -1,6 +1,19 @@
 ---
 import Section from './Section.astro';
+import Ui, { type UiIconName } from './icons/Ui.astro';
 import { site } from '../data/site';
+
+const facts: { icon: UiIconName; label: string; value: string }[] = [
+  { icon: 'map-pin', label: 'local', value: 'Teresina, PI' },
+  { icon: 'languages', label: 'idiomas', value: 'português, inglês (B1/B2)' },
+  { icon: 'briefcase', label: 'agora', value: 'RevGás, desde 2021' },
+];
+
+const hobbies: { icon: UiIconName; title: string; text: string }[] = [
+  { icon: 'keyboard', title: 'teclados', text: 'Monto e customizo teclados mecânicos.' },
+  { icon: 'gamepad', title: 'games', text: 'Jogando desde 1992, e às vezes fazendo os meus em Godot.' },
+  { icon: 'headphones', title: 'música', text: 'Trilha sonora do dia inteiro, código incluso.' },
+];
 ---
 
 <Section id="sobre" title="sobre">
@@ -19,23 +32,34 @@ import { site } from '../data/site';
         em sistemas fiscais e gerenciais para revendas de GLP. Antes disso fui CTO da Expandr por
         seis anos, numa edtech de captação de alunos.
       </p>
-      <p>
-        Fora do código: teclados mecânicos custom, videogames desde 1992 e música o dia inteiro.
-      </p>
     </div>
 
-    <dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 self-start text-sm ">
-      <dt class="text-text-muted">local</dt>
-      <dd class="text-text">{site.location}</dd>
-
-      <dt class="text-text-muted">idiomas</dt>
-      <dd class="text-text">português, inglês (B1/B2)</dd>
-
-      <dt class="text-text-muted">status</dt>
-      <dd class="text-text">
-        <span class="mr-1 inline-block size-2 rounded-full bg-brand align-middle" aria-hidden="true"></span>
-        na RevGás desde 2021
-      </dd>
+    <dl class="space-y-3 self-start text-sm">
+      {
+        facts.map((f) => (
+          <div class="flex items-start gap-3">
+            <dt class="flex w-24 shrink-0 items-center gap-2 text-text-muted">
+              <Ui name={f.icon} class="size-4 text-brand" />
+              {f.label}
+            </dt>
+            <dd class="text-text">{f.value}</dd>
+          </div>
+        ))
+      }
     </dl>
   </div>
+
+  <ul class="mt-12 grid gap-6 sm:grid-cols-3" aria-label="Fora do código">
+    {
+      hobbies.map((h) => (
+        <li class="flex gap-3">
+          <Ui name={h.icon} class="mt-0.5 size-5 shrink-0 text-brand" />
+          <div>
+            <p class="text-sm font-semibold text-text">{h.title}</p>
+            <p class="mt-1 text-sm leading-relaxed text-text-muted">{h.text}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
 </Section>
