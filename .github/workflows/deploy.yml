@@ -1,38 +1,57 @@
-name: Deploy to GitHub Pages
+name: CI e deploy
 
+# Pull requests (inclusive os do Dependabot) rodam só a checagem.
+# Push na main roda a checagem, o build e publica no GitHub Pages.
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build:
+  check:
+    name: Tipos e build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Build site
+      - uses: actions/checkout@v7
+      # Node e pnpm nas versões do mise.toml
+      - uses: jdx/mise-action@v5
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
+
+  build:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build do site
         uses: withastro/action@v6
         with:
           node-version: 26.13.0
           package-manager: pnpm@12.16.1
+        env:
+          # Opcional: token do Cloudflare Web Analytics (Settings > Variables)
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy
+      - name: Publicar
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

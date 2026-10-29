@@ -1,0 +1,28 @@
+# Atualizações automáticas de dependências. Os PRs passam pela checagem do
+# workflow "CI e deploy" antes de você aprovar.
+version: 2
+updates:
+  - package-ecosystem: npm # cobre o pnpm-lock.yaml
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      astro:
+        patterns: ['astro', '@astrojs/*']
+      tailwind:
+        patterns: ['tailwindcss', '@tailwindcss/*']
+      og-image:
+        patterns: ['satori', '@resvg/*', 'sharp']
+      fonts-e-icones:
+        patterns: ['@fontsource*', '@lucide/*', 'simple-icons']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns: ['*']
