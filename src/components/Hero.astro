@@ -14,9 +14,10 @@ interface Props {
 const s = t(Astro.props.locale);
 ---
 
-<section class="relative isolate overflow-hidden bg-[var(--t-field-bg)]">
+<!-- Tela cheia, como no omarchy.org: sobe por baixo do header (h-14) e compensa no padding -->
+<section class="relative isolate -mt-14 flex min-h-svh flex-col overflow-hidden bg-[var(--t-field-bg)] pt-14" data-hero>
   <PixelField variant="hero" />
-  <div class="wrap pt-12 pb-24 lg:pt-24 lg:pb-48">
+  <div class="wrap flex flex-1 flex-col justify-center pt-12 pb-24 lg:pt-16 lg:pb-48">
   <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
     <div class="min-w-0" data-field-mask>
       <p class="reveal field-plate text-sm text-text-muted" style="--i: 0">

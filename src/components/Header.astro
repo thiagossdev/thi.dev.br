@@ -11,13 +11,18 @@ import X from '@lucide/astro/icons/x';
 interface Props {
   locale: Locale;
   page?: string;
+  hero?: boolean;
 }
-const { locale, page = '' } = Astro.props;
+const { locale, page = '', hero = false } = Astro.props;
 const s = t(locale);
 const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'linkedin');
 ---
 
-<header class="sticky top-0 z-40 border-b border-border-subtle bg-bg/85 backdrop-blur-sm">
+<header class="site-header sticky top-0 z-40" data-hero-nav={hero ? '' : undefined}>
+  <script is:inline>
+    // Antes da pintura: abre transparente se a página ainda está no hero. Sem JS, o header fica sólido.
+    { const h = document.currentScript.parentElement; if (h.hasAttribute('data-hero-nav') && scrollY < innerHeight) h.dataset.overHero = ''; }
+  </script>
   <div class="wrap flex h-14 items-center gap-3 lg:gap-6">
     <a href={homePath(locale)} class="mark-draw-trigger flex items-center gap-2 text-sm font-semibold text-text" aria-label={s.a11y.home}>
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="mark-draw size-5 text-brand">
@@ -116,6 +121,21 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
     </ul>
   </nav>
 </header>
+
+<script>
+  // Como no omarchy.org: o header fica transparente enquanto o hero está
+  // embaixo dele e ganha o fundo quando o hero inteiro passa da barra.
+  const header = document.querySelector<HTMLElement>('[data-hero-nav]');
+  const hero = document.querySelector('[data-hero]');
+  if (header && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      ([entry]) => header.toggleAttribute('data-over-hero', entry.isIntersecting),
+      { rootMargin: `-${header.offsetHeight}px 0px 0px 0px` },
+    ).observe(hero);
+  } else {
+    header?.removeAttribute('data-over-hero');
+  }
+</script>
 
 <script>
   // Abre e fecha o menu do mobile. Fecha ao escolher um item, com Esc ou ao

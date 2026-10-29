@@ -14,9 +14,11 @@ interface Props {
   alternates?: boolean;
   /** Página atual sem o prefixo do idioma, por exemplo 'uses/'. */
   page?: string;
+  /** A página abre com o hero em tela cheia, e o header fica transparente sobre ele. */
+  hero?: boolean;
 }
 
-const { locale = defaultLocale, alternates = true, page = '' } = Astro.props;
+const { locale = defaultLocale, alternates = true, page = '', hero = false } = Astro.props;
 const s = t(locale);
 const { title = s.meta.title, description = s.meta.description } = Astro.props;
 const meta = localeMeta[locale];
@@ -116,7 +118,7 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
     >
       {s.a11y.skip}
     </a>
-    <Header locale={locale} page={page} />
+    <Header locale={locale} page={page} hero={hero} />
     <main id="content" class="flex-1">
       <slot />
     </main>
