@@ -5,6 +5,7 @@ import { Code } from 'astro:components';
 import Base from '../layouts/Base.astro';
 import Section from './Section.astro';
 import Ui, { type UiIconName } from './icons/Ui.astro';
+import { games, rigs, steamGames, steamProfile, twitch } from '../data/gaming';
 import { getGist, gistUrl, extensionIds, stripShellComments, type GistKey } from '../data/gists';
 import { localeMeta, type Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
@@ -32,6 +33,8 @@ const today: { icon: UiIconName; label: string; value: string; href?: string }[]
   { icon: 'wrench', label: u.versions, value: 'mise', href: 'https://mise.jdx.dev' },
   { icon: 'keyboard', label: u.keyboards, value: u.keyboardsValue },
 ];
+
+const numberFmt = new Intl.NumberFormat(localeMeta[locale].htmlLang);
 
 const themes = { light: 'catppuccin-latte', dark: 'tokyo-night' } as const;
 ---
@@ -197,6 +200,59 @@ const themes = { light: 'catppuccin-latte', dark: 'tokyo-night' } as const;
             <p class="uses-empty">{u.unavailable}</p>
           )
         }
+      </article>
+    </div>
+  </Section>
+
+  <Section id="games" title={u.gamesTitle} lead={u.gamesLead}>
+    <div class="grid gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        {
+          rigs.map((rig) => (
+            <article>
+              <h3 class="flex items-center gap-2 text-base font-semibold text-text">
+                <Ui name={rig.key === 'desktop' ? 'pc-case' : 'laptop'} class="size-4 text-brand" />
+                {u.rigs[rig.key]}
+                <span class="font-normal text-text-muted">· {rig.name}</span>
+              </h3>
+              <dl class="mt-4 space-y-2.5 text-sm">
+                {rig.specs.map(([key, value]) => (
+                  <div>
+                    <dt class="text-xs text-text-muted">{u.specs[key]}</dt>
+                    <dd class="text-text-secondary [overflow-wrap:anywhere]">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))
+        }
+      </div>
+
+      <article>
+        <h3 class="flex items-center gap-2 text-base font-semibold text-text">
+          <Ui name="gamepad" class="size-4 text-brand" />
+          {u.mostPlayed}
+        </h3>
+        <ol class="mt-4 text-sm">
+          {
+            games.map((g, i) => (
+              <li class="flex items-baseline gap-3 border-b border-border-subtle py-2.5">
+                <span class="w-5 shrink-0 text-xs text-text-muted tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                <span class="min-w-0 flex-1 text-text">{g.name}</span>
+                <span class="shrink-0 text-xs text-text-muted tabular-nums">
+                  {g.hours ? `${numberFmt.format(g.hours)} ${u.hours}` : g.platform}
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="mt-4 text-xs text-text-muted">
+          <a href={steamProfile} class="uses-link" rel="me noopener" target="_blank">
+            {u.steamProfile} · {numberFmt.format(steamGames)} {u.steamGames} ↗
+          </a>
+          <span aria-hidden="true"> · </span>
+          <a href={twitch} class="uses-link" rel="me noopener" target="_blank">Twitch ↗</a>
+        </p>
       </article>
     </div>
   </Section>

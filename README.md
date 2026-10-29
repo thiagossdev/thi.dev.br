@@ -22,6 +22,7 @@ pnpm preview
 | -------------------------------------- | ------------------------------ |
 | Textos da interface, bio, hobbies      | `src/i18n/strings.ts`          |
 | Nome, links, e-mail, stack             | `src/data/site.ts`             |
+| Setup de jogos (hardware, mais jogados) | `src/data/gaming.ts`          |
 | Experiência profissional               | `src/content/experience.yaml`  |
 | Projetos em destaque                   | `src/content/projects.yaml`    |
 | Cores dos temas e container            | `src/styles/global.css`        |
