@@ -37,7 +37,3 @@ echo "thi.dev.br" > public/CNAME
 ```
 
 O `astro.config.mjs` detecta o arquivo e troca `site` e `base` para o domínio próprio.
-
-## Nota sobre o rolldown
-
-`pnpm-workspace.yaml` fixa `rolldown` em `1.2.15` via `overrides`. Em 29/10/2026 o tarball da `1.2.16` retornava 404 no registry do npm. Remova o override quando isso for corrigido.
