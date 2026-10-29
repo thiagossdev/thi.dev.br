@@ -1,7 +1,7 @@
 name: CI e deploy
 
 # Pull requests (inclusive os do Dependabot) rodam só a checagem.
-# Push na main roda a checagem, o build e publica no GitHub Pages.
+# Push na main roda a checagem, o build com os PDFs do currículo e publica no GitHub Pages.
 on:
   push:
     branches: [main]
@@ -33,14 +33,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v5
+      - run: pnpm install --frozen-lockfile
       - name: Build do site
-        uses: withastro/action@v6
-        with:
-          node-version: 26.13.0
-          package-manager: pnpm@12.16.1
+        run: pnpm build
         env:
-          # Opcional: token do Cloudflare Web Analytics (Settings > Variables)
+          # Opcional: token do Cloudflare Web Analytics (Settings > Secrets and variables > Variables)
           PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
+      # O runner já tem o Google Chrome instalado
+      - name: PDFs do currículo
+        run: pnpm cv:pdf
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
 
   deploy:
     needs: build
