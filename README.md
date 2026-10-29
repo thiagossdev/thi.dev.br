@@ -80,3 +80,8 @@ As artes de Soul Eater pertencem a Atsushi Ohkubo e Square Enix e aparecem aqui 
 | Black☆Star | PNGitem, recorte de arte do anime |
 | Death the Kid | render de BLACKrangers123 no DeviantArt |
 | Shinigami-sama | Soul Eater Wiki (Fandom), "Render death" |
+
+## Backlog
+
+- **Horas da Steam no build.** Buscar as horas dos jogos em `src/data/gaming.ts` pela Steam Web API (`IPlayerService/GetOwnedGames`, SteamID64 `76561198049663537`) com o secret `STEAM_API_KEY`, mantendo os valores do arquivo como reserva sem chave. Requer "Detalhes dos jogos" público na privacidade da Steam e um `schedule` semanal no workflow para as horas mudarem sem push.
+- **Jogos do outro PC.** Completar a lista de mais jogados com os de fora da Steam.
