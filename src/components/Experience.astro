@@ -67,7 +67,7 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
     }
   </ol>
 
-  <figure class="mt-14 max-w-[62ch] rounded-sm bg-surface p-5 shadow-ring">
+  <figure class="mt-12 max-w-[62ch] rounded-sm bg-surface p-5 shadow-ring">
     <blockquote class="text-sm leading-relaxed text-text-secondary">
       <span class="text-brand" aria-hidden="true">"</span>{site.testimonial.quote}<span class="text-brand" aria-hidden="true">"</span>
     </blockquote>
@@ -76,11 +76,11 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
     </figcaption>
   </figure>
 
-  <div class="mt-14">
+  <div class="mt-12">
     <h3 class="text-sm font-semibold text-text">formação</h3>
     <p class="mt-2 text-sm text-text-secondary">
-      {site.education.degree},
-      <a href={site.education.url} class="link" rel="noopener" target="_blank">{site.education.school}</a>
+      {site.education.degree},{' '}
+      <a href={site.education.url} class="link" rel="noopener" target="_blank">{site.education.school}</a>{' '}
       <span class="text-text-muted">· {site.education.period}</span>
     </p>
     <ul class="mt-2 max-w-[62ch] space-y-1 text-sm text-text-muted">
