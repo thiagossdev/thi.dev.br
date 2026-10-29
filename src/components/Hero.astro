@@ -6,6 +6,7 @@ import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
+import PixelField from './PixelField.astro';
 
 interface Props {
   locale: Locale;
@@ -13,7 +14,9 @@ interface Props {
 const s = t(Astro.props.locale);
 ---
 
-<section class="wrap py-12 lg:py-24">
+<section class="relative isolate overflow-hidden bg-[var(--t-field-bg)]">
+  <PixelField variant="hero" />
+  <div class="wrap py-12 lg:py-24">
   <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
     <div class="min-w-0">
       <p class="reveal text-sm text-text-muted" style="--i: 0">
@@ -78,6 +81,7 @@ const s = t(Astro.props.locale);
         class="size-48 rounded-md bg-surface object-cover outline-1 -outline-offset-1 outline-[var(--t-img-outline)] shadow-ring sm:size-64 lg:size-80"
       />
     </figure>
+  </div>
   </div>
 </section>
 

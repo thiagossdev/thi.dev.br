@@ -1,13 +1,19 @@
 ---
-// Campo de pixels animado atrás do contato e do rodapé, inspirado no
-// rodapé do omarchy.org: só nas laterais, fora da coluna de conteúdo.
-// Pixels isolados e esparsos que acendem e apagam devagar, e losangos
-// em xadrez que passeiam ou seguem o ponteiro. Some quando
-// não há lateral (telas estreitas), pausa fora da tela e fica estático
-// com prefers-reduced-motion.
+// Campo de pixels animado inspirado no omarchy.org. Pixels isolados que
+// acendem e apagam devagar, e losangos em xadrez que passeiam ou seguem
+// o ponteiro. Pausa fora da tela e fica estático com prefers-reduced-motion.
+//
+// variant="edges" (rodapé): discreto, só nas laterais fora da coluna de
+//   conteúdo; some em telas sem lateral.
+// variant="hero": a área toda, esparso no centro, mais denso nas laterais
+//   e com um "chão" denso embaixo, como o hero do omarchy.
+interface Props {
+  variant?: 'edges' | 'hero';
+}
+const { variant = 'edges' } = Astro.props;
 ---
 
-<canvas data-pixel-field aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 size-full"></canvas>
+<canvas data-pixel-field data-variant={variant} aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 size-full"></canvas>
 
 <script>
   // Hash inteiro determinístico por célula.
@@ -24,6 +30,7 @@
     const ctx = canvas.getContext('2d');
     if (!host || !ctx) continue;
 
+    const hero = canvas.dataset.variant === 'hero';
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const colors = {
@@ -68,7 +75,7 @@
     const draw = (time: number) => {
       const t = time / 1000;
       const left = contentLeft();
-      if (left < 48) {
+      if (!hero && left < 48) {
         ctx.clearRect(0, 0, width, height);
         return;
       }
@@ -76,22 +83,33 @@
       const rows = Math.ceil(height / cell);
       const buckets: Record<keyof typeof colors, number[]> = { dim: [], mid: [], lit: [], hover: [], crest: [] };
 
-      // Um losango pontilhado passeia devagar em cada lateral, como o do
-      // omarchy. Com mouse sobre uma lateral, outro segue o ponteiro.
-      const glows = [
-        { x: left * (0.5 + 0.28 * Math.sin(t * 0.11)), y: height * (0.35 + 0.22 * Math.sin(t * 0.08 + 0.8)), hot: false },
-        { x: width - left * (0.5 + 0.28 * Math.sin(t * 0.09 + 2)), y: height * (0.62 + 0.22 * Math.sin(t * 0.07 + 2.4)), hot: false },
-      ];
-      if (pointer.active && edgeWeight(pointer.x, left) > 0) glows.push({ x: pointer.x, y: pointer.y, hot: true });
+      // Losangos que passeiam devagar, sempre nas laterais para não cobrir
+      // o texto: no rodapé à esquerda, no hero à direita. O do ponteiro vale
+      // só nas laterais no rodapé e na área toda no hero.
+      const glows = hero
+        ? left < 48
+          ? []
+          : [{ x: width - left * (0.5 + 0.25 * Math.sin(t * 0.07)), y: height * (0.3 + 0.2 * Math.sin(t * 0.09 + 0.8)), hot: false }]
+        : [{ x: left * (0.5 + 0.25 * Math.sin(t * 0.08)), y: height * (0.3 + 0.2 * Math.sin(t * 0.06 + 0.8)), hot: false }];
+      if (pointer.active && (hero || edgeWeight(pointer.x, left) > 0)) glows.push({ x: pointer.x, y: pointer.y, hot: true });
       const glowCells = glows.map((g) => ({ col: Math.round(g.x / cell), row: Math.round(g.y / cell), hot: g.hot }));
-      const RADIUS = 5; // em células
+      const RADIUS = hero ? 6 : 4; // em células
 
       for (let row = 0; row < rows; row++) {
         const y = row * cell;
         for (let col = 0; col < cols; col++) {
           const x = col * cell;
           const edge = edgeWeight(x + cell / 2, left);
-          if (edge <= 0) continue;
+          // Densidade de fundo por variante.
+          let density: number;
+          if (hero) {
+            const v = row / rows;
+            const ground = v > 0.6 ? ((v - 0.6) / 0.4) ** 2 : 0;
+            density = 0.018 + edge * 0.09 + ground * 0.55;
+          } else {
+            if (edge <= 0) continue;
+            density = 0.05 * edge;
+          }
 
           // Losango: miolo sólido e anel em xadrez.
           let drawn = false;
@@ -99,7 +117,8 @@
             const d = Math.abs(col - g.col) + Math.abs(row - g.row);
             if (d > RADIUS) continue;
             if (d <= 1 || (d <= RADIUS && (col + row) % 2 === 0 && (d < RADIUS - 1 || hash(col, row + 7) < 0.6))) {
-              buckets[g.hot ? (d <= 1 ? 'crest' : 'hover') : d <= 2 ? 'lit' : 'mid'].push(x, y);
+              const tone = g.hot ? (d <= 1 ? 'crest' : 'hover') : hero ? (d <= 2 ? 'lit' : 'mid') : d <= 1 ? 'mid' : 'dim';
+              buckets[tone].push(x, y);
               drawn = true;
               break;
             }
@@ -108,11 +127,11 @@
 
           // Fundo: pixels isolados e esparsos que acendem e apagam devagar.
           const h = hash(col, row);
-          if (h > 0.085 * edge) continue;
+          if (h > density) continue;
           const phase = hash(row, col + 13) * 6.283;
           const twinkle = 0.5 + 0.5 * Math.sin(t * 0.5 + phase);
           if (twinkle < 0.3) continue;
-          buckets[h < 0.012 ? 'mid' : 'dim'].push(x, y);
+          buckets[hero && h < density * 0.18 ? 'mid' : 'dim'].push(x, y);
         }
       }
 
