@@ -2,6 +2,8 @@
 import { site } from '../data/site';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
+import TypedTitle from './TypedTitle.astro';
+import PixelField from './PixelField.astro';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 
@@ -12,12 +14,11 @@ const s = t(Astro.props.locale);
 const year = new Date().getFullYear();
 ---
 
-<footer id="contact" class="scroll-mt-14 border-t border-border-subtle">
+<footer id="contact" class="relative isolate scroll-mt-14 overflow-hidden border-t border-border-subtle bg-[var(--t-field-bg)] pb-[env(safe-area-inset-bottom)]">
+  <PixelField />
   <div class="wrap py-12 lg:py-24">
     <header class="max-w-xl">
-      <h2 class="section-title text-balance">
-        <a href="#contact" class="text-inherit no-underline">{s.nav.contact}</a>
-      </h2>
+      <TypedTitle id="contact" text={s.nav.contact} />
       <p class="mt-2 text-[15px] leading-relaxed text-text-secondary text-pretty">{s.contact.lead}</p>
     </header>
 
@@ -42,7 +43,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="border-t border-border-subtle">
+  <div class="border-t border-white/5 bg-[color-mix(in_oklch,var(--t-field-bg)_82%,transparent)]">
     <p class="wrap flex flex-wrap gap-x-2 gap-y-1 py-6 text-xs text-text-muted">
       <span>© {year} {site.name}.</span>
       <span>
