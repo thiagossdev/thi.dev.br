@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import maka from '../assets/maka-albarn.png';
+import blackStar from '../assets/black-star.png';
+import deathTheKid from '../assets/death-the-kid.png';
+import lordDeath from '../assets/lord-death.png';
 import Section from './Section.astro';
 import Ui from './icons/Ui.astro';
 import type { Locale } from '../i18n/config';
@@ -11,6 +14,14 @@ interface Props {
 }
 const s = t(Astro.props.locale);
 const o = s.otaku;
+
+// Personagens que se revezam na figura, na ordem da troca.
+const cast = [
+  { src: maka, alt: o.imageAlt, caption: o.caption },
+  { src: blackStar, alt: 'Black☆Star, Soul Eater', caption: 'Black☆Star' },
+  { src: deathTheKid, alt: 'Death the Kid, Soul Eater', caption: 'Death the Kid' },
+  { src: lordDeath, alt: 'Shinigami-sama (Lord Death), Soul Eater', caption: 'Shinigami-sama' },
+];
 ---
 
 <Section id="otaku" title={s.nav.otaku} lead={o.lead}>
@@ -37,10 +48,30 @@ const o = s.otaku;
       </blockquote>
     </div>
 
-    <figure class="soul-figure relative mx-auto w-56 sm:w-64 md:mx-0 md:w-full">
+    <figure class="soul-figure relative mx-auto w-56 sm:w-64 md:mx-0 md:w-full" data-cast>
       <span class="soul-glow" aria-hidden="true"></span>
-      <Image src={maka} alt={o.imageAlt} width={300} height={396} class="relative h-auto w-full" />
-      <figcaption class="mt-3 text-center text-xs text-text-muted">{o.caption}</figcaption>
+      <button
+        type="button"
+        class="cast-stage relative block aspect-[3/4] w-full cursor-pointer [perspective:900px]"
+        aria-label={o.next}
+        title={o.next}
+        data-cast-stage
+      >
+        {
+          cast.map((c, i) => (
+            <Image
+              src={c.src}
+              alt={c.alt}
+              height={600}
+              loading="eager"
+              class:list={['cast-card absolute inset-0 m-auto h-full w-full object-contain object-bottom', i !== 0 && 'hidden']}
+              data-cast-card
+              data-caption={c.caption}
+            />
+          ))
+        }
+      </button>
+      <figcaption class="mt-3 text-center text-xs text-text-muted" aria-live="polite" data-cast-caption>{cast[0].caption}</figcaption>
     </figure>
   </div>
 </Section>
@@ -132,6 +163,80 @@ const o = s.otaku;
 </style>
 
 <script>
+  // Troca de personagem: gira até ficar de lado, troca, completa o giro e
+  // treme até estabilizar. Troca sozinha a cada 5 s e no clique; pausa com
+  // o mouse em cima, com foco ou fora da tela. Com movimento reduzido, fica
+  // parado no primeiro personagem.
+  for (const figure of document.querySelectorAll<HTMLElement>('[data-cast]')) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) break;
+    const stage = figure.querySelector<HTMLButtonElement>('[data-cast-stage]');
+    const caption = figure.querySelector<HTMLElement>('[data-cast-caption]');
+    const cards = [...figure.querySelectorAll<HTMLElement>('[data-cast-card]')];
+    if (!stage || !caption || cards.length < 2) continue;
+
+    // Espera a animação terminar, ou o tempo dela, o que vier primeiro, para
+    // a troca nunca travar se o navegador pausar as animações.
+    const run = (el: HTMLElement, frames: Keyframe[], opts: KeyframeAnimationOptions & { duration: number }) => {
+      const anim = el.animate(frames, opts);
+      return Promise.race([anim.finished.catch(() => {}), new Promise((r) => setTimeout(r, opts.duration + 80))]);
+    };
+
+    let index = 0;
+    let busy = false;
+    let paused = false;
+    let visible = false;
+
+    const flipTo = async (next: number) => {
+      if (busy) return;
+      busy = true;
+      const current = cards[index];
+      const incoming = cards[next];
+      await run(current, [{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(90deg)' }], {
+        duration: 260,
+        easing: 'cubic-bezier(0.55, 0, 1, 0.45)',
+        fill: 'forwards',
+      });
+      current.classList.add('hidden');
+      current.getAnimations().forEach((a) => a.cancel());
+      incoming.classList.remove('hidden');
+      caption.textContent = incoming.dataset.caption ?? '';
+      await run(incoming, [{ transform: 'rotateY(-90deg)' }, { transform: 'rotateY(0deg)' }], {
+        duration: 320,
+        easing: 'cubic-bezier(0, 0.55, 0.45, 1)',
+      });
+      // Tremor amortecido até parar.
+      await run(
+        incoming,
+        [
+          { transform: 'rotate(0deg) translateX(0)' },
+          { transform: 'rotate(-5deg) translateX(-6px)', offset: 0.15 },
+          { transform: 'rotate(4deg) translateX(5px)', offset: 0.32 },
+          { transform: 'rotate(-2.5deg) translateX(-3px)', offset: 0.5 },
+          { transform: 'rotate(1.5deg) translateX(2px)', offset: 0.68 },
+          { transform: 'rotate(-0.6deg) translateX(-1px)', offset: 0.84 },
+          { transform: 'rotate(0deg) translateX(0)' },
+        ],
+        { duration: 650, easing: 'ease-out' },
+      );
+      index = next;
+      busy = false;
+    };
+    const advance = () => flipTo((index + 1) % cards.length);
+
+    stage.addEventListener('click', advance);
+    for (const [on, off] of [
+      ['pointerenter', 'pointerleave'],
+      ['focusin', 'focusout'],
+    ] as const) {
+      figure.addEventListener(on, () => (paused = true));
+      figure.addEventListener(off, () => (paused = false));
+    }
+    new IntersectionObserver(([entry]) => (visible = entry.isIntersecting)).observe(figure);
+    setInterval(() => {
+      if (visible && !paused && !document.hidden) advance();
+    }, 5000);
+  }
+
   // Escreve o número no espelho quando ele entra na tela.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   for (const mirror of document.querySelectorAll<HTMLElement>('[data-mirror]')) {

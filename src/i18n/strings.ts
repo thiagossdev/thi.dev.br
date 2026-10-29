@@ -87,6 +87,7 @@ const en = {
     quoteSource: 'DWMA motto, Soul Eater',
     imageAlt: 'Maka Albarn holding Soul in scythe form',
     caption: 'Maka Albarn & Soul Evans',
+    next: 'Show the next character',
   },
   contact: {
     lead: 'Email is the best way to reach me.',
@@ -185,6 +186,7 @@ const ptBr: Strings = {
     quoteSource: 'Lema da Shibusen, Soul Eater',
     imageAlt: 'Maka Albarn segurando o Soul em forma de foice',
     caption: 'Maka Albarn & Soul Evans',
+    next: 'Mostrar o próximo personagem',
   },
   contact: {
     lead: 'O melhor jeito de falar comigo é por e-mail.',
@@ -281,6 +283,7 @@ const es: Strings = {
     quoteSource: 'Lema de Shibusen, Soul Eater',
     imageAlt: 'Maka Albarn sosteniendo a Soul en forma de guadaña',
     caption: 'Maka Albarn & Soul Evans',
+    next: 'Mostrar el siguiente personaje',
   },
   contact: {
     lead: 'La mejor forma de contactarme es por email.',
