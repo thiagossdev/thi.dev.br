@@ -69,6 +69,7 @@ const en = {
   projects: {
     lead: 'A selection. Most of what I build at work has no public repository.',
     work: 'work',
+    personal: 'personal',
     more: 'More at',
   },
   stack: {
@@ -154,6 +155,7 @@ const ptBr: Strings = {
   projects: {
     lead: 'Uma seleção. A maior parte do que faço no trabalho não tem repositório público.',
     work: 'trabalho',
+    personal: 'pessoal',
     more: 'Mais em',
   },
   stack: {
@@ -237,6 +239,7 @@ const es: Strings = {
   projects: {
     lead: 'Una selección. La mayor parte de lo que hago en el trabajo no tiene repositorio público.',
     work: 'trabajo',
+    personal: 'personal',
     more: 'Más en',
   },
   stack: {

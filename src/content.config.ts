@@ -23,12 +23,12 @@ const experience = defineCollection({
 const projects = defineCollection({
   loader: file('src/content/projects.yaml'),
   schema: z.object({
-    name: z.string(),
+    name: z.union([z.string(), localized(z.string())]), // texto fixo ou traduzido
     description: localized(z.string()),
     repo: z.url().optional(),
     language: z.string(),
     year: z.number(),
-    kind: z.enum(['oss', 'work']).default('oss'),
+    kind: z.enum(['oss', 'work', 'personal']).default('oss'), // personal = pessoal, sem repo público
     order: z.number(), // posição na lista, menor primeiro
   }),
 });

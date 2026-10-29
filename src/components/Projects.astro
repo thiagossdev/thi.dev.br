@@ -19,32 +19,36 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 <Section id="projects" title={s.nav.projects} lead={s.projects.lead}>
   <ul class="divide-y divide-border-subtle border-y border-border-subtle">
     {
-      projects.map(({ data }) => (
-        <li class="group relative grid grid-cols-[1fr_auto] gap-x-4 gap-y-2 py-5 sm:grid-cols-[12rem_1fr_auto] sm:gap-x-6">
+      projects.map(({ data }) => {
+        const name = typeof data.name === 'string' ? data.name : data.name[locale];
+        return (
+        <li class="group relative grid grid-cols-[1fr_auto] gap-x-4 gap-y-2 py-5 sm:grid-cols-[16rem_1fr_auto] sm:gap-x-6">
           <div class="min-w-0">
             <h3 class="flex items-center gap-2 text-sm font-semibold text-text transition-[color] duration-150 ease-out [@media(hover:hover)]:group-hover:text-brand">
               <Ui name={data.kind === 'work' ? 'briefcase' : 'folder-git'} class="size-4 shrink-0 text-text-muted" />
               {data.repo ? (
                 <a href={data.repo} rel="noopener" target="_blank" class="after:absolute after:inset-0">
-                  {data.name}
+                  {name}
                 </a>
               ) : (
-                data.name
+                name
               )}
             </h3>
             <p class="mt-1 flex items-center gap-1.5 text-xs text-text-muted">
               <span
-                class="inline-block size-2 rounded-full"
+                class="inline-block size-2 shrink-0 rounded-full"
                 style={`background-color: ${languageColor[data.language] ?? 'var(--t-text-muted)'}`}
                 aria-hidden="true"
               />
               {data.language}
               <span aria-hidden="true">·</span>
               <span class="tabular-nums">{data.year}</span>
-              {data.kind === 'work' && (
+              {data.kind !== 'oss' && (
                 <>
                   <span aria-hidden="true">·</span>
-                  <span class="text-yellow">{s.projects.work}</span>
+                  <span class={data.kind === 'work' ? 'text-yellow' : 'text-magenta'}>
+                    {data.kind === 'work' ? s.projects.work : s.projects.personal}
+                  </span>
                 </>
               )}
             </p>
@@ -57,7 +61,8 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
             />
           )}
         </li>
-      ))
+        );
+      })
     }
   </ul>
   <p class="mt-6 text-sm text-text-muted">

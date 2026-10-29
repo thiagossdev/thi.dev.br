@@ -1,5 +1,80 @@
-- id: gitops-local
+- id: revapp
   order: 1
+  name:
+    en: RevGás ERP · web
+    pt-br: ERP RevGás · web
+    es: ERP RevGás · web
+  language: TypeScript
+  year: 2019
+  kind: work
+  description:
+    en: Web front end of the RevGás ERP, kept up to date from Angular 9 to 21. Angular Material, maps with deck.gl, SSR and PWA, Storybook, Vitest and Playwright.
+    pt-br: Frontend web do ERP da RevGás, mantido atualizado do Angular 9 ao 21. Angular Material, mapas com deck.gl, SSR e PWA, Storybook, Vitest e Playwright.
+    es: Frontend web del ERP de RevGás, actualizado de Angular 9 a 21. Angular Material, mapas con deck.gl, SSR y PWA, Storybook, Vitest y Playwright.
+
+- id: entrega
+  order: 2
+  name:
+    en: RevGás for Couriers
+    pt-br: RevGás para Entregadores
+    es: RevGás para Repartidores
+  language: Kotlin
+  year: 2022
+  kind: work
+  description:
+    en: Native Android app for delivery management. Kotlin, Jetpack Compose, Room, Koin and Firebase, with detekt, ktlint and a broad test suite.
+    pt-br: App Android nativo para gestão de entregas. Kotlin, Jetpack Compose, Room, Koin e Firebase, com detekt, ktlint e uma suíte de testes ampla.
+    es: App Android nativa para gestión de entregas. Kotlin, Jetpack Compose, Room, Koin y Firebase, con detekt, ktlint y una amplia suite de pruebas.
+
+- id: revgas
+  order: 3
+  name:
+    en: RevGás ERP · core
+    pt-br: ERP RevGás · core
+    es: ERP RevGás · core
+  language: Java
+  year: 2021
+  kind: work
+  description:
+    en: Fiscal and management system for LPG resellers, a Java monolith with Struts, Spring and Hibernate on AWS, plus new Spring Boot, Go and serverless services. Integrations with WhatsApp API, Twilio and Zendesk.
+    pt-br: Sistema fiscal e gerencial para revendas de GLP, um monolito Java com Struts, Spring e Hibernate na AWS, além de novos serviços em Spring Boot, Go e serverless. Integrações com WhatsApp API, Twilio e Zendesk.
+    es: Sistema fiscal y de gestión para revendedores de GLP, un monolito Java con Struts, Spring e Hibernate en AWS, más nuevos servicios en Spring Boot, Go y serverless. Integraciones con WhatsApp API, Twilio y Zendesk.
+
+- id: bina
+  order: 4
+  name: Bina RevGás
+  language: Rust
+  year: 2026
+  kind: work
+  description:
+    en: Desktop caller ID client that reads the phone line through the serial port. A rewrite in Rust and Tauri 2 of the old Java 8 client.
+    pt-br: Cliente desktop de identificação de chamadas (bina) que lê a linha telefônica pela porta serial. Reescrita em Rust e Tauri 2 do cliente antigo em Java 8.
+    es: Cliente de escritorio de identificación de llamadas que lee la línea telefónica por el puerto serie. Reescritura en Rust y Tauri 2 del antiguo cliente en Java 8.
+
+- id: amazing-clash
+  order: 5
+  name: AMAZING//CLASH
+  language: GDScript
+  year: 2026
+  kind: personal
+  description:
+    en: Networked game in Godot 4.8 with GUT unit tests. Its companion app runs on Rails 8.1 with passkeys, TOTP and Kamal deploys.
+    pt-br: Jogo em rede feito em Godot 4.8, com testes unitários em GUT. O app companheiro roda em Rails 8.1 com passkeys, TOTP e deploy via Kamal.
+    es: Juego en red hecho en Godot 4.8, con pruebas unitarias en GUT. La app complementaria corre en Rails 8.1 con passkeys, TOTP y deploy con Kamal.
+
+- id: drill-dozer
+  order: 6
+  name: Drill Dozer
+  language: GDScript
+  year: 2026
+  kind: personal
+  description:
+    en: Game in Godot 4.8 with GUT unit tests, in active development.
+    pt-br: Jogo em Godot 4.8 com testes unitários em GUT, em desenvolvimento ativo.
+    es: Juego en Godot 4.8 con pruebas unitarias en GUT, en desarrollo activo.
+
+- id: gitops-local
+  order: 7
   name: gitops-local
   repo: https://github.com/thiagossdev/gitops-local
   language: Shell
@@ -9,19 +84,8 @@
     pt-br: Cluster Kubernetes local gerenciado por GitOps. ArgoCD, Kustomize, ingress e Postgres em StatefulSet, com scripts de bootstrap do zero.
     es: Clúster de Kubernetes local gestionado con GitOps. ArgoCD, Kustomize, ingress y Postgres en StatefulSet, con scripts de bootstrap desde cero.
 
-- id: revgas
-  order: 2
-  name: RevGás
-  language: Java
-  year: 2021
-  kind: work
-  description:
-    en: Fiscal and management system for LPG resellers. Integrations with WhatsApp API, Twilio and Zendesk. Work project, no public repository.
-    pt-br: Sistema fiscal e gerencial para revendas de GLP. Integrações com WhatsApp API, Twilio e Zendesk. Trabalho, sem repositório público.
-    es: Sistema fiscal y de gestión para revendedores de GLP. Integraciones con WhatsApp API, Twilio y Zendesk. Proyecto de trabajo, sin repositorio público.
-
 - id: super-rev-world
-  order: 3
+  order: 8
   name: super-rev-world
   repo: https://github.com/thiagossdev/super-rev-world
   language: GDScript
@@ -31,19 +95,8 @@
     pt-br: Jogo 2D em Godot. Movimentação do player, tileset e uma paleta de debug para visualizar direções.
     es: Juego 2D en Godot. Movimiento del jugador, tileset y una paleta de debug para visualizar direcciones.
 
-- id: internet-speed-test
-  order: 4
-  name: internet-speed-test
-  repo: https://github.com/thiagossdev/internet-speed-test
-  language: Ruby
-  year: 2023
-  description:
-    en: Rails app to measure and log connection speed, with a Docker development environment.
-    pt-br: App em Rails para medir e registrar a velocidade da conexão, com ambiente de desenvolvimento em Docker.
-    es: App en Rails para medir y registrar la velocidad de la conexión, con entorno de desarrollo en Docker.
-
 - id: thidev
-  order: 5
+  order: 9
   name: thidev
   repo: https://github.com/thiagossdev/thidev
   language: TypeScript
@@ -52,14 +105,3 @@
     en: Previous version of this site in Next.js 13, Tailwind and Radix, with Markdown posts via remark and shiki. Never shipped.
     pt-br: Versão anterior deste site em Next.js 13, Tailwind e Radix, com posts em Markdown via remark e shiki. Não chegou a produção.
     es: Versión anterior de este sitio en Next.js 13, Tailwind y Radix, con posts en Markdown vía remark y shiki. Nunca llegó a producción.
-
-- id: utub-downloader
-  order: 6
-  name: utub-downloader
-  repo: https://github.com/thiagossdev/utub-downloader
-  language: TypeScript
-  year: 2022
-  description:
-    en: Vite and TypeScript interface for downloading videos.
-    pt-br: Interface em Vite e TypeScript para baixar vídeos.
-    es: Interfaz en Vite y TypeScript para descargar videos.
