@@ -41,7 +41,7 @@ const en = {
         ', on fiscal and management systems for LPG resellers. Before that I was CTO at Expandr for six years, an edtech focused on student acquisition.',
     },
     facts: { location: 'location', languages: 'languages', now: 'now', os: 'os', shell: 'shell' },
-    languagesValue: 'Portuguese, English (B1/B2)',
+    languagesValue: 'Portuguese, English',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Off the clock',
     hobbies: {
@@ -128,7 +128,7 @@ const ptBr: Strings = {
         ', em sistemas fiscais e gerenciais para revendas de GLP. Antes disso fui CTO da Expandr por seis anos, numa edtech de captação de alunos.',
     },
     facts: { location: 'local', languages: 'idiomas', now: 'agora', os: 'sistema', shell: 'shell' },
-    languagesValue: 'português, inglês (B1/B2)',
+    languagesValue: 'português, inglês',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Fora do código',
     hobbies: {
@@ -213,7 +213,7 @@ const es: Strings = {
         ', en sistemas fiscales y de gestión para revendedores de GLP. Antes fui CTO de Expandr durante seis años, una edtech de captación de alumnos.',
     },
     facts: { location: 'ubicación', languages: 'idiomas', now: 'ahora', os: 'sistema', shell: 'shell' },
-    languagesValue: 'portugués, inglés (B1/B2)',
+    languagesValue: 'portugués, inglés',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Fuera del código',
     hobbies: {
