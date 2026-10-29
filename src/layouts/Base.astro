@@ -20,7 +20,29 @@ const { title = s.meta.title, description = s.meta.description } = Astro.props;
 const meta = localeMeta[locale];
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(`${base}og.jpg`, Astro.site);
+const ogImage = new URL(`${base}og/${locale}.png`, Astro.site);
+
+// Dados estruturados (schema.org Person) para mecanismos de busca.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: new URL(homePath(defaultLocale), Astro.site).href,
+  image: new URL(`${base}og/${defaultLocale}.png`, Astro.site).href,
+  email: `mailto:${site.email}`,
+  jobTitle: 'Tech Lead',
+  description: s.meta.description,
+  worksFor: { '@type': 'Organization', name: 'RevGás', url: 'https://revgas.com' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: site.education.school, url: site.education.url },
+  address: { '@type': 'PostalAddress', addressLocality: 'Teresina', addressRegion: 'PI', addressCountry: 'BR' },
+  knowsLanguage: ['pt-BR', 'en', 'es'],
+  knowsAbout: site.stack.flatMap((g) => g.items).slice(0, 30),
+  sameAs: site.links.map((l) => l.href),
+};
+
+// Cloudflare Web Analytics: só entra no HTML se o token existir no build
+// (variável de repositório CF_BEACON_TOKEN, repassada no workflow).
+const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
@@ -67,8 +89,23 @@ const ogImage = new URL(`${base}og.jpg`, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content={`@${site.handle}`} />
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+    {
+      cfBeacon && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfBeacon })}
+        />
+      )
+    }
   </head>
   <body class="bg-bg text-text min-h-dvh flex flex-col">
     <a
