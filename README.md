@@ -53,7 +53,7 @@ O `astro.config.mjs` detecta o arquivo e troca `site` e `base` para o domínio p
 
 ## Currículo
 
-As páginas `/cv/`, `/pt-br/cv/` e `/es/cv/` montam o currículo a partir dos mesmos dados do site. O PDF sai dessas páginas com `pnpm build` seguido de `pnpm cv:pdf`. O script precisa de Chrome, Chromium ou Edge; se não achar, aponte o binário com `CHROME_PATH`. No CI isso roda sozinho, com o Chrome do runner.
+As páginas `/cv/`, `/pt-br/cv/` e `/es/cv/` montam o currículo a partir dos mesmos dados do site. O PDF sai dessas páginas com `pnpm build` seguido de `pnpm cv:pdf`. O script serve o `dist/` num servidor HTTP próprio e imprime com o Chromium do Playwright. Na primeira vez, baixe o navegador com `pnpm exec playwright install --only-shell chromium` (e `--with-deps` se faltarem bibliotecas do sistema). No CI isso roda sozinho.
 
 ## Página /uses
 
