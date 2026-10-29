@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import photo from '../assets/thiago.jpg';
+import { site } from '../data/site';
+---
+
+<section class="mx-auto max-w-4xl px-4 pt-14 pb-16 sm:px-6 sm:pt-20 sm:pb-24">
+  <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
+    <div class="min-w-0">
+      <p class="reveal text-sm text-text-muted" style="--i: 0">
+        <span class="text-brand">thiago@thi.dev.br</span>:<span class="text-blue">~</span>$ whoami
+      </p>
+
+      <h1
+        class="reveal mt-3 text-3xl font-bold tracking-[-0.022em] text-text sm:text-4xl lg:text-5xl"
+        style="--i: 1"
+      >
+        {site.name}
+      </h1>
+
+      <p class="reveal mt-3 min-h-[1.75rem] text-lg text-text-secondary sm:text-xl" style="--i: 2">
+        <span class="text-brand" aria-hidden="true">❯</span>
+        <span id="typed" class="cursor" data-phrases={JSON.stringify(site.taglines)}>{site.taglines[0]}</span>
+      </p>
+
+      <p class="reveal mt-6 max-w-[62ch] text-base leading-relaxed text-text-secondary" style="--i: 3">
+        Desenvolvo sistemas web há mais de dez anos, de PHP a Kubernetes. Gosto de entender o problema
+        antes de escrever código, de estimar bem e de deixar o time fluir.
+      </p>
+
+      <div class="reveal mt-8 flex flex-wrap items-center gap-x-5 gap-y-3" style="--i: 4">
+        <a
+          href="#projetos"
+          class="inline-flex h-10 items-center rounded-sm bg-brand px-4 text-sm font-semibold text-brand-ink transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] [@media(hover:hover)]:hover:bg-[#bbdd97]"
+        >
+          ver projetos
+        </a>
+        <ul class="flex flex-wrap gap-x-4 text-sm" aria-label="Redes">
+          {
+            site.links.map((l) => (
+              <li>
+                <a href={l.href} rel="me noopener" target="_blank" class="link text-text-secondary">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <figure class="reveal justify-self-start md:justify-self-end" style="--i: 2">
+      <Image
+        src={photo}
+        alt="Foto de Thiago Sousa Santos"
+        width={240}
+        height={240}
+        densities={[1, 2]}
+        loading="eager"
+        class="size-40 rounded-md bg-surface object-cover outline-1 -outline-offset-1 outline-[var(--t-img-outline)] shadow-ring sm:size-52 md:size-60"
+      />
+    </figure>
+  </div>
+</section>
+
+<script>
+  const el = document.getElementById('typed');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (el && !reduce) {
+    const phrases: string[] = JSON.parse(el.dataset.phrases ?? '[]');
+    let index = 0;
+    let text = phrases[0] ?? '';
+    let deleting = false;
+
+    const tick = () => {
+      const target = phrases[index] ?? '';
+      if (!deleting) {
+        text = target.slice(0, text.length + 1);
+        el.textContent = text;
+        if (text === target) {
+          deleting = true;
+          setTimeout(tick, 2200);
+          return;
+        }
+        setTimeout(tick, 55 + Math.random() * 45);
+      } else {
+        text = text.slice(0, -1);
+        el.textContent = text;
+        if (text.length === 0) {
+          deleting = false;
+          index = (index + 1) % phrases.length;
+          setTimeout(tick, 350);
+          return;
+        }
+        setTimeout(tick, 28);
+      }
+    };
+
+    setTimeout(tick, 2600);
+  }
+</script>

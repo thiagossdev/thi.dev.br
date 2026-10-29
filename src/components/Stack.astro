@@ -1,0 +1,21 @@
+---
+import Section from './Section.astro';
+import { site } from '../data/site';
+---
+
+<Section id="stack" title="stack" lead="O que uso ou já usei em produção.">
+  <dl class="grid gap-x-6 gap-y-5 sm:grid-cols-[auto_1fr]">
+    {
+      site.stack.map((g) => (
+        <>
+          <dt class="text-sm text-text-muted sm:pt-0.5">{g.group}</dt>
+          <dd class="flex flex-wrap gap-1.5">
+            {g.items.map((item) => (
+              <span class="chip">{item}</span>
+            ))}
+          </dd>
+        </>
+      ))
+    }
+  </dl>
+</Section>

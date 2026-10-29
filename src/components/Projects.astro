@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import Section from './Section.astro';
+import { languageColor, site } from '../data/site';
+
+const projects = await getCollection('projects');
+---
+
+<Section
+  id="projetos"
+  title="projetos"
+  lead="Uma seleção. A maior parte do que faço no trabalho não tem repositório público."
+>
+  <ul class="divide-y divide-border-subtle border-y border-border-subtle">
+    {
+      projects.map(({ data }) => (
+        <li class="group relative grid gap-2 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6 [@media(hover:hover)]:hover:bg-surface -mx-3 px-3 transition-[background-color] duration-150 ease-out">
+          <div class="min-w-0">
+            <h3 class="truncate text-sm font-semibold text-text">
+              {data.repo ? (
+                <a href={data.repo} rel="noopener" target="_blank" class="after:absolute after:inset-0">
+                  {data.name}
+                </a>
+              ) : (
+                data.name
+              )}
+            </h3>
+            <p class="mt-1 flex items-center gap-1.5 text-xs text-text-muted">
+              <span
+                class="inline-block size-2 rounded-full"
+                style={`background-color: ${languageColor[data.language] ?? 'var(--t-text-muted)'}`}
+                aria-hidden="true"
+              />
+              {data.language}
+              <span aria-hidden="true">·</span>
+              <span class="tabular-nums">{data.year}</span>
+              {data.kind === 'work' && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span class="text-yellow">trabalho</span>
+                </>
+              )}
+            </p>
+          </div>
+          <p class="max-w-[62ch] text-sm leading-relaxed text-text-secondary">{data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="mt-6 text-sm text-text-muted">
+    Mais em
+    <a href={`https://github.com/${site.handle}?tab=repositories`} class="link" rel="noopener" target="_blank">
+      github.com/{site.handle}
+    </a>
+  </p>
+</Section>

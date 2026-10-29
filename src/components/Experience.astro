@@ -1,0 +1,90 @@
+---
+import { getCollection } from 'astro:content';
+import Section from './Section.astro';
+import { site } from '../data/site';
+
+const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+const fmt = (ym: string | null) => {
+  if (!ym) return 'hoje';
+  const [y, m] = ym.split('-').map(Number);
+  return `${months[m - 1]} ${y}`;
+};
+
+const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
+---
+
+<Section id="experiencia" title="experiência" lead="git log --oneline, do mais recente para o mais antigo.">
+  <ol class="relative ml-1 border-l border-border-strong">
+    {
+      jobs.map(({ data }) => {
+        const current = data.end === null;
+        return (
+          <li class="relative pb-10 pl-7 last:pb-0">
+            <span
+              class:list={[
+                'absolute top-1.5 -left-[5px] size-[9px] rounded-full',
+                current ? 'bg-brand shadow-[0_0_0_4px_var(--t-brand-soft)]' : 'bg-bg outline-1 outline-border-strong',
+              ]}
+              aria-hidden="true"
+            />
+            <p class="text-xs tabular-nums text-text-muted">
+              <time datetime={data.start}>{fmt(data.start)}</time>
+              <span aria-hidden="true"> – </span>
+              <span class="sr-only">até</span>
+              {data.end ? <time datetime={data.end}>{fmt(data.end)}</time> : <span class="text-brand">hoje</span>}
+              <span class="mx-2 text-border-strong" aria-hidden="true">·</span>
+              {data.location}
+            </p>
+            <h3 class="mt-1 text-base font-semibold text-text">
+              {data.role}
+              <span class="font-normal text-text-muted"> @ </span>
+              {data.url ? (
+                <a href={data.url} class="link" rel="noopener" target="_blank">
+                  {data.company}
+                </a>
+              ) : (
+                data.company
+              )}
+            </h3>
+            <ul class="mt-3 max-w-[62ch] space-y-1.5 text-sm leading-relaxed text-text-secondary">
+              {data.summary.map((line) => (
+                <li class="flex gap-2">
+                  <span class="text-text-muted select-none" aria-hidden="true">
+                    -
+                  </span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+            <ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Tecnologias">
+              {data.stack.map((t) => (
+                <li class="chip">{t}</li>
+              ))}
+            </ul>
+          </li>
+        );
+      })
+    }
+  </ol>
+
+  <figure class="mt-14 max-w-[62ch] rounded-sm bg-surface p-5 shadow-ring">
+    <blockquote class="text-sm leading-relaxed text-text-secondary">
+      <span class="text-brand" aria-hidden="true">"</span>{site.testimonial.quote}<span class="text-brand" aria-hidden="true">"</span>
+    </blockquote>
+    <figcaption class="mt-3 text-xs text-text-muted">
+      <span class="text-text">{site.testimonial.author}</span>, {site.testimonial.role}
+    </figcaption>
+  </figure>
+
+  <div class="mt-14">
+    <h3 class="text-sm font-semibold text-text">formação</h3>
+    <p class="mt-2 text-sm text-text-secondary">
+      {site.education.degree},
+      <a href={site.education.url} class="link" rel="noopener" target="_blank">{site.education.school}</a>
+      <span class="text-text-muted">· {site.education.period}</span>
+    </p>
+    <ul class="mt-2 max-w-[62ch] space-y-1 text-sm text-text-muted">
+      {site.education.notes.map((n) => <li>{n}</li>)}
+    </ul>
+  </div>
+</Section>
