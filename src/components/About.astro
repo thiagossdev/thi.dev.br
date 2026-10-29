@@ -16,13 +16,13 @@ const facts: { icon: UiIconName; label: string; value: string; href?: string }[]
   { icon: 'languages', label: a.facts.languages, value: a.languagesValue },
   { icon: 'briefcase', label: a.facts.now, value: a.nowValue },
   { icon: 'terminal', label: a.facts.os, value: 'Omarchy', href: 'https://omarchy.org' },
+  { icon: 'square-terminal', label: a.facts.shell, value: 'zsh', href: 'https://www.zsh.org' },
 ];
 
 const hobbies: { icon: UiIconName; title: string; text: string }[] = [
   { icon: 'keyboard', ...a.hobbies.keyboards },
   { icon: 'gamepad', ...a.hobbies.games },
   { icon: 'headphones', ...a.hobbies.music },
-  { icon: 'square-terminal', ...a.hobbies.zsh },
 ];
 ---
 
@@ -58,7 +58,7 @@ const hobbies: { icon: UiIconName; title: string; text: string }[] = [
     </dl>
   </div>
 
-  <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" aria-label={a.offCode}>
+  <ul class="mt-12 grid gap-6 sm:grid-cols-3" aria-label={a.offCode}>
     {
       hobbies.map((h) => (
         <li class="flex gap-3">

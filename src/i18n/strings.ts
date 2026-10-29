@@ -40,7 +40,7 @@ const en = {
       after:
         ', on fiscal and management systems for LPG resellers. Before that I was CTO at Expandr for six years, an edtech focused on student acquisition.',
     },
-    facts: { location: 'location', languages: 'languages', now: 'now', os: 'os' },
+    facts: { location: 'location', languages: 'languages', now: 'now', os: 'os', shell: 'shell' },
     languagesValue: 'Portuguese, English (B1/B2)',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Off the clock',
@@ -48,7 +48,6 @@ const en = {
       keyboards: { title: 'keyboards', text: 'I build and customize mechanical keyboards.' },
       games: { title: 'games', text: 'Playing since 1992, and sometimes making my own in Godot.' },
       music: { title: 'music', text: 'Soundtrack for the whole day, coding included.' },
-      zsh: { title: 'zsh', text: 'A passion of mine: aliases, functions and a prompt tuned to how I work.' },
     },
   },
   experience: {
@@ -128,7 +127,7 @@ const ptBr: Strings = {
       after:
         ', em sistemas fiscais e gerenciais para revendas de GLP. Antes disso fui CTO da Expandr por seis anos, numa edtech de captação de alunos.',
     },
-    facts: { location: 'local', languages: 'idiomas', now: 'agora', os: 'sistema' },
+    facts: { location: 'local', languages: 'idiomas', now: 'agora', os: 'sistema', shell: 'shell' },
     languagesValue: 'português, inglês (B1/B2)',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Fora do código',
@@ -136,7 +135,6 @@ const ptBr: Strings = {
       keyboards: { title: 'teclados', text: 'Monto e customizo teclados mecânicos.' },
       games: { title: 'games', text: 'Jogando desde 1992, e às vezes fazendo os meus em Godot.' },
       music: { title: 'música', text: 'Trilha sonora do dia inteiro, código incluso.' },
-      zsh: { title: 'zsh', text: 'Uma paixão: aliases, funções e um prompt ajustados ao meu jeito de trabalhar.' },
     },
   },
   experience: {
@@ -214,7 +212,7 @@ const es: Strings = {
       after:
         ', en sistemas fiscales y de gestión para revendedores de GLP. Antes fui CTO de Expandr durante seis años, una edtech de captación de alumnos.',
     },
-    facts: { location: 'ubicación', languages: 'idiomas', now: 'ahora', os: 'sistema' },
+    facts: { location: 'ubicación', languages: 'idiomas', now: 'ahora', os: 'sistema', shell: 'shell' },
     languagesValue: 'portugués, inglés (B1/B2)',
     nowValue: 'Tech Lead, RevGás',
     offCode: 'Fuera del código',
@@ -222,7 +220,6 @@ const es: Strings = {
       keyboards: { title: 'teclados', text: 'Armo y personalizo teclados mecánicos.' },
       games: { title: 'juegos', text: 'Jugando desde 1992, y a veces haciendo los míos en Godot.' },
       music: { title: 'música', text: 'Banda sonora de todo el día, código incluido.' },
-      zsh: { title: 'zsh', text: 'Una pasión: alias, funciones y un prompt ajustados a mi forma de trabajar.' },
     },
   },
   experience: {
