@@ -49,3 +49,14 @@ echo "thi.dev.br" > public/CNAME
 ```
 
 O `astro.config.mjs` detecta o arquivo e troca `site` e `base` para o domínio próprio.
+
+## Créditos das imagens
+
+As artes de Soul Eater pertencem a Atsushi Ohkubo e Square Enix e aparecem aqui como homenagem de fã.
+
+| Imagem | Origem |
+| --- | --- |
+| Maka Albarn | site antigo, thi.dev.br |
+| Black☆Star | PNGitem, recorte de arte do anime |
+| Death the Kid | render de BLACKrangers123 no DeviantArt |
+| Shinigami-sama | Soul Eater Wiki (Fandom), "Render death" |
