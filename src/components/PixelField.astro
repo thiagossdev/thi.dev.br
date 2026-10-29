@@ -304,12 +304,14 @@ const { variant = 'edges' } = Astro.props;
       ripples.push({ x: p.x, y: p.y, born: now });
     });
 
-    // Anima só quando visível, a ~30 fps.
+    // Anima só quando visível, a ~30 fps; em telas de toque, sem o brilho do
+    // ponteiro, ~15 fps bastam e poupam bateria.
+    const frameMs = finePointer ? 33 : 66;
     let frame = 0;
     let last = 0;
     const loop = (time: number) => {
       frame = requestAnimationFrame(loop);
-      if (time - last < 33) return;
+      if (time - last < frameMs) return;
       last = time;
       draw(time);
     };
