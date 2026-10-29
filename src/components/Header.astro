@@ -5,6 +5,8 @@ import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import Menu from '@lucide/astro/icons/menu';
+import X from '@lucide/astro/icons/x';
 
 interface Props {
   locale: Locale;
@@ -46,8 +48,11 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
     </nav>
 
     <div class="ml-auto flex items-center gap-1 sm:gap-2">
-      <LanguageSwitcher locale={locale} page={page} />
-      <span class="h-5 w-px bg-border-subtle" aria-hidden="true"></span>
+      <!-- Abaixo de 640px o seletor de idioma vai para dentro do menu -->
+      <div class="hidden items-center gap-1 sm:flex sm:gap-2">
+        <LanguageSwitcher locale={locale} page={page} />
+        <span class="h-5 w-px bg-border-subtle" aria-hidden="true"></span>
+      </div>
       <ThemeToggle locale={locale} />
       {
         iconLinks.map((l) => (
@@ -63,6 +68,78 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
           </a>
         ))
       }
+      <!-- Menu do mobile: abaixo de 1024px o menu de seções fica aqui -->
+      <button
+        type="button"
+        class="inline-flex size-10 items-center justify-center rounded-sm text-text-secondary transition-[background-color,color] duration-150 ease-out lg:hidden [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label={s.a11y.menuOpen}
+        data-menu-toggle
+        data-label-open={s.a11y.menuOpen}
+        data-label-close={s.a11y.menuClose}
+      >
+        <Menu class="menu-icon-open size-5" stroke-width={1.5} stroke-linecap="square" aria-hidden="true" />
+        <X class="menu-icon-close hidden size-5" stroke-width={1.5} stroke-linecap="square" aria-hidden="true" />
+      </button>
     </div>
   </div>
+
+  <nav id="mobile-menu" aria-label={s.a11y.sections} class="border-t border-border-subtle lg:hidden" hidden data-menu>
+    <ul class="wrap max-h-[calc(100dvh-3.5rem)] overflow-y-auto py-2">
+      {
+        site.nav.map((id) => (
+          <li>
+            <a
+              href={`${homePath(locale)}#${id}`}
+              class="flex h-12 items-center gap-3 border-b border-border-subtle text-base text-text-secondary transition-[color] duration-150 ease-out [@media(hover:hover)]:hover:text-text"
+            >
+              <span class="text-brand" aria-hidden="true">#</span>
+              {s.nav[id]}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          href={localizedPath(locale, 'uses/')}
+          aria-current={page === 'uses/' ? 'page' : undefined}
+          class="flex h-12 items-center gap-3 text-base text-text-secondary transition-[color] duration-150 ease-out aria-[current=page]:text-brand [@media(hover:hover)]:hover:text-text"
+        >
+          <span class="text-brand" aria-hidden="true">/</span>
+          {s.nav.uses}
+        </a>
+      </li>
+      <li class="flex h-12 items-center border-t border-border-subtle sm:hidden">
+        <LanguageSwitcher locale={locale} page={page} />
+      </li>
+    </ul>
+  </nav>
 </header>
+
+<script>
+  // Abre e fecha o menu do mobile. Fecha ao escolher um item, com Esc ou ao
+  // passar para 1024px, onde o menu normal do header aparece.
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  if (toggle && menu) {
+    const set = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? '');
+      toggle.querySelector('.menu-icon-open')?.classList.toggle('hidden', open);
+      toggle.querySelector('.menu-icon-close')?.classList.toggle('hidden', !open);
+    };
+    toggle.addEventListener('click', () => set(menu.hasAttribute('hidden')));
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) set(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hasAttribute('hidden')) {
+        set(false);
+        toggle.focus();
+      }
+    });
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => e.matches && set(false));
+  }
+</script>
