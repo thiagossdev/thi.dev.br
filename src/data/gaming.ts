@@ -20,7 +20,7 @@ export const rigs: Rig[] = [
       ['storage', 'Kingston Fury Renegade 1 TB · NVMe PCIe 4.0'],
       ['board', 'ASUS TUF Gaming X670E-Plus Wi-Fi'],
       ['cooler', 'ASUS TUF Gaming LC 360 II ARGB · 360 mm'],
-      ['fans', '6× ASUS TUF Gaming TF120 ARGB'],
+      ['fans', '10× ASUS TUF Gaming TF120 ARGB'],
       ['case', 'ASUS TUF Gaming GT502'],
       ['psu', 'ASUS TUF Gaming 850 W · 80 Plus Gold'],
     ],
