@@ -3,7 +3,6 @@ import { site } from '../data/site';
 import { homePath, type Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
-import Ui from './icons/Ui.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -16,8 +15,11 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
 
 <header class="sticky top-0 z-40 border-b border-border-subtle bg-bg/85 backdrop-blur-sm">
   <div class="wrap flex h-14 items-center gap-3 lg:gap-6">
-    <a href={homePath(locale)} class="flex items-center gap-2 text-sm font-semibold text-text" aria-label={s.a11y.home}>
-      <Ui name="terminal" class="size-5 text-brand" />
+    <a href={homePath(locale)} class="mark-draw-trigger flex items-center gap-2 text-sm font-semibold text-text" aria-label={s.a11y.home}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="mark-draw size-5 text-brand">
+        <path d="M4 17l6-6-6-6" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" />
+        <path d="M12 19h8" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" />
+      </svg>
       <span>~/{site.shortName}</span>
     </a>
 

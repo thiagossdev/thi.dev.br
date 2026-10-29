@@ -69,5 +69,51 @@ const ogImage = new URL(`${base}og.jpg`, Astro.site);
       <slot />
     </main>
     <Footer locale={locale} />
+
+    <script>
+      // Digita os títulos de seção quando entram na tela (efeito do omarchy.org).
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const blocks = [...document.querySelectorAll<HTMLElement>('[data-typed]')];
+
+      if (!reduce && 'IntersectionObserver' in window) {
+        const type = (block: HTMLElement) => {
+          const full = block.dataset.typed ?? '';
+          const out = block.querySelector<HTMLElement>('[data-typed-text]');
+          if (!out) return;
+          block.dataset.typing = '1';
+          let i = 0;
+          const step = () => {
+            i += 1;
+            out.textContent = full.slice(0, i);
+            if (i < full.length) {
+              setTimeout(step, 45 + Math.random() * 40);
+            } else {
+              block.dataset.typing = '0';
+              setTimeout(() => (block.dataset.typing = 'done'), 2400);
+            }
+          };
+          setTimeout(step, 120);
+        };
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              io.unobserve(entry.target);
+              type(entry.target as HTMLElement);
+            }
+          },
+          { rootMargin: '0px 0px -15% 0px' },
+        );
+
+        for (const block of blocks) {
+          const out = block.querySelector<HTMLElement>('[data-typed-text]');
+          if (out) out.textContent = '';
+          io.observe(block);
+        }
+      } else {
+        for (const block of blocks) block.dataset.typing = 'done';
+      }
+    </script>
   </body>
 </html>
