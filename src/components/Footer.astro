@@ -1,5 +1,7 @@
 ---
 import { site } from '../data/site';
+import Brand from './icons/Brand.astro';
+import Ui from './icons/Ui.astro';
 const year = new Date().getFullYear();
 ---
 
@@ -9,7 +11,8 @@ const year = new Date().getFullYear();
     <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-text-secondary">
       O jeito mais rápido é e-mail. Também respondo no LinkedIn.
     </p>
-    <p class="mt-3 text-base">
+    <p class="mt-3 flex items-center gap-2 text-base">
+      <Ui name="mail" class="size-5 shrink-0 text-brand" />
       <a href={`mailto:${site.email}`} class="link font-semibold">{site.email}</a>
     </p>
 
@@ -17,7 +20,8 @@ const year = new Date().getFullYear();
       {
         site.links.map((l) => (
           <li>
-            <a href={l.href} rel="me noopener" target="_blank" class="link text-text-secondary">
+            <a href={l.href} rel="me noopener" target="_blank" class="link inline-flex items-center gap-2 text-text-secondary">
+              <Brand name={l.icon} class="size-4" />
               {l.label}
             </a>
           </li>

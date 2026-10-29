@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ui from '../components/icons/Ui.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
@@ -15,7 +16,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       Esse caminho não existe por aqui. Volte para o início ou dê uma olhada nos projetos.
     </p>
     <p class="mt-8 flex flex-wrap gap-x-5 text-sm">
-      <a href={base} class="link">cd ~</a>
+      <a href={base} class="link inline-flex items-center gap-2"><Ui name="house" class="size-4 text-brand" />cd ~</a>
       <a href={`${base}#projetos`} class="link text-text-secondary">projetos</a>
     </p>
   </section>

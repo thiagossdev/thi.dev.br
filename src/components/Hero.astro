@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import photo from '../assets/thiago.jpg';
 import { site } from '../data/site';
+import Brand from './icons/Brand.astro';
+import Ui from './icons/Ui.astro';
 ---
 
 <section class="mx-auto max-w-4xl px-4 pt-14 pb-6 sm:px-6 sm:pt-20 sm:pb-10">
@@ -27,19 +29,30 @@ import { site } from '../data/site';
         antes de escrever código, de estimar bem e de deixar o time fluir.
       </p>
 
-      <div class="reveal mt-8 flex flex-wrap items-center gap-x-5 gap-y-3" style="--i: 4">
+      <div class="reveal mt-8 flex flex-wrap items-center gap-3" style="--i: 4">
         <a
           href="#projetos"
-          class="inline-flex h-10 items-center rounded-sm bg-brand px-4 text-sm font-semibold text-brand-ink transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] [@media(hover:hover)]:hover:bg-[#bbdd97]"
+          class="group inline-flex h-10 items-center gap-2 rounded-sm bg-brand pr-3.5 pl-4 text-sm font-semibold text-brand-ink transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] [@media(hover:hover)]:hover:bg-[#bbdd97]"
         >
           ver projetos
+          <Ui
+            name="arrow-down"
+            class="size-4 transition-transform duration-150 ease-out [@media(hover:hover)]:group-hover:translate-y-0.5"
+          />
         </a>
-        <ul class="flex flex-wrap gap-x-4 text-sm" aria-label="Redes">
+        <ul class="flex flex-wrap gap-1.5" aria-label="Redes">
           {
             site.links.map((l) => (
               <li>
-                <a href={l.href} rel="me noopener" target="_blank" class="link text-text-secondary">
-                  {l.label}
+                <a
+                  href={l.href}
+                  rel="me noopener"
+                  target="_blank"
+                  aria-label={l.label}
+                  title={l.label}
+                  class="inline-flex size-10 items-center justify-center rounded-sm bg-surface text-text-secondary shadow-ring transition-[background-color,color,box-shadow,transform] duration-150 ease-out active:scale-[0.96] [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text [@media(hover:hover)]:hover:shadow-ring-hover"
+                >
+                  <Brand name={l.icon} class="size-[18px]" />
                 </a>
               </li>
             ))
