@@ -12,10 +12,11 @@ const s = t(Astro.props.locale);
 const year = new Date().getFullYear();
 ---
 
-<footer id="contact" class="mx-auto w-full max-w-4xl scroll-mt-20 px-4 pt-8 pb-10 sm:px-6 sm:pt-12">
-  <div class="border-t border-border-subtle pt-8">
+<footer id="contact" class="wrap scroll-mt-20 pt-8 pb-10 sm:pt-12">
+  <div class="border-t border-border-subtle pt-8 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
     <h2 class="section-title">{s.nav.contact}</h2>
-    <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-text-secondary">
+    <div>
+    <p class="mt-4 lg:mt-0 max-w-[62ch] text-sm leading-relaxed text-text-secondary">
       {s.contact.lead}
     </p>
     <p class="mt-3 flex items-center gap-2 text-base">
@@ -44,5 +45,6 @@ const year = new Date().getFullYear();
       </span>
       <a href={site.repo} class="link" rel="noopener" target="_blank">{s.contact.source}</a>
     </p>
+    </div>
   </div>
 </footer>

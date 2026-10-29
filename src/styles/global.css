@@ -111,6 +111,12 @@
 }
 
 @layer components {
+  /* Container do site: até 76rem, com 1rem de respiro em cada lado */
+  .wrap {
+    width: min(76rem, 100% - 2rem);
+    margin-inline: auto;
+  }
+
   /* Título de seção no formato de comentário de shell: "# sobre" */
   .section-title {
     font-size: 1.125rem;
