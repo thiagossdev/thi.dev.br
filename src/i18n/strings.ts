@@ -94,6 +94,8 @@ const en = {
     builtWith: 'Built with',
     hostedOn: 'hosted on GitHub Pages.',
     source: 'source code',
+    credits:
+      'Soul Eater artwork belongs to Atsushi Ohkubo and Square Enix, shown as a fan tribute. Death the Kid render by BLACKrangers123. Pixel field inspired by omarchy.org.',
   },
 };
 
@@ -193,6 +195,8 @@ const ptBr: Strings = {
     builtWith: 'Feito com',
     hostedOn: 'hospedado no GitHub Pages.',
     source: 'código-fonte',
+    credits:
+      'As artes de Soul Eater pertencem a Atsushi Ohkubo e Square Enix e aparecem como homenagem de fã. Render do Death the Kid por BLACKrangers123. Campo de pixels inspirado no omarchy.org.',
   },
 };
 
@@ -290,6 +294,8 @@ const es: Strings = {
     builtWith: 'Hecho con',
     hostedOn: 'alojado en GitHub Pages.',
     source: 'código fuente',
+    credits:
+      'Las ilustraciones de Soul Eater pertenecen a Atsushi Ohkubo y Square Enix y aparecen como homenaje de fan. Render de Death the Kid por BLACKrangers123. Campo de píxeles inspirado en omarchy.org.',
   },
 };
 
