@@ -1,6 +1,7 @@
 ---
 import Section from './Section.astro';
 import { site } from '../data/site';
+import Ui from './icons/Ui.astro';
 ---
 
 <Section id="stack" title="stack" lead="O que uso ou já usei em produção.">
@@ -8,7 +9,10 @@ import { site } from '../data/site';
     {
       site.stack.map((g) => (
         <>
-          <dt class="text-sm text-text-muted sm:pt-0.5">{g.group}</dt>
+          <dt class="flex items-center gap-2 text-sm text-text-muted sm:pt-0.5">
+            <Ui name={g.icon} class="size-4 text-brand" />
+            {g.group}
+          </dt>
           <dd class="flex flex-wrap gap-1.5">
             {g.items.map((item) => (
               <span class="chip">{item}</span>
