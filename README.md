@@ -1,6 +1,6 @@
 # thi.dev.br
 
-Site pessoal de Thiago Sousa Santos. Astro + Tailwind v4, tema Tokyo Night, JetBrains Mono, publicado no GitHub Pages.
+Site pessoal de Thiago Sousa Santos. Astro + Tailwind v4, temas Tokyo Night e Catppuccin Latte, JetBrains Mono, publicado no GitHub Pages.
 
 ## Rodando
 
@@ -12,6 +12,7 @@ pnpm install
 pnpm dev         # http://localhost:4321/thi.dev.br/
 pnpm check       # checagem de tipos
 pnpm build       # gera ./dist
+pnpm cv:pdf      # PDFs do currículo, depois do build
 pnpm preview
 ```
 
@@ -23,7 +24,7 @@ pnpm preview
 | Nome, links, e-mail, stack             | `src/data/site.ts`             |
 | Experiência profissional               | `src/content/experience.yaml`  |
 | Projetos em destaque                   | `src/content/projects.yaml`    |
-| Cores do tema e container              | `src/styles/global.css`        |
+| Cores dos temas e container            | `src/styles/global.css`        |
 | Foto                                   | `src/assets/thiago.jpg`        |
 
 ## Idiomas
@@ -38,9 +39,9 @@ O tema segue o sistema na primeira visita. O botão do header troca e salva a es
 
 Para adicionar outro tema, crie um bloco `:root[data-theme="nome"]` com as mesmas variáveis `--t-*` e inclua o nome em `ThemeToggle.astro` e no script do `Base.astro`.
 
-## Deploy
+## Deploy e CI
 
-Todo push na `main` roda `.github/workflows/deploy.yml` e publica no GitHub Pages.
+O workflow `.github/workflows/deploy.yml` roda `pnpm check` e `pnpm build` em todo pull request e push. Em push na `main`, depois da checagem, ele faz o build de produção, gera os PDFs do currículo e publica no GitHub Pages.
 
 Enquanto `public/CNAME` não existe, o site sai em `https://thiagossdev.github.io/thi.dev.br/`. Quando o DNS de `thi.dev.br` estiver apontando para o GitHub Pages, crie o arquivo:
 
@@ -49,6 +50,20 @@ echo "thi.dev.br" > public/CNAME
 ```
 
 O `astro.config.mjs` detecta o arquivo e troca `site` e `base` para o domínio próprio.
+
+## Currículo
+
+As páginas `/cv/`, `/pt-br/cv/` e `/es/cv/` montam o currículo a partir dos mesmos dados do site. O PDF sai dessas páginas com `pnpm build` seguido de `pnpm cv:pdf`. O script precisa de Chrome, Chromium ou Edge; se não achar, aponte o binário com `CHROME_PATH`. No CI isso roda sozinho, com o Chrome do runner.
+
+## Compartilhamento e busca
+
+As imagens `/og/<idioma>.png` são geradas no build por `src/pages/og/[locale].png.ts`. Cada página também tem um JSON-LD schema.org Person.
+
+Para ligar o Cloudflare Web Analytics, crie a variável de repositório `CF_BEACON_TOKEN` com o token do site, em Settings, Secrets and variables, Actions, aba Variables. Sem ela, o script não entra no HTML.
+
+## Dependências
+
+O `.github/dependabot.yml` abre PRs semanais para pacotes npm e GitHub Actions. Os alertas de segurança e as correções automáticas são ligados nas configurações do repositório, em Settings, Code security.
 
 ## Créditos das imagens
 
