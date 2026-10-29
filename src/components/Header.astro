@@ -1,6 +1,6 @@
 ---
 import { site } from '../data/site';
-import { homePath, type Locale } from '../i18n/config';
+import { homePath, localizedPath, type Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
@@ -8,8 +8,9 @@ import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   locale: Locale;
+  page?: string;
 }
-const { locale } = Astro.props;
+const { locale, page = '' } = Astro.props;
 const s = t(locale);
 const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'linkedin');
 ---
@@ -28,17 +29,24 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
       {
         site.nav.map((id) => (
           <a
-            href={`#${id}`}
+            href={`${homePath(locale)}#${id}`}
             class="rounded-xs px-2 py-1.5 text-sm text-text-secondary transition-[background-color,color] duration-150 ease-out [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text"
           >
             {s.nav[id]}
           </a>
         ))
       }
+      <a
+        href={localizedPath(locale, 'uses/')}
+        aria-current={page === 'uses/' ? 'page' : undefined}
+        class="rounded-xs px-2 py-1.5 text-sm text-text-secondary transition-[background-color,color] duration-150 ease-out aria-[current=page]:text-brand [@media(hover:hover)]:hover:bg-surface-2 [@media(hover:hover)]:hover:text-text"
+      >
+        {s.nav.uses}
+      </a>
     </nav>
 
     <div class="ml-auto flex items-center gap-1 sm:gap-2">
-      <LanguageSwitcher locale={locale} />
+      <LanguageSwitcher locale={locale} page={page} />
       <span class="h-5 w-px bg-border-subtle" aria-hidden="true"></span>
       <ThemeToggle locale={locale} />
       {

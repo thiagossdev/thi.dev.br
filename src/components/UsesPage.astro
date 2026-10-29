@@ -1,0 +1,288 @@
+---
+// Página /uses, a convenção da comunidade dev (uses.tech): o que uso hoje e as configs dos
+// meus Gists públicos, buscadas no build e destacadas com o Shiki do Astro.
+import { Code } from 'astro:components';
+import Base from '../layouts/Base.astro';
+import Section from './Section.astro';
+import Ui, { type UiIconName } from './icons/Ui.astro';
+import { getGist, gistUrl, extensionIds, stripShellComments, type GistKey } from '../data/gists';
+import { localeMeta, type Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale);
+const u = s.uses;
+const dateFmt = new Intl.DateTimeFormat(localeMeta[locale].htmlLang, { month: 'short', year: 'numeric' });
+
+const [p10k, settings, extensions, rust, xcompose] = await Promise.all(
+  (['p10k', 'vscodeSettings', 'vscodeExtensions', 'rustTools', 'xcompose'] as GistKey[]).map(getGist),
+);
+const first = (g: Awaited<ReturnType<typeof getGist>>) => g?.files[0];
+
+const rustCode = first(rust)?.content.trim() ?? '';
+const rustTools = rustCode.replace(/^cargo install\s+/, '').split(/\s+/).filter(Boolean);
+const extIds = extensions ? extensionIds(first(extensions)?.content ?? '') : [];
+
+const today: { icon: UiIconName; label: string; value: string; href?: string }[] = [
+  { icon: 'terminal', label: u.os, value: 'Omarchy', href: 'https://omarchy.org' },
+  { icon: 'square-terminal', label: u.shell, value: 'zsh', href: 'https://www.zsh.org' },
+  { icon: 'wrench', label: u.versions, value: 'mise', href: 'https://mise.jdx.dev' },
+  { icon: 'keyboard', label: u.keyboards, value: u.keyboardsValue },
+];
+
+const themes = { light: 'catppuccin-latte', dark: 'tokyo-night' } as const;
+---
+
+<Base locale={locale} page="uses/" title={u.metaTitle} description={u.description}>
+  <Section id="uses" title={u.title} lead={u.lead}>
+    <dl class="grid max-w-xl gap-3 text-sm sm:grid-cols-2">
+      {
+        today.map((f) => (
+          <div class="flex items-center gap-3">
+            <dt class="flex w-28 shrink-0 items-center gap-2 text-text-muted">
+              <Ui name={f.icon} class="size-4 text-brand" />
+              {f.label}
+            </dt>
+            <dd class="text-text">
+              {f.href ? (
+                <a href={f.href} class="link" rel="noopener" target="_blank">
+                  {f.value}
+                </a>
+              ) : (
+                f.value
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Section>
+
+  <Section id="configs" title={u.configs} tone="deep">
+    <div class="space-y-12">
+      <!-- Ferramentas em Rust -->
+      <article class="uses-card">
+        <header class="uses-head">
+          <div>
+            <h3>{u.rustTitle}</h3>
+            <p>{u.rustLead}</p>
+          </div>
+          <a href={gistUrl('rustTools')} class="uses-link" rel="noopener" target="_blank">
+            {rust && <span>{u.updated} {dateFmt.format(rust.updated)} · </span>}{u.viewGist} ↗
+          </a>
+        </header>
+        {
+          rust ? (
+            <>
+              <ul class="mt-4 flex flex-wrap gap-1.5">
+                {rustTools.map((tool) => (
+                  <li>
+                    <a href={`https://crates.io/crates/${tool}`} class="chip link-chip" rel="noopener" target="_blank">
+                      {tool}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div class="uses-code mt-4">
+                <Code code={rustCode} lang="bash" themes={themes} defaultColor={false} wrap />
+              </div>
+            </>
+          ) : (
+            <p class="uses-empty">{u.unavailable}</p>
+          )
+        }
+      </article>
+
+      <!-- Prompt do zsh -->
+      <article class="uses-card">
+        <header class="uses-head">
+          <div>
+            <h3>{u.zshTitle}</h3>
+            <p>{u.zshLead}</p>
+          </div>
+          <a href={gistUrl('p10k')} class="uses-link" rel="noopener" target="_blank">
+            {p10k && <span>{u.updated} {dateFmt.format(p10k.updated)} · </span>}{u.viewGist} ↗
+          </a>
+        </header>
+        {
+          p10k ? (
+            <details class="uses-details mt-4">
+              <summary>
+                {u.showFile} <code>{first(p10k)?.filename}</code>
+              </summary>
+              <div class="uses-code uses-scroll">
+                <Code code={stripShellComments(first(p10k)?.content ?? '')} lang="zsh" themes={themes} defaultColor={false} />
+              </div>
+            </details>
+          ) : (
+            <p class="uses-empty">{u.unavailable}</p>
+          )
+        }
+      </article>
+
+      <!-- VS Code -->
+      <article class="uses-card">
+        <header class="uses-head">
+          <div>
+            <h3>{u.vscodeTitle}</h3>
+            <p>{u.vscodeLead}</p>
+          </div>
+          <span class="uses-link flex flex-col items-end gap-1">
+            <a href={gistUrl('vscodeSettings')} rel="noopener" target="_blank">
+              {settings && <span>{u.updated} {dateFmt.format(settings.updated)} · </span>}
+              {u.settings} ↗
+            </a>
+            <a href={gistUrl('vscodeExtensions')} rel="noopener" target="_blank">{u.extensions} ↗</a>
+          </span>
+        </header>
+        {
+          extIds.length > 0 && (
+            <>
+              <h4 class="mt-5 text-xs text-text-muted">
+                {u.extensions} <span class="tabular-nums">({extIds.length})</span>
+              </h4>
+              <ul class="mt-2 flex flex-wrap gap-1.5">
+                {extIds.map((id) => (
+                  <li>
+                    <a
+                      href={`https://marketplace.visualstudio.com/items?itemName=${id}`}
+                      class="chip link-chip"
+                      rel="noopener"
+                      target="_blank"
+                    >
+                      {id}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+        }
+        {
+          settings ? (
+            <details class="uses-details mt-5">
+              <summary>
+                {u.showFile} <code>{first(settings)?.filename}</code>
+              </summary>
+              <div class="uses-code uses-scroll">
+                <Code code={first(settings)?.content ?? ''} lang="jsonc" themes={themes} defaultColor={false} />
+              </div>
+            </details>
+          ) : (
+            <p class="uses-empty">{u.unavailable}</p>
+          )
+        }
+      </article>
+
+      <!-- XCompose -->
+      <article class="uses-card">
+        <header class="uses-head">
+          <div>
+            <h3>{u.xcomposeTitle}</h3>
+            <p>{u.xcomposeLead}</p>
+          </div>
+          <a href={gistUrl('xcompose')} class="uses-link" rel="noopener" target="_blank">
+            {xcompose && <span>{u.updated} {dateFmt.format(xcompose.updated)} · </span>}{u.viewGist} ↗
+          </a>
+        </header>
+        {
+          xcompose ? (
+            <div class="uses-code mt-4">
+              <Code code={first(xcompose)?.content.trim() ?? ''} lang="txt" themes={themes} defaultColor={false} />
+            </div>
+          ) : (
+            <p class="uses-empty">{u.unavailable}</p>
+          )
+        }
+      </article>
+    </div>
+  </Section>
+</Base>
+
+<style is:global>
+  .uses-card {
+    max-width: 62rem;
+  }
+  .uses-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+  }
+  .uses-head h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--t-text);
+  }
+  .uses-head p {
+    margin-top: 0.25rem;
+    max-width: 62ch;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--t-text-secondary);
+  }
+  .uses-link,
+  .uses-link a {
+    font-size: 0.75rem;
+    color: var(--t-text-muted);
+  }
+  .uses-link:hover,
+  .uses-link a:hover {
+    color: var(--t-brand);
+  }
+  .uses-empty {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--t-text-muted);
+  }
+  .link-chip {
+    /* nomes longos de extensão quebram em telas estreitas */
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transition-property: background-color, color;
+    transition-duration: 150ms;
+  }
+  @media (hover: hover) {
+    .link-chip:hover {
+      color: var(--t-brand);
+    }
+  }
+  .uses-details summary {
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--t-text-secondary);
+  }
+  .uses-details summary code {
+    color: var(--t-brand);
+  }
+  .uses-details[open] summary {
+    margin-bottom: 0.75rem;
+  }
+  .uses-code .astro-code {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    box-shadow: var(--t-elevation);
+  }
+  .uses-scroll .astro-code {
+    max-height: 32rem;
+    overflow: auto;
+  }
+  /* Shiki com dois temas: escuro por padrão, claro no Latte */
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+  :root[data-theme='latte'] .astro-code,
+  :root[data-theme='latte'] .astro-code span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+</style>
