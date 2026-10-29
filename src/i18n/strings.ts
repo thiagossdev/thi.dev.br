@@ -30,6 +30,7 @@ const en = {
     intro:
       'I have been building web systems for over ten years, from PHP to Kubernetes. I like to understand the problem before writing code, to estimate well and to keep the team flowing.',
     cta: 'see projects',
+    cv: 'download CV',
   },
   about: {
     paragraphs: [
@@ -91,6 +92,18 @@ const en = {
     pause: 'Pause the character rotation',
     play: 'Resume the character rotation',
   },
+  cv: {
+    title: 'Résumé',
+    summary: 'Summary',
+    experience: 'Experience',
+    projects: 'Selected projects',
+    skills: 'Skills',
+    education: 'Education',
+    languages: 'Languages',
+    languagesValue: 'Portuguese (native), English',
+    updated: 'Updated',
+    print: 'Print or save as PDF',
+  },
   contact: {
     lead: 'Email is the best way to reach me.',
     builtWith: 'Built with',
@@ -133,6 +146,7 @@ const ptBr: Strings = {
     intro:
       'Desenvolvo sistemas web há mais de dez anos, de PHP a Kubernetes. Gosto de entender o problema antes de escrever código, de estimar bem e de deixar o time fluir.',
     cta: 'ver projetos',
+    cv: 'baixar CV',
   },
   about: {
     paragraphs: [
@@ -194,6 +208,18 @@ const ptBr: Strings = {
     pause: 'Pausar a troca de personagens',
     play: 'Retomar a troca de personagens',
   },
+  cv: {
+    title: 'Currículo',
+    summary: 'Resumo',
+    experience: 'Experiência',
+    projects: 'Projetos selecionados',
+    skills: 'Competências',
+    education: 'Formação',
+    languages: 'Idiomas',
+    languagesValue: 'Português (nativo), inglês',
+    updated: 'Atualizado em',
+    print: 'Imprimir ou salvar como PDF',
+  },
   contact: {
     lead: 'O melhor jeito de falar comigo é por e-mail.',
     builtWith: 'Feito com',
@@ -234,6 +260,7 @@ const es: Strings = {
     intro:
       'Desarrollo sistemas web desde hace más de diez años, de PHP a Kubernetes. Me gusta entender el problema antes de escribir código, estimar bien y dejar que el equipo fluya.',
     cta: 'ver proyectos',
+    cv: 'descargar CV',
   },
   about: {
     paragraphs: [
@@ -294,6 +321,18 @@ const es: Strings = {
     next: 'Mostrar el siguiente personaje',
     pause: 'Pausar el cambio de personajes',
     play: 'Reanudar el cambio de personajes',
+  },
+  cv: {
+    title: 'Currículum',
+    summary: 'Resumen',
+    experience: 'Experiencia',
+    projects: 'Proyectos destacados',
+    skills: 'Competencias',
+    education: 'Formación',
+    languages: 'Idiomas',
+    languagesValue: 'Portugués (nativo), inglés',
+    updated: 'Actualizado el',
+    print: 'Imprimir o guardar como PDF',
   },
   contact: {
     lead: 'La mejor forma de contactarme es por email.',

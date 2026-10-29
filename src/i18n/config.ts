@@ -25,3 +25,11 @@ export function homePath(locale: Locale): string {
 
 /** Texto por idioma vindo dos arquivos de conteúdo. */
 export type Localized<T> = Record<Locale, T>;
+
+/** Página do currículo e o PDF gerado a partir dela no CI. */
+export function cvPath(locale: Locale): string {
+  return `${homePath(locale)}cv/`;
+}
+export function cvPdfPath(locale: Locale): string {
+  return `${cvPath(locale)}thiago-sousa-santos-cv-${locale}.pdf`;
+}

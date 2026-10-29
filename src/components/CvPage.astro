@@ -1,0 +1,234 @@
+---
+// Currículo para impressão, gerado dos mesmos dados do site. O CI imprime
+// esta página em PDF (scripts/cv-pdf.mjs).
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+import { site } from '../data/site';
+import { cvPath, homePath, localeMeta, locales, type Locale } from '../i18n/config';
+import { t } from '../i18n/strings';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const s = t(locale);
+const cv = s.cv;
+const e = s.experience;
+const meta = localeMeta[locale];
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const fmt = (ym: string) => {
+  const [y, m] = ym.split('-').map(Number);
+  return `${e.months[m - 1]} ${y}`;
+};
+const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
+const featured = ['revapp', 'entrega', 'revgas', 'bina', 'cadiro-vault', 'certz', 'gitops-local'];
+const projects = (await getCollection('projects'))
+  .filter((p) => featured.includes(p.id))
+  .sort((a, b) => a.data.order - b.data.order);
+const siteUrl = new URL(homePath(locale), Astro.site).href.replace(/^https?:\/\//, '').replace(/\/$/, '');
+const updated = new Intl.DateTimeFormat(meta.htmlLang, { month: 'long', year: 'numeric' }).format(new Date());
+const github = site.links.find((l) => l.icon === 'github')!.href;
+const linkedin = site.links.find((l) => l.icon === 'linkedin')!.href;
+---
+
+<!doctype html>
+<html lang={meta.htmlLang} data-theme="latte">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{`${site.name} · ${cv.title}`}</title>
+    <meta name="description" content={s.meta.description} />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    {locales.map((l) => <link rel="alternate" hreflang={localeMeta[l].htmlLang} href={new URL(cvPath(l), Astro.site)} />)}
+  </head>
+  <body class="cv bg-bg text-text">
+    <main class="cv-sheet">
+      <header class="flex items-start justify-between gap-6 border-b border-border-strong pb-4">
+        <div>
+          <h1 class="text-[26px] font-bold tracking-[-0.02em] text-text">{site.name}</h1>
+          <p class="mt-1 text-[13px] text-text-secondary">
+            Tech Lead @ RevGás · {s.hero.taglines[0]} · {site.location}
+          </p>
+        </div>
+        <ul class="text-right text-[11px] leading-[1.6] whitespace-nowrap text-text-secondary">
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={`https://${siteUrl}`}>{siteUrl}</a></li>
+          <li><a href={github}>{github.replace('https://', '')}</a></li>
+          <li><a href={linkedin}>{linkedin.replace('https://www.', '')}</a></li>
+        </ul>
+      </header>
+
+      <section class="cv-block">
+        <h2>{cv.summary}</h2>
+        <p>{s.about.paragraphs[0]} {s.about.paragraphs[1]}</p>
+        <p class="mt-1.5">{s.about.current.before}RevGás{s.about.current.after}</p>
+      </section>
+
+      <section class="cv-block">
+        <h2>{cv.experience}</h2>
+        <ol class="space-y-3">
+          {
+            jobs.map(({ data }) => (
+              <li class="cv-item">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h3>
+                    {data.role[locale]} <span class="font-normal text-text-muted">@</span> {data.company}
+                  </h3>
+                  <span class="shrink-0 text-[11px] tabular-nums text-text-muted">
+                    {fmt(data.start)} – {data.end ? fmt(data.end) : e.present}
+                  </span>
+                </div>
+                <ul class="mt-1 list-disc space-y-0.5 pl-4">
+                  {data.summary[locale].map((line) => (
+                    <li>{line}</li>
+                  ))}
+                </ul>
+                <p class="mt-1 text-[11px] text-text-muted">{data.stack.join(' · ')}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <section class="cv-block">
+        <h2>{cv.projects}</h2>
+        <ul class="space-y-2">
+          {
+            projects.map(({ data }) => (
+              <li class="cv-item">
+                <h3>
+                  {typeof data.name === 'string' ? data.name : data.name[locale]}
+                  <span class="font-normal text-text-muted"> · {data.language} · {data.year}</span>
+                </h3>
+                <p>{data.description[locale]}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="cv-block">
+        <h2>{cv.skills}</h2>
+        <dl class="grid grid-cols-[8rem_1fr] gap-x-3 gap-y-1">
+          {
+            site.stack.map((g) => (
+              <>
+                <dt class="text-text-muted">{s.stack.groups[g.group]}</dt>
+                <dd>{g.items.join(' · ')}</dd>
+              </>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section class="cv-block grid grid-cols-2 gap-6">
+        <div>
+          <h2>{cv.education}</h2>
+          <p class="font-semibold text-text">{e.degree}</p>
+          <p>{site.education.school} · {site.education.period}</p>
+          <p class="mt-1 text-text-muted">{e.educationNotes[0]}</p>
+        </div>
+        <div>
+          <h2>{cv.languages}</h2>
+          <p>{cv.languagesValue}</p>
+        </div>
+      </section>
+
+      <footer class="mt-6 flex justify-between border-t border-border-subtle pt-2 text-[10px] text-text-muted">
+        <span>{cv.updated} {updated}</span>
+        <span>{siteUrl}</span>
+      </footer>
+    </main>
+
+    <p class="cv-actions">
+      <a href={homePath(locale)}>← {siteUrl}</a>
+      <button type="button" onclick="window.print()">{cv.print}</button>
+    </p>
+  </body>
+</html>
+
+<style is:global>
+  @page {
+    size: A4;
+    margin: 14mm 14mm 12mm;
+  }
+  .cv {
+    font-size: 12px;
+    line-height: 1.5;
+    background: var(--t-bg-deep);
+  }
+  .cv a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .cv-sheet {
+    max-width: 210mm;
+    margin: 24px auto;
+    padding: 14mm;
+    background: #fff;
+    color: var(--t-text);
+    box-shadow: var(--t-elevation);
+  }
+  .cv-block {
+    margin-top: 16px;
+  }
+  .cv-block h2 {
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--t-brand);
+  }
+  .cv-block p,
+  .cv-block li {
+    color: var(--t-text-secondary);
+  }
+  .cv-item h3 {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--t-text);
+  }
+  .cv-item {
+    break-inside: avoid;
+  }
+  .cv-actions {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 0 auto 32px;
+    font-size: 13px;
+    color: var(--t-text-secondary);
+  }
+  .cv-actions button {
+    color: var(--t-brand);
+    cursor: pointer;
+  }
+  @media print {
+    .cv {
+      background: #fff;
+    }
+    .cv-sheet {
+      margin: 0;
+      padding: 0;
+      max-width: none;
+      box-shadow: none;
+    }
+    .cv-actions {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .cv-sheet {
+      margin: 0;
+      padding: 20px 16px;
+    }
+    .cv-sheet header {
+      flex-direction: column;
+    }
+    .cv-sheet header ul {
+      text-align: left;
+    }
+  }
+</style>
