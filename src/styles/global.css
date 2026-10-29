@@ -61,8 +61,8 @@
   --t-border-strong: #acb0be;
   --t-text: #4c4f69;
   --t-text-secondary: #53556f;
-  --t-text-muted: #5c5f77;
-  --t-brand: #2e7d1f;
+  --t-text-muted: #575a71;
+  --t-brand: #25661a;
   --t-brand-soft: #40a02b26;
   --t-brand-ink: #0c0e10;
   --t-brand-fill: #9ece6a;
@@ -88,6 +88,9 @@
   --t-yellow: #df8e1d;
   --t-orange: #fe640b;
   --t-red: #d20f39;
+  /* versões para texto: o verde (--t-brand) e estas passam de 4.5:1 também sobre o fundo do hero */
+  --t-blue-ink: #174bbd;
+  --t-yellow-ink: #8f5d0c;
 }
 
 @theme inline {
@@ -109,9 +112,11 @@
   --color-brand-fill: var(--t-brand-fill);
   --color-brand-fill-hover: var(--t-brand-fill-hover);
   --color-blue: var(--t-blue);
+  --color-blue-ink: var(--t-blue-ink, var(--t-blue));
   --color-cyan: var(--t-cyan);
   --color-magenta: var(--t-magenta);
   --color-yellow: var(--t-yellow);
+  --color-yellow-ink: var(--t-yellow-ink, var(--t-yellow));
   --color-orange: var(--t-orange);
   --color-red: var(--t-red);
 

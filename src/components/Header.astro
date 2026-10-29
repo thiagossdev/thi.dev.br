@@ -24,12 +24,13 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
     { const h = document.currentScript.parentElement; if (h.hasAttribute('data-hero-nav') && scrollY < innerHeight) h.dataset.overHero = ''; }
   </script>
   <div class="wrap flex h-14 items-center gap-3 lg:gap-6">
-    <a href={homePath(locale)} class="mark-draw-trigger flex items-center gap-2 text-sm font-semibold text-text" aria-label={s.a11y.home}>
+    <a href={homePath(locale)} class="mark-draw-trigger flex items-center gap-2 text-sm font-semibold text-text">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="mark-draw size-5 text-brand">
         <path d="M4 17l6-6-6-6" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" />
         <path d="M12 19h8" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" />
       </svg>
       <span>~/{site.shortName}</span>
+      <span class="sr-only">· {s.a11y.home}</span>
     </a>
 
     <nav aria-label={s.a11y.sections} class="hidden items-center gap-1 lg:flex">

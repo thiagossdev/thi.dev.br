@@ -361,4 +361,11 @@ const themes = { light: 'catppuccin-latte', dark: 'tokyo-night' } as const;
     color: var(--shiki-light);
     background-color: var(--shiki-light-bg);
   }
+  /* Azul e verde do Catppuccin Latte não chegam a 4.5:1 no fundo do bloco. */
+  :root[data-theme='latte'] .astro-code span[style*='--shiki-light:#1E66F5' i] {
+    color: var(--t-blue-ink);
+  }
+  :root[data-theme='latte'] .astro-code span[style*='--shiki-light:#40A02B' i] {
+    color: var(--t-brand);
+  }
 </style>

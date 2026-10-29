@@ -46,7 +46,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
               {data.kind !== 'oss' && (
                 <>
                   <span aria-hidden="true">·</span>
-                  <span class={data.kind === 'work' ? 'text-yellow' : 'text-magenta'}>
+                  <span class={data.kind === 'work' ? 'text-yellow-ink' : 'text-magenta'}>
                     {data.kind === 'work' ? s.projects.work : s.projects.personal}
                   </span>
                 </>
