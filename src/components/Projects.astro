@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Section from './Section.astro';
 import { languageColor, site } from '../data/site';
 
-const projects = await getCollection('projects');
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Section
@@ -14,9 +14,9 @@ const projects = await getCollection('projects');
   <ul class="divide-y divide-border-subtle border-y border-border-subtle">
     {
       projects.map(({ data }) => (
-        <li class="group relative grid gap-2 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6 [@media(hover:hover)]:hover:bg-surface -mx-3 px-3 transition-[background-color] duration-150 ease-out">
+        <li class="group relative grid gap-2 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6">
           <div class="min-w-0">
-            <h3 class="truncate text-sm font-semibold text-text">
+            <h3 class="truncate text-sm font-semibold text-text transition-[color] duration-150 ease-out [@media(hover:hover)]:group-hover:text-brand">
               {data.repo ? (
                 <a href={data.repo} rel="noopener" target="_blank" class="after:absolute after:inset-0">
                   {data.name}
@@ -48,7 +48,7 @@ const projects = await getCollection('projects');
     }
   </ul>
   <p class="mt-6 text-sm text-text-muted">
-    Mais em
+    Mais em{' '}
     <a href={`https://github.com/${site.handle}?tab=repositories`} class="link" rel="noopener" target="_blank">
       github.com/{site.handle}
     </a>

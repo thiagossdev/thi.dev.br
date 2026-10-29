@@ -24,6 +24,7 @@ const projects = defineCollection({
     language: z.string(),
     year: z.number(),
     kind: z.enum(['oss', 'work']).default('oss'),
+    order: z.number(), // posição na lista, menor primeiro
   }),
 });
 

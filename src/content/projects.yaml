@@ -1,4 +1,5 @@
 - id: gitops-local
+  order: 1
   name: gitops-local
   description: Cluster Kubernetes local gerenciado por GitOps. ArgoCD, Kustomize, ingress e Postgres em StatefulSet, com scripts de bootstrap do zero.
   repo: https://github.com/thiagossdev/gitops-local
@@ -6,6 +7,7 @@
   year: 2026
 
 - id: revgas
+  order: 2
   name: RevGás
   description: Sistema fiscal e gerencial para revendas de GLP. Integrações com WhatsApp API, Twilio e Zendesk. Trabalho, sem repositório público.
   language: Java
@@ -13,6 +15,7 @@
   kind: work
 
 - id: super-rev-world
+  order: 3
   name: super-rev-world
   description: Jogo 2D em Godot. Movimentação do player, tileset e uma paleta de debug para visualizar direções.
   repo: https://github.com/thiagossdev/super-rev-world
@@ -20,6 +23,7 @@
   year: 2023
 
 - id: internet-speed-test
+  order: 4
   name: internet-speed-test
   description: App em Rails para medir e registrar a velocidade da conexão, com ambiente de desenvolvimento em Docker.
   repo: https://github.com/thiagossdev/internet-speed-test
@@ -27,6 +31,7 @@
   year: 2023
 
 - id: thidev
+  order: 5
   name: thidev
   description: Versão anterior deste site em Next.js 13, Tailwind e Radix, com posts em Markdown via remark e shiki. Não chegou a produção.
   repo: https://github.com/thiagossdev/thidev
@@ -34,6 +39,7 @@
   year: 2023
 
 - id: utub-downloader
+  order: 6
   name: utub-downloader
   description: Interface em Vite e TypeScript para baixar vídeos.
   repo: https://github.com/thiagossdev/utub-downloader
