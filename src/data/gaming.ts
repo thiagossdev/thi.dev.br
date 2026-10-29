@@ -44,6 +44,7 @@ export const twitch = 'https://www.twitch.tv/dextherz';
 /** Mais jogados. Horas do perfil da Steam em outubro de 2026; sem horas para os de fora da Steam. */
 export const games: { name: string; hours?: number; platform?: string }[] = [
   { name: 'Awesomenauts', hours: 1518 },
+  { name: 'Path of Exile', hours: 1482 },
   { name: 'Apex Legends', hours: 517 },
   { name: 'Dota 2', hours: 412 },
   { name: 'Path of Exile 2', hours: 339 },
