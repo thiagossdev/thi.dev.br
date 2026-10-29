@@ -57,7 +57,7 @@ As páginas `/cv/`, `/pt-br/cv/` e `/es/cv/` montam o currículo a partir dos me
 
 ## Página /uses
 
-As páginas `/uses/`, `/pt-br/uses/` e `/es/uses/` seguem a convenção do [uses.tech](https://uses.tech): o que uso no dia a dia e as configs dos meus Gists públicos. Os Gists são buscados no build por `src/data/gists.ts`. Com `GITHUB_TOKEN` definido, como no CI, a busca não cai no limite anônimo da API. Se a API falhar, o build continua e a página mostra só os links.
+As páginas `/uses/`, `/pt-br/uses/` e `/es/uses/` seguem a convenção do [uses.tech](https://uses.tech): o que uso no dia a dia e as configs dos meus Gists públicos. Os Gists são buscados no build por `src/data/gists.ts`, com um `git clone` raso de cada um, sem a API do GitHub nem token. Se o clone falhar localmente, o build continua e a página mostra só os links; no CI o build falha.
 
 ## Compartilhamento e busca
 

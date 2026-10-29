@@ -27,9 +27,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
       - run: pnpm build
-        env:
-          # leitura dos Gists da página /uses sem o limite anônimo da API
-          GITHUB_TOKEN: ${{ github.token }}
 
   build:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -45,7 +42,6 @@ jobs:
         env:
           # Opcional: token do Cloudflare Web Analytics (Settings > Secrets and variables > Variables)
           PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
-          GITHUB_TOKEN: ${{ github.token }}
       # Chromium na versão fixada pelo Playwright do lockfile, com as bibliotecas do sistema.
       # Sem cache: a documentação do Playwright diz que restaurar custa quase o mesmo que baixar.
       - name: Chromium para os PDFs
