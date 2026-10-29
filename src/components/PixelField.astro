@@ -3,8 +3,9 @@
 // acendem e apagam devagar, e losangos em xadrez que passeiam ou seguem
 // o ponteiro. Pausa fora da tela e fica estático com prefers-reduced-motion.
 //
-// variant="edges" (rodapé): discreto, só nas laterais fora da coluna de
-//   conteúdo; some em telas sem lateral.
+// variant="edges" (rodapé): discreto, só pixels esparsos nas laterais fora
+//   da coluna de conteúdo, e o losango só com o mouse; some em telas sem
+//   lateral.
 // variant="hero": a área toda, esparso no centro, mais denso nas laterais
 //   e com um "chão" denso embaixo, como o hero do omarchy.
 interface Props {
@@ -85,14 +86,14 @@ const { variant = 'edges' } = Astro.props;
       const rows = Math.ceil(height / cell);
       const buckets: Record<keyof typeof colors, number[]> = { dim: [], mid: [], lit: [], hover: [], crest: [] };
 
-      // Losangos que passeiam devagar, sempre nas laterais para não cobrir
-      // o texto: no rodapé à esquerda, no hero à direita. O do ponteiro vale
-      // só nas laterais no rodapé e na área toda no hero.
+      // Losangos. No hero, um passeia devagar pela lateral direita e outro
+      // segue o ponteiro na área toda. No rodapé, só o do ponteiro, e só
+      // sobre as laterais.
       const glows = hero
         ? left < GAP + 48
           ? []
           : [{ x: width - (left - GAP) * (0.5 + 0.25 * Math.sin(t * 0.07)), y: height * (0.3 + 0.2 * Math.sin(t * 0.09 + 0.8)), hot: false }]
-        : [{ x: (left - GAP) * (0.5 + 0.25 * Math.sin(t * 0.08)), y: height * (0.45 + 0.25 * Math.sin(t * 0.06 + 0.8)), hot: false }];
+        : []; // no rodapé o losango só aparece com o mouse
       if (pointer.active && (hero || edgeWeight(pointer.x, left) > 0)) glows.push({ x: pointer.x, y: pointer.y, hot: true });
       const glowCells = glows.map((g) => ({ col: Math.round(g.x / cell), row: Math.round(g.y / cell), hot: g.hot }));
       const RADIUS = hero ? 6 : 5; // em células
@@ -110,7 +111,7 @@ const { variant = 'edges' } = Astro.props;
             density = 0.018 + edge * 0.09 + ground * 0.55;
           } else {
             if (edge <= 0) continue;
-            density = 0.05 * edge;
+            density = 0.04 * edge;
           }
 
           // Losango: miolo sólido e anel em xadrez.
