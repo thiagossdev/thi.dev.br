@@ -55,6 +55,10 @@ O `astro.config.mjs` detecta o arquivo e troca `site` e `base` para o domínio p
 
 As páginas `/cv/`, `/pt-br/cv/` e `/es/cv/` montam o currículo a partir dos mesmos dados do site. O PDF sai dessas páginas com `pnpm build` seguido de `pnpm cv:pdf`. O script precisa de Chrome, Chromium ou Edge; se não achar, aponte o binário com `CHROME_PATH`. No CI isso roda sozinho, com o Chrome do runner.
 
+## Página /uses
+
+As páginas `/uses/`, `/pt-br/uses/` e `/es/uses/` seguem a convenção do [uses.tech](https://uses.tech): o que uso no dia a dia e as configs dos meus Gists públicos. Os Gists são buscados no build por `src/data/gists.ts`. Com `GITHUB_TOKEN` definido, como no CI, a busca não cai no limite anônimo da API. Se a API falhar, o build continua e a página mostra só os links.
+
 ## Compartilhamento e busca
 
 As imagens `/og/<idioma>.png` são geradas no build por `src/pages/og/[locale].png.ts`. Cada página também tem um JSON-LD schema.org Person.

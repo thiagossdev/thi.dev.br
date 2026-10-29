@@ -26,6 +26,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
       - run: pnpm build
+        env:
+          # leitura dos Gists da página /uses sem o limite anônimo da API
+          GITHUB_TOKEN: ${{ github.token }}
 
   build:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -40,6 +43,7 @@ jobs:
         env:
           # Opcional: token do Cloudflare Web Analytics (Settings > Secrets and variables > Variables)
           PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       # O runner já tem o Google Chrome instalado
       - name: PDFs do currículo
         run: pnpm cv:pdf
