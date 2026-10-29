@@ -17,7 +17,7 @@ const en = {
     until: 'to',
     photo: 'Photo of Thiago Sousa Santos',
   },
-  nav: { about: 'about', experience: 'experience', projects: 'projects', stack: 'stack', otaku: 'otaku', contact: 'contact' },
+  nav: { about: 'about', experience: 'experience', projects: 'projects', stack: 'stack', sideQuest: 'side quest', contact: 'contact' },
   hero: {
     taglines: [
       'full stack developer',
@@ -79,7 +79,7 @@ const en = {
     groups: { languages: 'languages', frontend: 'frontend', backend: 'backend', mobile: 'mobile & desktop', data: 'data', infra: 'infra', testing: 'testing', tools: 'tools' },
   },
   otaku: {
-    lead: 'Geek, nerd and otaku, all at once. Soul Eater has a special place here.',
+    lead: 'Anime, games and a lot of pop culture, ever since I was a kid. Soul Eater has a special place here.',
     mirrorLabel: 'To call Lord Death, fog up a mirror and write:',
     reading: 'shi-ni shi-ni ko-ro-shi',
     meaning: '"die, die, kill"',
@@ -116,7 +116,7 @@ const ptBr: Strings = {
     until: 'até',
     photo: 'Foto de Thiago Sousa Santos',
   },
-  nav: { about: 'sobre', experience: 'experiência', projects: 'projetos', stack: 'stack', otaku: 'otaku', contact: 'contato' },
+  nav: { about: 'sobre', experience: 'experiência', projects: 'projetos', stack: 'stack', sideQuest: 'side quest', contact: 'contato' },
   hero: {
     taglines: [
       'desenvolvedor full stack',
@@ -178,7 +178,7 @@ const ptBr: Strings = {
     groups: { languages: 'linguagens', frontend: 'frontend', backend: 'backend', mobile: 'mobile e desktop', data: 'dados', infra: 'infra', testing: 'testes', tools: 'ferramentas' },
   },
   otaku: {
-    lead: 'Geek, nerd e otaku, tudo junto. Soul Eater tem um lugar especial aqui.',
+    lead: 'Anime, games e muita cultura pop, desde criança. Soul Eater tem um lugar especial aqui.',
     mirrorLabel: 'Para falar com o Shinigami-sama, embace um espelho e escreva:',
     reading: 'shi-ni shi-ni ko-ro-shi',
     meaning: '"morre, morre, mata"',
@@ -213,7 +213,7 @@ const es: Strings = {
     until: 'hasta',
     photo: 'Foto de Thiago Sousa Santos',
   },
-  nav: { about: 'sobre mí', experience: 'experiencia', projects: 'proyectos', stack: 'stack', otaku: 'otaku', contact: 'contacto' },
+  nav: { about: 'sobre mí', experience: 'experiencia', projects: 'proyectos', stack: 'stack', sideQuest: 'side quest', contact: 'contacto' },
   hero: {
     taglines: [
       'desarrollador full stack',
@@ -275,7 +275,7 @@ const es: Strings = {
     groups: { languages: 'lenguajes', frontend: 'frontend', backend: 'backend', mobile: 'móvil y escritorio', data: 'datos', infra: 'infra', testing: 'pruebas', tools: 'herramientas' },
   },
   otaku: {
-    lead: 'Geek, nerd y otaku, todo junto. Soul Eater tiene un lugar especial aquí.',
+    lead: 'Anime, juegos y mucha cultura pop, desde niño. Soul Eater tiene un lugar especial aquí.',
     mirrorLabel: 'Para llamar a Shinigami-sama, empaña un espejo y escribe:',
     reading: 'shi-ni shi-ni ko-ro-shi',
     meaning: '"muere, muere, mata"',

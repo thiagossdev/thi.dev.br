@@ -14,7 +14,7 @@ export const site = {
     { label: 'spotify', icon: 'spotify', href: 'https://open.spotify.com/user/thiagos.xsantos' },
   ],
   // ids de âncora iguais em todos os idiomas; o rótulo vem de strings.nav
-  nav: ['about', 'experience', 'projects', 'stack', 'otaku', 'contact'],
+  nav: ['about', 'experience', 'projects', 'stack', 'sideQuest', 'contact'],
   // Baseado no levantamento dos projetos próprios e de trabalho (out/2026), sem cursos.
   stack: [
     { group: 'languages', icon: 'code', items: ['TypeScript', 'Java', 'Kotlin', 'PHP', 'Ruby', 'Python', 'JavaScript', 'Go', 'Rust', 'GDScript', 'SQL'] },

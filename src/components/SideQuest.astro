@@ -19,12 +19,12 @@ const o = s.otaku;
 const cast = [
   { src: maka, alt: o.imageAlt, caption: o.caption },
   { src: blackStar, alt: 'Black☆Star, Soul Eater', caption: 'Black☆Star' },
-  { src: deathTheKid, alt: 'Death the Kid, Soul Eater', caption: 'Death the Kid' },
+  { src: deathTheKid, alt: 'Death the Kid, Soul Eater', caption: 'Death the Kid', credit: 'Render: BLACKrangers123 (DeviantArt)' },
   { src: lordDeath, alt: 'Shinigami-sama (Lord Death), Soul Eater', caption: 'Shinigami-sama' },
 ];
 ---
 
-<Section id="otaku" title={s.nav.otaku} lead={o.lead}>
+<Section id="side-quest" title={s.nav.sideQuest} lead={o.lead}>
   <div class="grid items-end gap-10 md:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16">
     <div class="space-y-10">
       <!-- Espelho embaçado: o número aparece como se fosse escrito com o dedo -->
@@ -52,7 +52,7 @@ const cast = [
       <span class="soul-glow" aria-hidden="true"></span>
       <button
         type="button"
-        class="cast-stage relative block aspect-[3/4] w-full cursor-pointer [perspective:900px]"
+        class="cast-stage relative block aspect-[4/5] w-full cursor-pointer [perspective:900px]"
         aria-label={o.next}
         title={o.next}
         data-cast-stage
@@ -67,6 +67,7 @@ const cast = [
               class:list={['cast-card absolute inset-0 m-auto h-full w-full object-contain object-bottom', i !== 0 && 'hidden']}
               data-cast-card
               data-caption={c.caption}
+              title={c.credit}
             />
           ))
         }
