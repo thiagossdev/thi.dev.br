@@ -2,29 +2,50 @@
 import Base from '../layouts/Base.astro';
 import Ui from '../components/icons/Ui.astro';
 import { homePath } from '../i18n/config';
+
+// Única 404 do GitHub Pages: o texto sai em inglês e o script troca para
+// português ou espanhol pelo caminho (/pt-br/, /es/) ou pelo idioma do navegador.
+const copy = {
+  en: { lead: 'This path does not exist here. Head back home or take a look at the projects.', projects: 'projects' },
+  'pt-br': { lead: 'Esse caminho não existe por aqui. Volte para o início ou dê uma olhada nos projetos.', projects: 'projetos' },
+  es: { lead: 'Esta ruta no existe aquí. Vuelve al inicio o echa un vistazo a los proyectos.', projects: 'proyectos' },
+};
+const homes = { en: homePath('en'), 'pt-br': homePath('pt-br'), es: homePath('es') };
 ---
 
 <Base title="404 · thi.dev.br" description="Page not found." alternates={false}>
-  <section class="wrap py-24">
+  <section class="wrap py-24" data-404 data-copy={JSON.stringify(copy)} data-homes={JSON.stringify(homes)}>
     <p class="text-sm text-text-muted">
       <span class="text-brand">thiago@thi.dev.br</span>:<span class="text-blue">~</span>$ cd <span id="path">…</span>
     </p>
     <h1 class="mt-3 text-2xl font-bold tracking-[-0.012em] text-text sm:text-3xl">
       bash: cd: <span class="text-red">No such file or directory</span>
     </h1>
-    <p class="mt-6 max-w-[62ch] text-base text-text-secondary">
-      This path does not exist here. Head back home or take a look at the projects.
-    </p>
+    <p class="mt-6 max-w-[62ch] text-base text-text-secondary" data-404-lead>{copy.en.lead}</p>
     <p class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-      <a href={homePath('en')} class="link inline-flex items-center gap-2"><Ui name="house" class="size-4 text-brand" />cd ~</a>
-      <a href={`${homePath('en')}#projects`} class="link text-text-secondary">projects</a>
-      <a href={homePath('pt-br')} lang="pt-BR" class="link text-text-secondary">início em português</a>
-      <a href={homePath('es')} lang="es" class="link text-text-secondary">inicio en español</a>
+      <a href={homes.en} class="link inline-flex items-center gap-2" data-404-home><Ui name="house" class="size-4 text-brand" />cd ~</a>
+      <a href={`${homes.en}#projects`} class="link text-text-secondary" data-404-projects>{copy.en.projects}</a>
     </p>
   </section>
 </Base>
 
 <script>
-  const el = document.getElementById('path');
-  if (el) el.textContent = location.pathname;
+  const root = document.querySelector<HTMLElement>('[data-404]');
+  const path = document.getElementById('path');
+  if (path) path.textContent = location.pathname;
+  if (root) {
+    const copy = JSON.parse(root.dataset.copy ?? '{}');
+    const homes = JSON.parse(root.dataset.homes ?? '{}');
+    const fromPath = location.pathname.includes('/pt-br/') ? 'pt-br' : location.pathname.includes('/es/') ? 'es' : null;
+    const nav = navigator.language.toLowerCase();
+    const locale = fromPath ?? (nav.startsWith('pt') ? 'pt-br' : nav.startsWith('es') ? 'es' : 'en');
+    if (locale !== 'en' && copy[locale]) {
+      document.documentElement.lang = locale === 'pt-br' ? 'pt-BR' : 'es';
+      root.querySelector('[data-404-lead]')!.textContent = copy[locale].lead;
+      const projects = root.querySelector<HTMLAnchorElement>('[data-404-projects]')!;
+      projects.textContent = copy[locale].projects;
+      projects.href = `${homes[locale]}#projects`;
+      root.querySelector<HTMLAnchorElement>('[data-404-home]')!.href = homes[locale];
+    }
+  }
 </script>
