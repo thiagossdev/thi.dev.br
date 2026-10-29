@@ -36,7 +36,7 @@ Inglês fica na raiz (`/`), português em `/pt-br/` e espanhol em `/es/`. Todo t
 
 Há dois temas: Tokyo Night, o escuro, e Catppuccin Latte, o claro, ambos com os tokens do omarchy.org. No claro, o azul do Latte vira verde. Os tokens ficam em `src/styles/global.css`, nos blocos `:root` e `:root[data-theme='latte']`.
 
-O tema segue o sistema na primeira visita. O botão do header troca e salva a escolha no navegador. Um script inline no `<head>` aplica o tema antes da primeira pintura.
+O tema escuro (Tokyo Night) é o padrão, independente do sistema. O botão do header troca e salva a escolha no navegador. Um script inline no `<head>` aplica o tema antes da primeira pintura.
 
 Para adicionar outro tema, crie um bloco `:root[data-theme="nome"]` com as mesmas variáveis `--t-*` e inclua o nome em `ThemeToggle.astro` e no script do `Base.astro`.
 

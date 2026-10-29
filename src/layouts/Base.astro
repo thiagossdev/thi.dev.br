@@ -54,16 +54,13 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
   <head>
     <meta charset="utf-8" />
     <script is:inline>
-      // Tema antes da primeira pintura: escolha salva ou preferência do sistema.
+      // Tema antes da primeira pintura: escuro por padrão, claro só se escolhido no botão.
       (() => {
         let theme = null;
         try {
           theme = localStorage.getItem('theme');
         } catch {}
-        if (theme !== 'latte' && theme !== 'tokyo-night') {
-          theme = matchMedia('(prefers-color-scheme: light)').matches ? 'latte' : 'tokyo-night';
-        }
-        document.documentElement.dataset.theme = theme;
+        document.documentElement.dataset.theme = theme === 'latte' ? 'latte' : 'tokyo-night';
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
