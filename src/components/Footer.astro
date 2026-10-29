@@ -1,0 +1,37 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer id="contato" class="mx-auto w-full max-w-4xl scroll-mt-20 px-4 pt-14 pb-10 sm:px-6 sm:pt-20">
+  <div class="border-t border-border-subtle pt-8">
+    <h2 class="section-title">contato</h2>
+    <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-text-secondary">
+      O jeito mais rápido é e-mail. Também respondo no LinkedIn.
+    </p>
+    <p class="mt-3 text-base">
+      <a href={`mailto:${site.email}`} class="link font-semibold">{site.email}</a>
+    </p>
+
+    <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm" aria-label="Redes">
+      {
+        site.links.map((l) => (
+          <li>
+            <a href={l.href} rel="me noopener" target="_blank" class="link text-text-secondary">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-12 flex flex-wrap gap-x-2 text-xs text-text-muted">
+      <span>© {year} {site.name}.</span>
+      <span>
+        Feito com <a href="https://astro.build" class="link" rel="noopener" target="_blank">Astro</a>, hospedado no
+        GitHub Pages.
+      </span>
+      <a href={site.repo} class="link" rel="noopener" target="_blank">código-fonte</a>
+    </p>
+  </div>
+</footer>
