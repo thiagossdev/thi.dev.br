@@ -1,0 +1,57 @@
+- id: revgas
+  role: Analista de Sistemas
+  company: RevGás
+  url: https://revgas.com
+  location: Teresina, PI
+  start: "2021-11"
+  end: null
+  summary:
+    - Sistema fiscal e gerencial para revendas de GLP, com foco em eficiência operacional e conformidade.
+    - Levantamento de requisitos com stakeholders e tradução em especificações técnicas e soluções.
+    - Testes, validação, suporte técnico e treinamento dos usuários finais.
+  stack: [Java, Python, TypeScript, AWS, Twilio, Zendesk, WhatsApp API, Jira]
+
+- id: expandr
+  role: CTO
+  company: Expandr
+  url: https://expandr.com.br
+  location: Teresina, PI
+  start: "2018-07"
+  end: "2024-06"
+  summary:
+    - Liderança técnica de um produto para captação de alunos em instituições de ensino.
+    - Evolução do produto a partir de feedback de usuários e analytics, com planejamento estratégico junto ao time.
+  stack: [PHP, JavaScript, Flutter, AWS, Google Cloud, MariaDB, n8n, Zenvia]
+
+- id: gerador-de-matriculas
+  role: Desenvolvedor full stack
+  company: Gerador de Matrículas
+  location: Teresina, PI
+  start: "2018-01"
+  end: "2018-06"
+  summary:
+    - Desenvolvimento e manutenção do CRM para instituições de ensino.
+    - Gestão de serviços na AWS e pipelines de CI/CD para build, testes e deploy.
+  stack: [PHP, JavaScript, WordPress, AWS, MariaDB]
+
+- id: flex
+  role: Programador
+  company: Flex Marketing Digital
+  url: https://agenciaflex.com
+  location: Teresina, PI
+  start: "2016-01"
+  end: "2017-12"
+  summary:
+    - Aplicações web e interfaces responsivas para campanhas de marketing digital.
+    - Integração com APIs e ferramentas de automação de marketing.
+  stack: [PHP, WordPress, Mautic, Google Ads, Google Tag Manager]
+
+- id: netuse
+  role: Suporte técnico
+  company: Net Use System
+  location: Teresina, PI
+  start: "2015-08"
+  end: "2015-12"
+  summary:
+    - Atendimento de chamados, manutenção de estações e treinamento de usuários em software fiscal.
+  stack: [Delphi, Object Pascal]

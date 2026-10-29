@@ -1,0 +1,41 @@
+- id: gitops-local
+  name: gitops-local
+  description: Cluster Kubernetes local gerenciado por GitOps. ArgoCD, Kustomize, ingress e Postgres em StatefulSet, com scripts de bootstrap do zero.
+  repo: https://github.com/thiagossdev/gitops-local
+  language: Shell
+  year: 2026
+
+- id: revgas
+  name: RevGás
+  description: Sistema fiscal e gerencial para revendas de GLP. Integrações com WhatsApp API, Twilio e Zendesk. Trabalho, sem repositório público.
+  language: Java
+  year: 2021
+  kind: work
+
+- id: super-rev-world
+  name: super-rev-world
+  description: Jogo 2D em Godot. Movimentação do player, tileset e uma paleta de debug para visualizar direções.
+  repo: https://github.com/thiagossdev/super-rev-world
+  language: GDScript
+  year: 2023
+
+- id: internet-speed-test
+  name: internet-speed-test
+  description: App em Rails para medir e registrar a velocidade da conexão, com ambiente de desenvolvimento em Docker.
+  repo: https://github.com/thiagossdev/internet-speed-test
+  language: Ruby
+  year: 2023
+
+- id: thidev
+  name: thidev
+  description: Versão anterior deste site em Next.js 13, Tailwind e Radix, com posts em Markdown via remark e shiki. Não chegou a produção.
+  repo: https://github.com/thiagossdev/thidev
+  language: TypeScript
+  year: 2023
+
+- id: utub-downloader
+  name: utub-downloader
+  description: Interface em Vite e TypeScript para baixar vídeos.
+  repo: https://github.com/thiagossdev/utub-downloader
+  language: TypeScript
+  year: 2022
