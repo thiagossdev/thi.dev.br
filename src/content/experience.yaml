@@ -68,12 +68,15 @@
     en:
       - Technical lead for a student acquisition product for educational institutions.
       - Evolved the product from user feedback and analytics, with strategic planning alongside the team.
+      - Led a team of fewer than 5 people, serving 10 educational institutions and delivering around 100,000 leads to them.
     pt-br:
       - Liderança técnica de um produto para captação de alunos em instituições de ensino.
       - Evolução do produto a partir de feedback de usuários e analytics, com planejamento estratégico junto ao time.
+      - Liderança de um time de menos de 5 pessoas, atendendo 10 instituições de ensino e gerando cerca de 100 mil leads para elas.
     es:
       - Liderazgo técnico de un producto de captación de alumnos para instituciones educativas.
       - Evolución del producto a partir del feedback de usuarios y analytics, con planificación estratégica junto al equipo.
+      - Liderazgo de un equipo de menos de 5 personas, atendiendo a 10 instituciones educativas y generando cerca de 100 mil leads para ellas.
   stack: [PHP, Laminas, CakePHP, Doctrine, Ruby on Rails, Flutter, AWS, MySQL, Docker]
 
 - id: gerador-de-matriculas
