@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import gitcity from '../assets/gitcity.png';
 import Section from './Section.astro';
 import { languageColor, site } from '../data/site';
 import Ui from './icons/Ui.astro';
@@ -14,6 +16,13 @@ const { locale } = Astro.props;
 const s = t(locale);
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+// Card da Git City em três camadas: a versão do repositório (pnpm gitcity) vem no
+// HTML, o script troca pela baixada no build (pnpm gitcity --build) e depois pela
+// ao vivo, que a Git City gera a cada pedido em 3 a 6 s e sem cache.
+const gitcityRepo = await getImage({ src: gitcity, format: 'webp', width: 1200 });
+const gitcityBuild = `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}gitcity.webp`;
+const gitcityLive = `https://www.thegitcity.com/dev/${site.handle}/opengraph-image`;
 ---
 
 <Section id="projects" title={s.nav.projects} lead={s.projects.lead}>
@@ -72,4 +81,82 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
       github.com/{site.handle}
     </a>
   </p>
+  <a
+    href={`https://www.thegitcity.com/dev/${site.handle}`}
+    class="relative mt-6 block max-w-xl overflow-hidden rounded-sm shadow-ring transition-[box-shadow] duration-150 ease-out [@media(hover:hover)]:hover:shadow-[0_0_0_1px_var(--t-brand)]"
+    rel="noopener"
+    target="_blank"
+  >
+    <img
+      src={gitcityRepo.src}
+      alt={s.projects.gitCity}
+      width="1200"
+      height="630"
+      loading="lazy"
+      decoding="async"
+      class="block h-auto w-full bg-surface"
+      data-gitcity
+      data-build={gitcityBuild}
+      data-live={gitcityLive}
+    />
+  </a>
 </Section>
+
+<script>
+  // Troca o card do repositório pelo do build e depois pelo ao vivo. Cada versão
+  // só entra depois de baixada e decodificada, com um fade por cima da atual, e
+  // nunca volta para uma versão anterior. Começa quando o card está perto de
+  // aparecer, para não pedir à Git City em toda visita.
+  const img = document.querySelector<HTMLImageElement>('[data-gitcity]');
+  if (img) {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let shown = 0; // 0 repositório, 1 build, 2 ao vivo
+    let queue = Promise.resolve();
+
+    const fadeIn = async (url: string, level: number) => {
+      if (level <= shown) return; // o ao vivo chegou antes do build
+      shown = level;
+      if (reduced) {
+        img.src = url;
+        return;
+      }
+      const layer = new Image();
+      layer.src = url;
+      layer.alt = '';
+      layer.setAttribute('aria-hidden', 'true');
+      layer.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 700ms ease-out';
+      img.after(layer);
+      await layer.decode();
+      layer.getBoundingClientRect(); // garante que o opacity 0 foi aplicado antes da transição
+      layer.style.opacity = '1';
+      await new Promise((done) => {
+        layer.addEventListener('transitionend', done, { once: true });
+        setTimeout(done, 900);
+      });
+      img.src = url;
+      await img.decode().catch(() => {});
+      layer.remove();
+    };
+
+    const load = (url: string | undefined, level: number) => {
+      if (!url) return;
+      const next = new Image();
+      next.src = url;
+      next
+        .decode()
+        .then(() => (queue = queue.then(() => fadeIn(url, level)).catch(() => {})))
+        .catch(() => {}); // 404 ou Git City fora do ar: fica a versão atual
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        load(img.dataset.build, 1);
+        load(img.dataset.live, 2);
+      },
+      { rootMargin: '600px 0px' },
+    );
+    io.observe(img);
+  }
+</script>

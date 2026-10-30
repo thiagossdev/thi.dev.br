@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "cv:pdf": "node scripts/cv-pdf.mjs"
+    "cv:pdf": "node scripts/cv-pdf.mjs",
+    "gitcity": "node scripts/gitcity.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

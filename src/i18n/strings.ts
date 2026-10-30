@@ -76,6 +76,7 @@ const en = {
     work: 'work',
     personal: 'personal',
     more: 'More at',
+    gitCity: 'Git City: @thiagossdev’s GitHub activity as a building, with rank, level and contributions',
   },
   stack: {
     lead: 'What I use or have used in production.',
@@ -229,6 +230,7 @@ const ptBr: Strings = {
     work: 'trabalho',
     personal: 'pessoal',
     more: 'Mais em',
+    gitCity: 'Git City: a atividade de @thiagossdev no GitHub como um prédio, com rank, nível e contribuições',
   },
   stack: {
     lead: 'O que uso ou já usei em produção.',
@@ -380,6 +382,7 @@ const es: Strings = {
     work: 'trabajo',
     personal: 'personal',
     more: 'Más en',
+    gitCity: 'Git City: la actividad de @thiagossdev en GitHub como un edificio, con rank, nivel y contribuciones',
   },
   stack: {
     lead: 'Lo que uso o he usado en producción.',
