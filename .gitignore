@@ -26,3 +26,6 @@ pnpm-debug.log*
 # vscode, mantendo as recomendações do template
 .vscode/*
 !.vscode/extensions.json
+
+# rascunhos pessoais (LinkedIn etc.), fora do repositório público
+notes/
