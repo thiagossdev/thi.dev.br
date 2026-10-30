@@ -42,6 +42,10 @@ jobs:
         env:
           # Opcional: token do Cloudflare Web Analytics (Settings > Secrets and variables > Variables)
           PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
+      # Card da Git City do dia. Se ela estiver fora do ar, avisa e segue com a versão do repositório.
+      - name: Card da Git City
+        run: pnpm gitcity --build
+        timeout-minutes: 2
       # Chromium na versão fixada pelo Playwright do lockfile, com as bibliotecas do sistema.
       # Sem cache: a documentação do Playwright diz que restaurar custa quase o mesmo que baixar.
       - name: Chromium para os PDFs
