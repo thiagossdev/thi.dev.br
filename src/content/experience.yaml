@@ -2,7 +2,7 @@
   company: RevGás
   url: https://revgas.com
   location: Teresina, PI
-  start: "2021-11"
+  start: "2026-07"
   end: null
   role:
     en: Tech Lead
@@ -10,20 +10,48 @@
     es: Tech Lead
   summary:
     en:
-      - Technical lead for the RevGás product, across the web ERP, Android apps and backend services. Joined as Systems Analyst.
-      - Fiscal and management system for LPG resellers, focused on operational efficiency and compliance.
-      - Requirements gathering with stakeholders, turned into technical specs and solutions.
-      - Testing, validation, technical support and end-user training.
+      - Technical lead for the RevGás product, across the web ERP, Android apps and backend services. Promoted from Systems Analyst.
+      - Technical direction and architecture for the web, mobile and backend codebases.
+      - Business requirements turned into specs and well-scoped tasks, with realistic estimates for the team.
+      - Code review and quality standards, with testing, static analysis and continuous upgrades.
     pt-br:
-      - Liderança técnica do produto RevGás, no ERP web, nos apps Android e nos serviços de backend. Entrei como Analista de Sistemas.
-      - Sistema fiscal e gerencial para revendas de GLP, com foco em eficiência operacional e conformidade.
-      - Levantamento de requisitos com stakeholders e tradução em especificações técnicas e soluções.
-      - Testes, validação, suporte técnico e treinamento dos usuários finais.
+      - Liderança técnica do produto RevGás, no ERP web, nos apps Android e nos serviços de backend. Promovido de Analista de Sistemas.
+      - Direção técnica e arquitetura das bases web, mobile e backend.
+      - Requisitos de negócio traduzidos em especificações e tarefas bem recortadas, com estimativas realistas para o time.
+      - Revisão de código e padrões de qualidade, com testes, análise estática e atualização contínua.
     es:
-      - Liderazgo técnico del producto RevGás, en el ERP web, las apps Android y los servicios de backend. Entré como Analista de Sistemas.
+      - Liderazgo técnico del producto RevGás, en el ERP web, las apps Android y los servicios de backend. Ascendido desde Analista de Sistemas.
+      - Dirección técnica y arquitectura de las bases web, mobile y backend.
+      - Requisitos de negocio traducidos en especificaciones y tareas bien acotadas, con estimaciones realistas para el equipo.
+      - Revisión de código y estándares de calidad, con pruebas, análisis estático y actualización continua.
+  stack: [Java, Spring Boot, Angular, Kotlin, Go, AWS Lambda]
+
+- id: revgas-analyst
+  company: RevGás
+  url: https://revgas.com
+  location: Teresina, PI
+  start: "2021-11"
+  end: "2026-07"
+  role:
+    en: Systems Analyst
+    pt-br: Analista de Sistemas
+    es: Analista de Sistemas
+  summary:
+    en:
+      - Fiscal and management system for LPG resellers, focused on operational efficiency and compliance.
+      - Angular front end kept up to date from version 9 to 21, a native Android app in Kotlin and Jetpack Compose, and new Spring Boot, Go and serverless services next to the Java monolith.
+      - Desktop caller ID client rewritten from Java 8 to Rust and Tauri 2.
+      - Requirements gathering with stakeholders, testing, technical support and end-user training.
+    pt-br:
+      - Sistema fiscal e gerencial para revendas de GLP, com foco em eficiência operacional e conformidade.
+      - Frontend em Angular atualizado da versão 9 à 21, app Android nativo em Kotlin e Jetpack Compose e novos serviços em Spring Boot, Go e serverless ao lado do monolito Java.
+      - Cliente desktop de identificação de chamadas reescrito de Java 8 para Rust e Tauri 2.
+      - Levantamento de requisitos com stakeholders, testes, suporte técnico e treinamento dos usuários finais.
+    es:
       - Sistema fiscal y de gestión para revendedores de GLP, con foco en eficiencia operativa y cumplimiento.
-      - Relevamiento de requisitos con stakeholders y su traducción en especificaciones técnicas y soluciones.
-      - Pruebas, validación, soporte técnico y capacitación de usuarios finales.
+      - Frontend en Angular actualizado de la versión 9 a la 21, app Android nativa en Kotlin y Jetpack Compose y nuevos servicios en Spring Boot, Go y serverless junto al monolito Java.
+      - Cliente de escritorio de identificación de llamadas reescrito de Java 8 a Rust y Tauri 2.
+      - Relevamiento de requisitos con stakeholders, pruebas, soporte técnico y capacitación de usuarios finales.
   stack: [Java, Spring Boot, Angular, Kotlin, Jetpack Compose, Python, Go, Rust, Tauri, AWS Lambda, AWS CDK, DynamoDB, MySQL]
 
 - id: expandr
