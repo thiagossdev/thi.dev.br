@@ -13,6 +13,7 @@ pnpm dev         # http://localhost:4321/thi.dev.br/
 pnpm check       # checagem de tipos
 pnpm build       # gera ./dist
 pnpm cv:pdf      # PDFs do currículo, depois do build
+pnpm gitcity     # atualiza o card da Git City versionado (--build: o do deploy)
 pnpm preview
 ```
 
@@ -59,6 +60,14 @@ As páginas `/cv/`, `/pt-br/cv/` e `/es/cv/` montam o currículo a partir dos me
 ## Página /uses
 
 As páginas `/uses/`, `/pt-br/uses/` e `/es/uses/` seguem a convenção do [uses.tech](https://uses.tech): o que uso no dia a dia e as configs dos meus Gists públicos. Os Gists são buscados no build por `src/data/gists.ts`, com um `git clone` raso de cada um, sem a API do GitHub nem token. Se o clone falhar localmente, o build continua e a página mostra só os links; no CI o build falha.
+
+## Card da Git City
+
+A seção de projetos mostra o card do meu perfil na [Git City](https://www.thegitcity.com/dev/thiagossdev). A Git City gera esse card a cada pedido, em 3 a 6 s e sem cache, e não deixa embutir a página em iframe. Por isso o card tem três versões, cada uma trocada pela seguinte quando carrega:
+
+1. `src/assets/gitcity.png`, versionada no repositório. Atualize com `pnpm gitcity` de vez em quando, de preferência junto de outras mudanças no site.
+2. `dist/gitcity.webp`, baixada no deploy com `pnpm gitcity --build`. Se a Git City estiver fora do ar, o passo avisa e o deploy segue.
+3. A ao vivo, pedida pelo navegador quando o card está perto de aparecer na tela.
 
 ## Compartilhamento e busca
 
