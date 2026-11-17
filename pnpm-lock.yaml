@@ -173,8 +173,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       '@lucide/astro':
-        specifier: ^1.63.0
-        version: 1.63.0(astro@7.4.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: ^1.72.0
+        version: 1.72.0(astro@7.4.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1))
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@8.3.5(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1))
@@ -182,8 +182,8 @@ importers:
         specifier: ^7.4.4
         version: 7.4.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)
       simple-icons:
-        specifier: ^16.36.0
-        version: 16.36.0
+        specifier: ^16.37.0
+        version: 16.37.0
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -626,8 +626,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@lucide/astro@1.63.0':
-    resolution: {integrity: sha512-u/edquBZ8WqGE3yEh/DMoLZ7/jgKxBcKcGb//DYkm6/6ZTzYXwuAwhKWLCx5R5iyJN6nJBxLhOh3kmyWqe6/qw==}
+  '@lucide/astro@1.72.0':
+    resolution: {integrity: sha512-+kBS2kCF0eAOzQom0OIJY0YfaVyRYICgeimNZgOeGIEtwov4EVhMEGjOP3Yb2fWjlLIADY6DfsIaUBW6toVhjg==}
     peerDependencies:
       astro: ^4 || ^5 || ^6 || ^7
 
@@ -1746,8 +1746,8 @@ packages:
     resolution: {integrity: sha512-OcRW72ngQvc+MSVWBRIovC/BTW589iUE/Vxav7VeM4RcY9MUjqB+IR6ILG1k9nuW6LiG/nct9uma4/MBtnZbmQ==}
     engines: {node: '>=20'}
 
-  simple-icons@16.36.0:
-    resolution: {integrity: sha512-+VNPPkqSOLidFeSgBKUWX4n50WPpDC09hav+BgS26anIF1oQOlGBb8LvwGR+6fYRjo+B6CiKzNBceMPkSVXANQ==}
+  simple-icons@16.37.0:
+    resolution: {integrity: sha512-8mCJIhpMYOL9g13GW59EiL3sVXJnTEKGCTZFaekl9UQ3Qo0SwVjnLaJ82QiaH8BKBdouEDzrHMXIWh8cBIy48A==}
     engines: {node: '>=0.12.18'}
 
   sisteransi@1.0.5:
@@ -2530,7 +2530,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lucide/astro@1.63.0(astro@7.4.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1))':
+  '@lucide/astro@1.72.0(astro@7.4.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
       astro: 7.4.4(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1)
 
@@ -3601,7 +3601,7 @@ snapshots:
       '@shikijs/vscode-textmate': 10.1.0
       '@types/hast': 3.0.5
 
-  simple-icons@16.36.0: {}
+  simple-icons@16.37.0: {}
 
   sisteransi@1.0.5: {}
 
