@@ -95,8 +95,19 @@
     pt-br: Um remake pessoal e não oficial do jogo de GBA Drill Dozer, de 2005, da Game Freak, feito com Godot 4.8. Este projeto não tem vínculo nem aprovação da Nintendo ou da Game Freak. Todas as marcas e direitos autorais pertencem aos respectivos donos.
     es: Un remake personal y no oficial del juego de GBA Drill Dozer, de 2005, de Game Freak, hecho con Godot 4.8. Este proyecto no está afiliado ni respaldado por Nintendo ni por Game Freak. Todas las marcas y derechos de autor pertenecen a sus respectivos dueños.
 
-- id: gitops-local
+- id: gdtest-runner
   order: 9
+  name: gdtest-runner
+  repo: https://github.com/thiagossdev/gdtest-runner
+  language: Rust
+  year: 2026
+  description:
+    en: Parallel test runner for Godot 4 projects that use GUT. Finds the test scripts without starting Godot and feeds them from one queue to a pool of headless workers, with a live terminal UI and a single summary at the end. Cut a 1956-test suite from about 112 s to 37 s on 6 cores. Published on crates.io.
+    pt-br: Executor de testes em paralelo para projetos Godot 4 que usam GUT. Encontra os scripts de teste sem abrir o Godot e os distribui de uma fila única para um pool de workers headless, com interface ao vivo no terminal e um único resumo no final. Reduziu uma suíte de 1956 testes de cerca de 112 s para 37 s em 6 núcleos. Publicado no crates.io.
+    es: Ejecutor de pruebas en paralelo para proyectos Godot 4 que usan GUT. Encuentra los scripts de prueba sin abrir Godot y los reparte desde una única cola a un pool de workers headless, con interfaz en vivo en la terminal y un único resumen al final. Redujo una suite de 1956 pruebas de unos 112 s a 37 s en 6 núcleos. Publicado en crates.io.
+
+- id: gitops-local
+  order: 10
   name: gitops-local
   repo: https://github.com/thiagossdev/gitops-local
   language: Shell
@@ -107,7 +118,7 @@
     es: Clúster de Kubernetes local gestionado con GitOps. ArgoCD, Kustomize, ingress y Postgres en StatefulSet, con scripts de bootstrap desde cero.
 
 - id: super-rev-world
-  order: 10
+  order: 11
   name: super-rev-world
   repo: https://github.com/thiagossdev/super-rev-world
   language: GDScript
@@ -118,7 +129,7 @@
     es: Juego 2D en Godot. Movimiento del jugador, tileset y una paleta de debug para visualizar direcciones.
 
 - id: thidev
-  order: 11
+  order: 12
   name: thidev
   repo: https://github.com/thiagossdev/thidev
   language: TypeScript
