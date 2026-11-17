@@ -15,7 +15,7 @@
 - id: entrega
   order: 2
   name:
-    en: RevGás for Couriers
+    en: RevGás for Deliverers
     pt-br: RevGás para Entregadores
     es: RevGás para Repartidores
   language: Kotlin
