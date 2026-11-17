@@ -42,7 +42,7 @@
 
 - id: bina
   order: 4
-  name: Bina RevGás
+  name: BINA RevGás
   language: Rust
   year: 2026
   kind: work
