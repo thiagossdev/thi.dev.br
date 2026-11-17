@@ -41,6 +41,25 @@ O tema escuro (Tokyo Night) é o padrão, independente do sistema. O botão do h
 
 Para adicionar outro tema, crie um bloco `:root[data-theme="nome"]` com as mesmas variáveis `--t-*` e inclua o nome em `ThemeToggle.astro` e no script do `Base.astro`.
 
+## Versão de Natal
+
+O arquivo `site.env`, na raiz, guarda as opções do site que entram no build. Ele é versionado e não leva segredo; segredos continuam no `.env`, que o git ignora.
+
+```sh
+SEASON=christmas   # ou none
+```
+
+Com `SEASON=christmas`, o build sai com a decoração de Natal nos dois temas: neve no campo de pixels, gorro e azevinho na foto, gorro no `#` dos títulos, enfeites pendurados nas seções, listra de bengala doce nas divisas e uma árvore no carimbo do clique. Com `SEASON=none`, nada disso entra no HTML nem no CSS. O currículo, os PDFs e a imagem de compartilhamento não mudam.
+
+Uma variável de ambiente tem prioridade sobre o arquivo, o que serve para testar sem editar: `SEASON=none pnpm dev`.
+
+| O quê                                  | Arquivo                                 |
+| -------------------------------------- | --------------------------------------- |
+| Desenhos dos enfeites (grades de pixels) | `src/data/ornaments.ts`               |
+| Cores e posições                       | `src/styles/christmas.css`              |
+| Componentes dos enfeites               | `src/components/season/`                |
+| Neve e árvore do clique                | `src/components/PixelField.astro`       |
+
 ## Deploy e CI
 
 O workflow `.github/workflows/deploy.yml` roda `pnpm check` e `pnpm build` em todo pull request e push. Em push na `main`, depois da checagem, ele faz o build de produção, gera os PDFs do currículo e publica no GitHub Pages.

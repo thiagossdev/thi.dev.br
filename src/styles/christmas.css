@@ -1,0 +1,237 @@
+/*
+  Versão de Natal. Só entra no build com SEASON=christmas (site.env) e vale
+  sob :root[data-season='christmas']. O verde do site continua; aqui entram
+  o vermelho e o branco, nos dois temas.
+*/
+:root[data-season='christmas'] {
+  --x-red: #f04f62;
+  --x-red-dark: #b8364a;
+  --x-white: #f4f6ff;
+  --x-white-shade: #a9b1d6;
+  --x-green: #9ece6a;
+  --x-green-dark: #5d8a3c;
+  --x-gold: #e0af68;
+  --x-gold-dark: #b9843f;
+  --x-cookie: #c98d58;
+  --x-cookie-dark: #9c6638;
+  --x-ink: #0b0c12;
+  --x-string: #565f89;
+  --x-snow: #dfe5ff;
+  --x-crest: #f04f62;
+  --x-stripe-red: #f04f62;
+  --x-stripe-white: #e6eaff;
+  /* contornos que só o tema claro precisa, para o branco não sumir no fundo */
+  --x-snow-edge: transparent;
+  --x-stripe-edge: transparent;
+}
+:root[data-season='christmas'][data-theme='latte'] {
+  --x-red: #d20f39;
+  --x-red-dark: #9b0a2a;
+  --x-white: #ffffff;
+  --x-white-shade: #ccd0da;
+  --x-green: #40a02b;
+  --x-green-dark: #2e7d1f;
+  --x-gold: #df8e1d;
+  --x-gold-dark: #a96a10;
+  --x-cookie: #b97a45;
+  --x-cookie-dark: #8a5528;
+  --x-ink: #303246;
+  --x-string: #7c7f93;
+  --x-snow: #ffffff;
+  --x-crest: #d20f39;
+  --x-stripe-red: #d20f39;
+  --x-stripe-white: #ffffff;
+  --x-snow-edge: #8c8fa1;
+  --x-stripe-edge: #4c4f6959;
+}
+
+/* Enfeite: grade de pixels vezes --px. */
+.xmas-sprite {
+  display: block;
+  flex: none;
+  width: calc(var(--w) * var(--px, 2px));
+  height: calc(var(--h) * var(--px, 2px));
+}
+
+/* Enfeites pendurados no topo de uma seção. */
+:root[data-season='christmas'] main section {
+  position: relative;
+}
+.xmas-hang {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 1;
+  height: 0;
+  pointer-events: none;
+}
+.xmas-hang-item {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+  animation: xmas-sway 4.5s ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+}
+.xmas-hang-item::before {
+  content: '';
+  width: 2px;
+  height: calc(var(--len) * 0.45);
+  background: var(--x-string);
+}
+@media (width < 48rem) {
+  .xmas-wide-only {
+    display: none;
+  }
+}
+@media (width >= 48rem) {
+  .xmas-hang-item {
+    --px: 3px;
+  }
+  .xmas-hang-item::before {
+    height: var(--len);
+  }
+}
+@keyframes xmas-sway {
+  from {
+    transform: rotate(-2.5deg);
+  }
+  to {
+    transform: rotate(2.5deg);
+  }
+}
+
+/* Listra de bengala doce nas divisas das seções e sob o cabeçalho. */
+:root[data-season='christmas'] {
+  --x-stripe: repeating-linear-gradient(
+    135deg,
+    var(--x-stripe-red) 0 6px,
+    var(--x-stripe-white) 6px 12px
+  );
+}
+:root[data-season='christmas'] :is(main section.border-t, footer#contact) {
+  border-top: 3px solid transparent;
+  border-image: var(--x-stripe) 1;
+  box-shadow:
+    0 -1px 0 var(--x-stripe-edge),
+    inset 0 1px 0 var(--x-stripe-edge);
+}
+:root[data-season='christmas'] .site-header::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--x-stripe);
+  box-shadow:
+    0 -1px 0 var(--x-stripe-edge),
+    0 1px 0 var(--x-stripe-edge);
+  transition: opacity 200ms ease-out;
+}
+:root[data-season='christmas'] .site-header[data-over-hero]:not(:has([aria-expanded='true']))::after {
+  opacity: 0;
+}
+
+/* O "#" dos títulos de seção em vermelho. */
+:root[data-season='christmas'] .section-title::before {
+  color: var(--x-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xmas-hang-item {
+    animation: none;
+  }
+}
+
+/* Hero: os enfeites descem do topo da página, por trás do cabeçalho. */
+.xmas-hang-hero .xmas-hang-item::before {
+  height: calc(var(--len) * 0.55);
+}
+@media (width >= 48rem) {
+  .xmas-hang-hero .xmas-hang-item::before {
+    height: var(--len);
+  }
+}
+
+/* Foto do hero: gorro num canto de cima e azevinho no canto oposto. */
+.xmas-photo {
+  position: relative;
+  width: fit-content;
+  --px: 3px;
+}
+.xmas-photo-hat {
+  position: absolute;
+  top: calc(var(--px) * -12);
+  left: calc(var(--px) * -11);
+  /* Inclinado uns 30 graus e espelhado: a ponta com o pompom cai para fora da foto. */
+  transform: rotate(-30deg) scaleX(-1);
+  transform-origin: 50% 85%;
+}
+.xmas-photo-holly {
+  position: absolute;
+  right: calc(var(--px) * -5);
+  bottom: calc(var(--px) * -4);
+}
+@media (width < 40rem) {
+  /* No celular a foto encosta na margem: o gorro sai menos para o lado. */
+  .xmas-photo-hat {
+    left: calc(var(--px) * -6);
+  }
+}
+@media (width >= 40rem) {
+  .xmas-photo {
+    --px: 4px;
+  }
+}
+@media (width >= 64rem) {
+  .xmas-photo {
+    --px: 5px;
+  }
+}
+
+/* Rodapé: fileira de enfeites acima dos créditos. */
+.xmas-garland {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.875rem;
+  padding-bottom: 1.25rem;
+}
+
+/* Enfeite no canto de cima de um cartão (o cartão recebe xmas-corner-host). */
+.xmas-corner-host {
+  position: relative;
+}
+.xmas-corner {
+  position: absolute;
+  top: calc(var(--px, 2px) * -6);
+  right: calc(var(--px, 2px) * -3);
+  --px: 3px;
+}
+
+/* Enfeite no canto de baixo do bloco anterior, para blocos com overflow escondido. */
+.xmas-after-corner {
+  position: relative;
+  display: block;
+  height: 0;
+  --px: 3px;
+}
+.xmas-after-corner .xmas-sprite {
+  position: absolute;
+  bottom: calc(var(--px) * -4);
+  left: calc(var(--px) * -4);
+}
+
+/* Gorro no "#" dos títulos de seção, caído para a direita. */
+:root[data-season='christmas'] .section-title {
+  position: relative;
+}
+.xmas-title-hat {
+  position: absolute;
+  top: -0.1em;
+  left: 0.14em;
+  --px: 1px;
+  transform: rotate(24deg);
+  transform-origin: 50% 90%;
+  pointer-events: none;
+}

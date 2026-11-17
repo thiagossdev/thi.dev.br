@@ -1,0 +1,31 @@
+---
+// Enfeites pendurados por um fio no topo do elemento pai (que precisa ser
+// position: relative). Puramente decorativo.
+import type { SpriteName } from '../../data/ornaments';
+import Ornament from './Ornament.astro';
+
+export interface HangingItem {
+  name: SpriteName;
+  /** Posição horizontal em CSS, por exemplo "left: 8%" ou "right: 6%". */
+  at: string;
+  /** Comprimento do fio em px (no celular fica mais curto). */
+  len: number;
+  /** Some em telas estreitas, para não disputar espaço com o texto. */
+  wideOnly?: boolean;
+}
+interface Props {
+  items: HangingItem[];
+  class?: string;
+}
+const { items, class: className } = Astro.props;
+---
+
+<div class:list={['xmas-hang', className]} aria-hidden="true">
+  {
+    items.map((item, i) => (
+      <span class:list={['xmas-hang-item', item.wideOnly && 'xmas-wide-only']} style={`${item.at};--len:${item.len}px;--delay:${-(i * 1.3) % 5}s`}>
+        <Ornament name={item.name} />
+      </span>
+    ))
+  }
+</div>

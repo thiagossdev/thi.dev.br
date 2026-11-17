@@ -16,6 +16,10 @@
 //   centro), com barras subindo do fundo. Não há áudio: a batida é
 //   sintetizada a 126 BPM, bumbo em todo tempo.
 //
+// - Natal (SEASON=christmas em site.env): neve caindo em células brancas, o
+//   topo das barras do equalizador em vermelho e uma árvore no lugar do logo
+//   carimbado. Com a flag desligada, esse código nem entra no bundle.
+//
 // Pausa fora da tela e fica estático com prefers-reduced-motion.
 interface Props {
   variant?: 'edges' | 'hero';
@@ -50,8 +54,10 @@ const { variant = 'edges' } = Astro.props;
     return m.flat().map((v) => (v + 0.5) / 64);
   })();
 
+  const XMAS = __SEASON__ === 'christmas';
+
   // Logo carimbado no clique: o prompt "❯_" dentro de um quadro, 15x15.
-  const GLYPH = [
+  const LOGO = [
     '111111111111111',
     '100000000000001',
     '101000000000001',
@@ -68,6 +74,25 @@ const { variant = 'edges' } = Astro.props;
     '100000000000001',
     '111111111111111',
   ];
+  // No Natal, o carimbo é uma árvore; os "2" são bolas vermelhas.
+  const TREE = [
+    '000000010000000',
+    '000000111000000',
+    '000000010000000',
+    '000000121000000',
+    '000001111100000',
+    '000012111110000',
+    '000001111100000',
+    '000011111210000',
+    '000111211111000',
+    '000011111110000',
+    '000111111211000',
+    '001121111111100',
+    '011111121111210',
+    '000000111000000',
+    '000000111000000',
+  ];
+  const GLYPH = XMAS ? TREE : LOGO;
 
   const hash = (x: number, y: number) => {
     let h = (x * 374761393 + y * 668265263) | 0;
@@ -97,7 +122,15 @@ const { variant = 'edges' } = Astro.props;
     const hero = canvas.dataset.variant === 'hero';
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const readColors = () => ({ dim: css('--t-field-dim', '#39482e'), mid: css('--t-field-mid', '#678549'), lit: css('--t-field-lit', '#9ece6a') });
+    const readColors = () => ({
+      dim: css('--t-field-dim', '#39482e'),
+      mid: css('--t-field-mid', '#678549'),
+      lit: css('--t-field-lit', '#9ece6a'),
+      // cores de Natal (src/styles/christmas.css)
+      crest: XMAS ? css('--x-crest', '#f04f62') : '',
+      snow: XMAS ? css('--x-snow', '#dfe5ff') : '',
+      snowEdge: XMAS ? css('--x-snow-edge', 'transparent') : '',
+    });
     let colors = readColors();
 
     let width = 0;
@@ -197,7 +230,8 @@ const { variant = 'edges' } = Astro.props;
       while (ripples.length && t - ripples[0].born > RIPPLE_LIFE) ripples.shift();
 
       const reach = REACH * CELL * (0.45 + 0.55 * pointer.strength) * (1 + 0.8 * beatPulse);
-      const buckets: Record<'dim' | 'mid' | 'lit', number[]> = { dim: [], mid: [], lit: [] };
+      const buckets: Record<'dim' | 'mid' | 'lit' | 'crest', number[]> = { dim: [], mid: [], lit: [], crest: [] };
+      const snow: number[] = []; // x, y e tamanho de cada floco
 
       for (let row = 0; row < rows; row++) {
         const cy = (row + 0.5) * CELL;
@@ -227,17 +261,22 @@ const { variant = 'edges' } = Astro.props;
 
           // Clique: logo carimbado que cresce e some.
           let stamp = 0;
+          let berry = false; // Natal: bola vermelha da árvore
           for (const r of ripples) {
             const p = (t - r.born) / RIPPLE_LIFE;
             const scale = CELL * (0.6 + 1.8 * (1 - (1 - p) ** 3));
             const gx = Math.floor((cx - r.x) / scale + 7.5);
             const gy = Math.floor((cy - r.y) / scale + 7.5);
-            if (gx >= 0 && gy >= 0 && gx < 15 && gy < 15 && GLYPH[gy][gx] === '1') stamp = Math.max(stamp, (1 - p) ** 1.7);
+            const mark = gx >= 0 && gy >= 0 && gx < 15 && gy < 15 ? GLYPH[gy][gx] : '0';
+            if (mark === '0') continue;
+            stamp = Math.max(stamp, (1 - p) ** 1.7);
+            if (mark === '2') berry = true;
           }
           h += stamp * 1.15;
 
           // Equalizador: barras subindo do fundo, graves nas bordas.
           let eq = 0;
+          let crest = false; // Natal: topo da barra em vermelho
           if (hero && w > 0.002) {
             const pos = (1 - Math.abs((col + 0.5) / cols - 0.5) * 2) * BANDS - 0.5;
             const a = Math.max(0, Math.min(BANDS - 1, Math.floor(pos)));
@@ -248,22 +287,57 @@ const { variant = 'edges' } = Astro.props;
             if (level > 0 && fromBottom < barHeight) {
               eq = level * (1 - fromBottom / barHeight) ** 0.85;
               h += eq * 0.85 * Math.min(1, w * 3 + 0.25);
+              crest = XMAS && fromBottom >= barHeight - 2;
             }
           }
 
           const threshold = 0.78 * BAYER8[(row & 7) * 8 + (col & 7)] + 0.22 * hash(col & 63, (row & 63) + 101);
           if (h <= threshold) continue;
           const tone = Math.max(glow, stamp, eq * 0.5);
-          buckets[tone > 0.34 ? 'lit' : tone > 0.1 ? 'mid' : 'dim'].push(col * CELL, row * CELL);
+          buckets[crest || berry ? 'crest' : tone > 0.34 ? 'lit' : tone > 0.1 ? 'mid' : 'dim'].push(col * CELL, row * CELL);
+        }
+      }
+
+      // Natal: flocos de neve. A posição sai só do tempo e do índice do floco,
+      // então não há estado, e com movimento reduzido (t = 0) a neve fica parada.
+      if (XMAS) {
+        const flakes = Math.round((cols * rows) / 48);
+        const span = rows + 2;
+        for (let k = 0; k < flakes; k++) {
+          const speed = 1.1 + 2.4 * hash(k, 7); // células por segundo
+          const row = Math.floor((hash(k, 3) * span + t * speed) % span) - 1;
+          // No hero, a neve começa abaixo do cabeçalho, para não passar atrás do menu.
+          if (row < (hero ? 6 : 0) || row >= rows) continue;
+          const drift = Math.sin(t * (0.4 + 0.8 * hash(k, 9)) + k) * 1.6;
+          const col = Math.floor((((hash(k, 5) * cols + drift) % cols) + cols) % cols);
+          snow.push(col * CELL, row * CELL, hash(k, 13) < 0.45 ? 4 : 7);
         }
       }
 
       ctx.clearRect(0, 0, width, height);
-      for (const key of ['dim', 'mid', 'lit'] as const) {
+      for (const key of ['dim', 'mid', 'lit', 'crest'] as const) {
         const list = buckets[key];
         if (!list.length) continue;
         ctx.fillStyle = colors[key];
         for (let k = 0; k < list.length; k += 2) ctx.fillRect(list[k], list[k + 1], CELL - 1, CELL - 1);
+      }
+      // Flocos: menores que a célula e centrados nela, em dois tamanhos.
+      if (snow.length) {
+        // No tema claro, um contorno de 1px para o floco branco não sumir no fundo.
+        if (colors.snowEdge && colors.snowEdge !== 'transparent') {
+          ctx.fillStyle = colors.snowEdge;
+          for (let k = 0; k < snow.length; k += 3) {
+            const size = snow[k + 2] + 2;
+            const inset = (CELL - 1 - size) / 2;
+            ctx.fillRect(snow[k] + inset, snow[k + 1] + inset, size, size);
+          }
+        }
+        ctx.fillStyle = colors.snow;
+        for (let k = 0; k < snow.length; k += 3) {
+          const size = snow[k + 2];
+          const inset = (CELL - 1 - size) / 2;
+          ctx.fillRect(snow[k] + inset, snow[k + 1] + inset, size, size);
+        }
       }
     };
 

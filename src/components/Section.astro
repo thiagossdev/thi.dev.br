@@ -2,6 +2,8 @@
 // Seção no modelo do omarchy.org: faixa de largura total com borda no topo,
 // fundo alternado (tone="deep") e conteúdo no container .wrap.
 import TypedTitle from './TypedTitle.astro';
+import Hanging, { type HangingItem } from './season/Hanging.astro';
+import type { SpriteName } from '../data/ornaments';
 
 interface Props {
   id: string;
@@ -10,9 +12,22 @@ interface Props {
   tone?: 'base' | 'deep';
 }
 const { id, title, lead, tone = 'base' } = Astro.props;
+
+// Natal: dois enfeites pendurados na divisa da seção, à direita. A escolha
+// sai do id, para cada seção ter um par diferente e sempre o mesmo.
+const HANGABLE: SpriteName[] = ['bauble-red', 'candy-cane', 'star', 'gingerbread', 'bauble-white', 'holly', 'bauble-green'];
+const seed = [...id].reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+const hanging: HangingItem[] =
+  __SEASON__ === 'christmas'
+    ? [
+        { name: HANGABLE[seed % HANGABLE.length], at: 'right: 7%', len: 18 + (seed % 3) * 8 },
+        { name: HANGABLE[(seed + 3) % HANGABLE.length], at: 'right: 15%', len: 34 - (seed % 3) * 8, wideOnly: true },
+      ]
+    : [];
 ---
 
 <section id={id} class:list={['scroll-mt-14 border-t border-border-subtle', tone === 'deep' && 'bg-bg-deep']}>
+  {hanging.length > 0 && <Hanging items={hanging} />}
   <div class="wrap py-12 lg:py-24">
     <header class="max-w-xl">
       <TypedTitle id={id} text={title} />

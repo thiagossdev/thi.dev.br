@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Ui from '../components/icons/Ui.astro';
 import { homePath } from '../i18n/config';
+import Ornament from '../components/season/Ornament.astro';
+import type { SpriteName } from '../data/ornaments';
 
 // Única 404 do GitHub Pages: o texto sai em inglês e o script troca para
 // português ou espanhol pelo caminho (/pt-br/, /es/) ou pelo idioma do navegador.
@@ -10,6 +12,7 @@ const copy = {
   'pt-br': { lead: 'Esse caminho não existe por aqui. Volte para o início ou dê uma olhada nos projetos.', projects: 'projetos' },
   es: { lead: 'Esta ruta no existe aquí. Vuelve al inicio o echa un vistazo a los proyectos.', projects: 'proyectos' },
 };
+const garland: SpriteName[] = ['holly', 'gingerbread', 'candy-cane', 'bauble-red', 'star'];
 const homes = { en: homePath('en'), 'pt-br': homePath('pt-br'), es: homePath('es') };
 ---
 
@@ -26,6 +29,13 @@ const homes = { en: homePath('en'), 'pt-br': homePath('pt-br'), es: homePath('es
       <a href={homes.en} class="link inline-flex items-center gap-2" data-404-home><Ui name="house" class="size-4 text-brand" />cd ~</a>
       <a href={`${homes.en}#projects`} class="link text-text-secondary" data-404-projects>{copy.en.projects}</a>
     </p>
+    {
+      __SEASON__ === 'christmas' && (
+        <div class="xmas-garland mt-12" aria-hidden="true">
+          {garland.map((name) => <Ornament name={name} />)}
+        </div>
+      )
+    }
   </section>
 </Base>
 

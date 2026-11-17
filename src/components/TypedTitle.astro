@@ -3,6 +3,8 @@
 // O texto completo fica no HTML (e para leitores de tela); o script em
 // Base.astro só reescreve a parte visível. Sem JS ou com movimento
 // reduzido, o título aparece inteiro.
+import Ornament from './season/Ornament.astro';
+
 interface Props {
   id: string;
   text: string;
@@ -11,6 +13,7 @@ const { id, text } = Astro.props;
 ---
 
 <h2 class="section-title text-balance">
+  {__SEASON__ === 'christmas' && <Ornament name="hat" class="xmas-title-hat" />}
   <a href={`#${id}`} class="text-inherit no-underline">
     <span class="sr-only">{text}</span>
     <span aria-hidden="true" data-typed={text} data-typing="0"><span data-typed-text>{text}</span><span class="typed-caret"></span></span>
