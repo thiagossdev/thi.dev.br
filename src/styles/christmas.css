@@ -20,6 +20,9 @@
   --x-crest: #f04f62;
   --x-stripe-red: #f04f62;
   --x-stripe-white: #e6eaff;
+  /* contornos que só o tema claro precisa, para o branco não sumir no fundo */
+  --x-snow-edge: transparent;
+  --x-stripe-edge: transparent;
 }
 :root[data-season='christmas'][data-theme='latte'] {
   --x-red: #d20f39;
@@ -32,12 +35,14 @@
   --x-gold-dark: #a96a10;
   --x-cookie: #b97a45;
   --x-cookie-dark: #8a5528;
-  --x-ink: #4c4f69;
-  --x-string: #8c8fa1;
+  --x-ink: #303246;
+  --x-string: #7c7f93;
   --x-snow: #ffffff;
   --x-crest: #d20f39;
   --x-stripe-red: #d20f39;
   --x-stripe-white: #ffffff;
+  --x-snow-edge: #8c8fa1;
+  --x-stripe-edge: #4c4f6959;
 }
 
 /* Enfeite: grade de pixels vezes --px. */
@@ -108,6 +113,9 @@
 :root[data-season='christmas'] :is(main section.border-t, footer#contact) {
   border-top: 3px solid transparent;
   border-image: var(--x-stripe) 1;
+  box-shadow:
+    0 -1px 0 var(--x-stripe-edge),
+    inset 0 1px 0 var(--x-stripe-edge);
 }
 :root[data-season='christmas'] .site-header::after {
   content: '';
@@ -115,6 +123,9 @@
   inset: auto 0 0 0;
   height: 2px;
   background: var(--x-stripe);
+  box-shadow:
+    0 -1px 0 var(--x-stripe-edge),
+    0 1px 0 var(--x-stripe-edge);
   transition: opacity 200ms ease-out;
 }
 :root[data-season='christmas'] .site-header[data-over-hero]:not(:has([aria-expanded='true']))::after {

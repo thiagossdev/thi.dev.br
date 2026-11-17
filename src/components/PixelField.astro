@@ -129,6 +129,7 @@ const { variant = 'edges' } = Astro.props;
       // cores de Natal (src/styles/christmas.css)
       crest: XMAS ? css('--x-crest', '#f04f62') : '',
       snow: XMAS ? css('--x-snow', '#dfe5ff') : '',
+      snowEdge: XMAS ? css('--x-snow-edge', 'transparent') : '',
     });
     let colors = readColors();
 
@@ -322,6 +323,15 @@ const { variant = 'edges' } = Astro.props;
       }
       // Flocos: menores que a célula e centrados nela, em dois tamanhos.
       if (snow.length) {
+        // No tema claro, um contorno de 1px para o floco branco não sumir no fundo.
+        if (colors.snowEdge && colors.snowEdge !== 'transparent') {
+          ctx.fillStyle = colors.snowEdge;
+          for (let k = 0; k < snow.length; k += 3) {
+            const size = snow[k + 2] + 2;
+            const inset = (CELL - 1 - size) / 2;
+            ctx.fillRect(snow[k] + inset, snow[k + 1] + inset, size, size);
+          }
+        }
         ctx.fillStyle = colors.snow;
         for (let k = 0; k < snow.length; k += 3) {
           const size = snow[k + 2];
