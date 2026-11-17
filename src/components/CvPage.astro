@@ -22,7 +22,7 @@ const fmt = (ym: string) => {
   return `${e.months[m - 1]} ${y}`;
 };
 const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
-const featured = ['revapp', 'entrega', 'revgas', 'bina', 'cadiro-vault', 'certz', 'gitops-local'];
+const featured = ['revapp', 'entrega', 'revgas', 'bina', 'cadiro-vault', 'certz', 'gdtest-runner', 'gitops-local'];
 const projects = (await getCollection('projects'))
   .filter((p) => featured.includes(p.id))
   .sort((a, b) => a.data.order - b.data.order);
