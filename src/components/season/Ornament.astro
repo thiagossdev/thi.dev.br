@@ -1,0 +1,41 @@
+---
+// Um enfeite de Natal em pixel art, desenhado como SVG a partir da grade em
+// src/data/ornaments.ts. O tamanho é a grade vezes --px (inteiro, para os
+// pixels ficarem nítidos); quem usa define --px por classe.
+import { spriteFill, sprites, type SpriteName } from '../../data/ornaments';
+
+interface Props {
+  name: SpriteName;
+  class?: string;
+}
+const { name, class: className } = Astro.props;
+const rows = sprites[name];
+const width = rows[0].length;
+const height = rows.length;
+
+// Junta pixels vizinhos da mesma cor em um retângulo só.
+const rects: { x: number; y: number; w: number; fill: string }[] = [];
+rows.forEach((row, y) => {
+  if (row.length !== width) throw new Error(`Enfeite "${name}": a linha ${y} tem ${row.length} pixels, esperava ${width}.`);
+  for (let x = 0; x < width; ) {
+    const c = row[x];
+    let end = x + 1;
+    while (end < width && row[end] === c) end++;
+    if (c !== '.') {
+      if (!spriteFill[c]) throw new Error(`Enfeite "${name}": cor "${c}" não existe na paleta.`);
+      rects.push({ x, y, w: end - x, fill: spriteFill[c] });
+    }
+    x = end;
+  }
+});
+---
+
+<svg
+  viewBox={`0 0 ${width} ${height}`}
+  class:list={['xmas-sprite', className]}
+  style={`--w:${width};--h:${height}`}
+  shape-rendering="crispEdges"
+  aria-hidden="true"
+>
+  {rects.map((r) => <rect x={r.x} y={r.y} width={r.w} height="1" fill={r.fill} />)}
+</svg>

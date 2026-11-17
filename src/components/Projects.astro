@@ -6,6 +6,7 @@ import Section from './Section.astro';
 import { languageColor, site } from '../data/site';
 import Ui from './icons/Ui.astro';
 import Brand from './icons/Brand.astro';
+import Ornament from './season/Ornament.astro';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 
@@ -100,6 +101,13 @@ const gitcityLive = `https://www.thegitcity.com/dev/${site.handle}/opengraph-ima
       data-live={gitcityLive}
     />
   </a>
+  {
+    __SEASON__ === 'christmas' && (
+      <span class="xmas-after-corner" aria-hidden="true">
+        <Ornament name="holly" />
+      </span>
+    )
+  }
 </Section>
 
 <script>

@@ -7,16 +7,31 @@ import { cvPath, cvPdfPath } from '../i18n/config';
 import PixelField from './PixelField.astro';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
+import Hanging from './season/Hanging.astro';
+import Ornament from './season/Ornament.astro';
+import type { SpriteName } from '../data/ornaments';
 
 interface Props {
   locale: Locale;
 }
 const s = t(Astro.props.locale);
 const year = new Date().getFullYear();
+const christmas = __SEASON__ === 'christmas';
+const garland: SpriteName[] = ['holly', 'bauble-red', 'candy-cane', 'gingerbread', 'star', 'bauble-white', 'candy-cane', 'bauble-green', 'holly'];
 ---
 
 <footer id="contact" class="relative isolate scroll-mt-14 overflow-hidden border-t border-border-subtle bg-[var(--t-field-bg)] pb-[env(safe-area-inset-bottom)]">
   <PixelField />
+  {
+    christmas && (
+      <Hanging
+        items={[
+          { name: 'star', at: 'right: 7%', len: 22 },
+          { name: 'bauble-red', at: 'right: 15%', len: 38, wideOnly: true },
+        ]}
+      />
+    )
+  }
   <!-- Fundo sólido: o brilho do mouse e o carimbo do clique ficam só nas laterais -->
   <div class="wrap bg-[var(--t-field-bg)] pt-12 pb-12 lg:pt-24 lg:pb-16" data-field-mask>
     <header class="max-w-xl">
@@ -52,6 +67,13 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="wrap bg-[var(--t-field-bg)]" data-field-mask>
+    {
+      christmas && (
+        <div class="xmas-garland" aria-hidden="true">
+          {garland.map((name) => <Ornament name={name} />)}
+        </div>
+      )
+    }
     <p class="flex flex-wrap gap-x-2 gap-y-1 border-t border-border-subtle pt-6 pb-10 text-xs text-text-muted lg:pb-12">
       <span>© {year} {site.name}.</span>
       <span>

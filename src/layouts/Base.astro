@@ -6,6 +6,10 @@ import { t } from '../i18n/strings';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+// Versão de Natal: o CSS só entra no build com SEASON=christmas (site.env).
+const christmas = __SEASON__ === 'christmas';
+if (__SEASON__ === 'christmas') await import('../styles/christmas.css');
+
 interface Props {
   locale?: Locale;
   title?: string;
@@ -50,7 +54,7 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
-<html lang={meta.htmlLang} data-theme="tokyo-night">
+<html lang={meta.htmlLang} data-theme="tokyo-night" data-season={christmas ? 'christmas' : undefined}>
   <head>
     <meta charset="utf-8" />
     <script is:inline>

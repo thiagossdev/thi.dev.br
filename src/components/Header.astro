@@ -7,6 +7,7 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import Menu from '@lucide/astro/icons/menu';
 import X from '@lucide/astro/icons/x';
+import Ornament from './season/Ornament.astro';
 
 interface Props {
   locale: Locale;
@@ -30,6 +31,7 @@ const iconLinks = site.links.filter((l) => l.icon === 'github' || l.icon === 'li
         <path d="M12 19h8" pathLength="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" />
       </svg>
       <span>~/{site.shortName}</span>
+      {__SEASON__ === 'christmas' && <Ornament name="holly" />}
       <span class="sr-only">· {s.a11y.home}</span>
     </a>
 

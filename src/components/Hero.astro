@@ -7,16 +7,35 @@ import { t } from '../i18n/strings';
 import Brand from './icons/Brand.astro';
 import Ui from './icons/Ui.astro';
 import PixelField from './PixelField.astro';
+import Hanging from './season/Hanging.astro';
+import Ornament from './season/Ornament.astro';
 
 interface Props {
   locale: Locale;
 }
 const s = t(Astro.props.locale);
+const christmas = __SEASON__ === 'christmas';
 ---
 
 <!-- Tela cheia, como no omarchy.org: sobe por baixo do header (h-14) e compensa no padding -->
 <section class="relative isolate -mt-14 flex min-h-svh flex-col overflow-hidden bg-[var(--t-field-bg)] pt-14" data-hero>
   <PixelField variant="hero" />
+  {
+    christmas && (
+      <Hanging
+        class="xmas-hang-hero"
+        items={[
+          { name: 'bauble-red', at: 'left: 5%', len: 96 },
+          { name: 'star', at: 'left: 16%', len: 132, wideOnly: true },
+          { name: 'candy-cane', at: 'left: 29%', len: 84, wideOnly: true },
+          { name: 'bauble-white', at: 'left: 44%', len: 110 },
+          { name: 'gingerbread', at: 'right: 31%', len: 90, wideOnly: true },
+          { name: 'bauble-green', at: 'right: 19%', len: 128, wideOnly: true },
+          { name: 'holly', at: 'right: 6%', len: 100 },
+        ]}
+      />
+    )
+  }
   <div class="wrap flex flex-1 flex-col justify-center pt-12 pb-24 lg:pt-16 lg:pb-48">
   <div class="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-14">
     <div class="min-w-0" data-field-mask>
@@ -71,7 +90,7 @@ const s = t(Astro.props.locale);
       </div>
     </div>
 
-    <figure class="reveal justify-self-start md:justify-self-end" style="--i: 2" data-field-mask>
+    <figure class:list={['reveal justify-self-start md:justify-self-end', christmas && 'xmas-photo']} style="--i: 2" data-field-mask>
       <Image
         src={photo}
         alt={s.a11y.photo}
@@ -81,6 +100,8 @@ const s = t(Astro.props.locale);
         loading="eager"
         class="size-48 rounded-md bg-surface object-cover outline-1 -outline-offset-1 outline-[var(--t-img-outline)] shadow-ring sm:size-64 lg:size-80"
       />
+      {christmas && <Ornament name="hat" class="xmas-photo-hat" />}
+      {christmas && <Ornament name="holly" class="xmas-photo-holly" />}
     </figure>
   </div>
   </div>

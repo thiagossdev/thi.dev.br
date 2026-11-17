@@ -5,12 +5,14 @@ import { site } from '../data/site';
 import type { Locale } from '../i18n/config';
 import { t } from '../i18n/strings';
 import Ui from './icons/Ui.astro';
+import Ornament from './season/Ornament.astro';
 
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const s = t(locale);
+const christmas = __SEASON__ === 'christmas';
 const e = s.experience;
 
 const fmt = (ym: string) => {
@@ -76,7 +78,8 @@ const jobs = (await getCollection('experience')).sort((a, b) => b.data.start.loc
   </ol>
 
   <div class="mt-12 grid gap-10 md:grid-cols-2 md:gap-12">
-    <figure class="self-start rounded-sm bg-surface p-5 shadow-ring">
+    <figure class:list={['self-start rounded-sm bg-surface p-5 shadow-ring', christmas && 'xmas-corner-host']}>
+      {christmas && <Ornament name="candy-cane" class="xmas-corner" />}
       <Ui name="quote" class="mb-3 size-5 text-brand" />
       <blockquote class="text-sm leading-relaxed text-text-secondary">
         {e.testimonial.quote}
