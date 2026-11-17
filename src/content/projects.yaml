@@ -15,7 +15,7 @@
 - id: entrega
   order: 2
   name:
-    en: RevGás for Couriers
+    en: RevGás for Deliverers
     pt-br: RevGás para Entregadores
     es: RevGás para Repartidores
   language: Kotlin
@@ -42,7 +42,7 @@
 
 - id: bina
   order: 4
-  name: Bina RevGás
+  name: BINA RevGás
   language: Rust
   year: 2026
   kind: work
